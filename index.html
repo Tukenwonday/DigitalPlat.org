@@ -489,30 +489,9 @@
     const aboutBtn = document.getElementById("aboutBtn");
 
     downloadBtn.addEventListener("click", () => {
-      // Demo "download": creates a file and triggers download.
-      const content = [
-        "Walid Landing Demo",
-        "------------------",
-        "Replace this with your actual file/content.",
-        "",
-        "Tip: you can swap this with a real URL.",
-      ].join("\\n");
+  window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1";
+});
 
-      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "walid-demo.txt";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-
-      // small haptic-like feedback
-      downloadBtn.style.transform = "translateY(0px) scale(.985)";
-      setTimeout(() => downloadBtn.style.transform = "", 140);
-    });
 
     aboutBtn.addEventListener("click", () => {
       // Minimal modal-like alert (kept lightweight, no extra HTML)
@@ -621,5 +600,6 @@
   </script>
 </body>
 </html>
+
 
 
