@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Vote</title>
+</head>
+<body>
+  <h2>Vote for your jacket</h2>
+
+  <div id="blocked" style="display:none;">
+    <p>You already voted on this device.</p>
+    <button onclick="resetVote()">Reset (teacher/testing only)</button>
+  </div>
+
+  <div id="form">
+    <input id="name" placeholder="Your name" />
+
+    <p>Choose one:</p>
+    <label><input type="radio" name="jacket" value="Jacket A"> Jacket A</label><br>
+    <label><input type="radio" name="jacket" value="Jacket B"> Jacket B</label><br>
+    <label><input type="radio" name="jacket" value="Jacket C"> Jacket C</label><br><br>
+
+    <button onclick="vote()">Submit vote</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    const votedKey = "jacket_poll_voted";
+
+    // Block if already voted on this device
+    if (localStorage.getItem(votedKey) === "true") {
+      document.getElementById("form").style.display = "none";
+      document.getElementById("blocked").style.display = "block";
+    }
+
+    function vote() {
+      const name = document.getElementById("name").value.trim();
+      const chosen = document.querySelector("input[name='jacket']:checked");
+      const msg = document.getElementById("msg");
+
+      if (!name) return msg.textContent = "Type your name.";
+      if (!chosen) return msg.textContent = "Choose a jacket.";
+
+      // Store vote locally (simple demo)
+      const voteData = { name, jacket: chosen.value, time: new Date().toISOString() };
+      localStorage.setItem("jacket_poll_vote", JSON.stringify(voteData));
+      localStorage.setItem(votedKey, "true");
+
+      msg.textContent = "Vote saved (on this device).";
+      setTimeout(() => location.reload(), 700);
+    }
+
+    function resetVote() {
+      localStorage.removeItem("jacket_poll_vote");
+      localStorage.removeItem(votedKey);
+      location.reload();
+    }
+  </script>
+</body>
+</html>
