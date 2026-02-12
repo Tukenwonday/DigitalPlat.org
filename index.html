@@ -1,659 +1,680 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <title>Get Hacked MF</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WALEED MODULE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#07070a;
-      --panel:#0c0c12;
-      --fg:#eaeaf6;
-      --muted: rgba(234,234,246,.70);
-
-      --neon1:#00e5ff;
-      --neon2:#ff2bd6;
-      --neon3:#a9ff57;
-
-      --stroke: rgba(255,255,255,.10);
-      --stroke2: rgba(255,255,255,.16);
-
-      --r: 18px;
-      --shadow: 0 30px 90px rgba(0,0,0,.65);
+```
+    :root {
+        --navy-deep: #0a0e27;
+        --navy-mid: #121b3a;
+        --cyan: #00f5ff;
+        --violet: #a78bfa;
+        --mint: #5eead4;
+        --white: #ffffff;
+        --white-soft: #e2e8f0;
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      overflow:hidden;
+    body {
+        font-family: 'Inter', sans-serif;
+        background: radial-gradient(ellipse at center, var(--navy-mid) 0%, var(--navy-deep) 100%);
+        color: var(--white-soft);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
     }
 
-    /* ======= Background: “signal room” ======= */
-    .bg{
-      position:fixed; inset:0;
-      pointer-events:none;
+    /* Background grid */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 1;
     }
 
-    /* moving gradient haze */
-    .haze{
-      position:absolute; inset:-30vmax;
-      background:
-        radial-gradient(80vmax 60vmax at 15% 25%, rgba(0,229,255,.18), transparent 60%),
-        radial-gradient(60vmax 50vmax at 80% 20%, rgba(255,43,214,.16), transparent 62%),
-        radial-gradient(70vmax 55vmax at 55% 85%, rgba(169,255,87,.12), transparent 62%);
-      filter: blur(24px);
-      animation: drift 14s ease-in-out infinite alternate;
-      opacity: .95;
-    }
-    @keyframes drift{
-      from{ transform: translate3d(-1.5vmax, -1vmax, 0) scale(1); }
-      to  { transform: translate3d(1.5vmax,  1.2vmax, 0) scale(1.02); }
+    /* Noise texture */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 2;
     }
 
-    /* scanlines */
-    .scan{
-      position:absolute; inset:0;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,.035) 0px,
-        rgba(255,255,255,.035) 1px,
-        rgba(0,0,0,0) 3px,
-        rgba(0,0,0,0) 7px
-      );
-      opacity:.25;
-      mix-blend-mode: overlay;
+    .container {
+        position: relative;
+        z-index: 3;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
     }
 
-    /* dotted grid (not like the previous site) */
-    .dots{
-      position:absolute; inset:0;
-      background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
-      background-size: 22px 22px;
-      opacity:.16;
-      mask-image: radial-gradient(520px 420px at 50% 45%, #000 30%, transparent 72%);
+    /* Header */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        background: rgba(10, 14, 39, 0.7);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 1rem 0;
     }
 
-    /* subtle noise */
-    .noise{
-      position:absolute; inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
-      opacity:.12;
-      mix-blend-mode: overlay;
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
     }
 
-    /* ======= Layout ======= */
-    .wrap{
-      position:relative;
-      height:100%;
-      display:grid;
-      place-items:center;
-      padding: clamp(18px, 3vw, 36px);
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
 
-    /* Top “tape labels” (completely new style) */
-    .tapeBar{
-      position:fixed;
-      top: 18px;
-      left: 18px;
-      right: 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      z-index: 5;
-      user-select:none;
-    }
-    .tape{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--stroke);
-      box-shadow: 0 12px 36px rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-    }
-    .tape .tag{
-      font-family:"JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color: rgba(234,234,246,.78);
-      white-space:nowrap;
-    }
-    .led{
-      width:10px; height:10px;
-      border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.12));
-      box-shadow:
-        0 0 0 6px rgba(0,229,255,.08),
-        0 0 26px rgba(0,229,255,.25);
-    }
-    .tapeRight{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
-    .tapeMini{
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 12px 36px rgba(0,0,0,.30);
-      transition: transform .18s ease, border-color .18s ease;
-    }
-    .tapeMini:hover{ transform: translateY(-2px); border-color: var(--stroke2); }
-
-    /* ======= Main “console module” (new design) ======= */
-    .module{
-      width: min(980px, 92vw);
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-      transform: translateZ(0);
-      animation: in 650ms cubic-bezier(.2,1,.2,1) both;
-    }
-    @keyframes in{
-      from{ opacity:0; transform: translateY(18px) scale(.99); }
-      to  { opacity:1; transform: translateY(0) scale(1); }
+    .logo {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--cyan), var(--violet));
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
     }
 
-    /* “neon frame” */
-    .module::before{
-      content:"";
-      position:absolute; inset:-2px;
-      border-radius: 28px;
-      background:
-        linear-gradient(90deg, rgba(0,229,255,.0), rgba(0,229,255,.55), rgba(255,43,214,.55), rgba(169,255,87,.45), rgba(0,229,255,.0));
-      filter: blur(14px);
-      opacity:.55;
-      pointer-events:none;
+    .logo::before {
+        content: '';
+        position: absolute;
+        width: 60%;
+        height: 60%;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
     }
 
-    /* top header of module */
-    .head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 16px 18px;
-      background: rgba(0,0,0,.18);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.3; }
+        50% { transform: scale(1.5); opacity: 0.1; }
     }
 
-    .meter{
-      display:flex; align-items:center; gap:10px;
-      min-width: 240px;
-    }
-    .meter .label{
-      font-family:"JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color: rgba(234,234,246,.72);
-      white-space:nowrap;
-    }
-    .bar{
-      flex:1;
-      height:10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.09);
-      overflow:hidden;
-      position:relative;
-    }
-    .bar::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(0,229,255,.9), rgba(255,43,214,.85), rgba(169,255,87,.8));
-      width: 62%;
-      border-radius:999px;
-      box-shadow: 0 0 22px rgba(0,229,255,.16);
-      animation: load 2.2s ease-in-out infinite alternate;
-    }
-    @keyframes load{
-      from{ width: 46%; filter: brightness(1); }
-      to  { width: 72%; filter: brightness(1.08); }
+    .header-title {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
     }
 
-    .kbd{
-      display:flex; gap:10px; align-items:center;
-    }
-    .key{
-      padding: 8px 10px;
-      border-radius: 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-family:"JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-      font-size:12px;
-      letter-spacing:.06em;
-      color: rgba(234,234,246,.70);
+    .header-title h1 {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        background: linear-gradient(90deg, var(--cyan), var(--violet));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
-    /* body content */
-    .body{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 0;
-      min-height: 420px;
+    .status-text {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--mint);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.7;
     }
 
-    .left{
-      padding: clamp(24px, 4.2vw, 54px);
-      position:relative;
+    .header-right {
+        display: flex;
+        gap: 0.75rem;
     }
 
-    /* “stamp” kicker: totally different style */
-    .stamp{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border:1px dashed rgba(255,255,255,.22);
-      background: rgba(255,255,255,.02);
-      width: fit-content;
-    }
-    .stamp .spark{
-      width: 10px; height: 10px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--neon1), var(--neon2));
-      box-shadow: 0 0 18px rgba(255,43,214,.18);
-      transform: rotate(12deg);
-      animation: blink 1.6s steps(2,end) infinite;
-    }
-    @keyframes blink{
-      0%,40%{ opacity:1; }
-      60%,100%{ opacity:.35; }
-    }
-    .stamp span{
-      font-family:"JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-      font-size:12px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: rgba(234,234,246,.78);
+    .chip {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        border-radius: 50px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
-    /* Glitch title */
-    .title{
-      margin: 18px 0 10px 0;
-      font-size: clamp(50px, 6.4vw, 96px);
-      line-height: .95;
-      letter-spacing: -0.06em;
-      font-weight: 700;
-      position:relative;
-      display:inline-block;
-    }
-    .title .word{
-      background: linear-gradient(90deg, rgba(234,234,246,.95), rgba(0,229,255,.88) 45%, rgba(255,43,214,.90));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow: 0 18px 60px rgba(0,0,0,.55);
-    }
-    .title::before,
-    .title::after{
-      content: attr(data-text);
-      position:absolute;
-      left:0; top:0;
-      pointer-events:none;
-      opacity:.75;
-      mix-blend-mode: screen;
-      filter: saturate(1.2);
-      clip-path: inset(0 0 70% 0);
-      transform: translate3d(0,0,0);
-    }
-    .title::before{
-      color: rgba(0,229,255,.55);
-      transform: translateX(-2px);
-      animation: glitch1 2.6s infinite linear;
-    }
-    .title::after{
-      color: rgba(255,43,214,.45);
-      transform: translateX(2px);
-      clip-path: inset(40% 0 0 0);
-      animation: glitch2 3.1s infinite linear;
-    }
-    @keyframes glitch1{
-      0%,100%{ clip-path: inset(0 0 70% 0); }
-      10%{ clip-path: inset(12% 0 55% 0); }
-      22%{ clip-path: inset(2% 0 78% 0); }
-      35%{ clip-path: inset(22% 0 44% 0); }
-      58%{ clip-path: inset(8% 0 64% 0); }
-      76%{ clip-path: inset(18% 0 52% 0); }
-    }
-    @keyframes glitch2{
-      0%,100%{ clip-path: inset(40% 0 0 0); }
-      14%{ clip-path: inset(48% 0 0 0); }
-      28%{ clip-path: inset(34% 0 0 0); }
-      52%{ clip-path: inset(58% 0 0 0); }
-      74%{ clip-path: inset(44% 0 0 0); }
-      88%{ clip-path: inset(62% 0 0 0); }
+    .chip-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 10px var(--mint);
+        animation: glow 2s ease-in-out infinite;
     }
 
-    .desc{
-      margin: 0;
-      max-width: 58ch;
-      font-size: clamp(16px, 1.8vw, 20px);
-      line-height: 1.55;
-      color: var(--muted);
+    @keyframes glow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
     }
 
-    .actions{
-      margin-top: 22px;
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-      align-items:center;
+    /* Main content */
+    main {
+        padding: 4rem 0;
     }
 
-    /* New button set (not pills, not glass glow buttons like before) */
-    .btn{
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      color: rgba(234,234,246,.92);
-      border-radius: 16px;
-      padding: 14px 16px;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 650;
-      letter-spacing: .01em;
-      box-shadow: 0 18px 45px rgba(0,0,0,.40);
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-      user-select:none;
-    }
-    .btn:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.18);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-    }
-    .btn:active{ transform: translateY(0) scale(.99); }
-
-    .btn.primary{
-      border-color: rgba(0,229,255,.22);
-      position:relative;
-      overflow:hidden;
-    }
-    .btn.primary::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, transparent, rgba(0,229,255,.16), transparent);
-      transform: translateX(-120%);
-      animation: sweep 2.2s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes sweep{
-      0%{ transform: translateX(-120%); }
-      55%{ transform: translateX(120%); }
-      100%{ transform: translateX(120%); }
+    .hero-card {
+        background: rgba(18, 27, 58, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 
+            0 0 60px rgba(0, 245, 255, 0.1),
+            0 0 100px rgba(167, 139, 250, 0.05);
     }
 
-    .icon{
-      width: 18px; height: 18px;
-      flex:0 0 auto;
-      opacity:.95;
+    /* Internal grid overlay */
+    .hero-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 30px 30px;
+        pointer-events: none;
     }
 
-    /* Right “selection board” */
-    .right{
-      border-left: 1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.08));
-      padding: clamp(22px, 3.8vw, 46px);
-      position:relative;
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        position: relative;
+        z-index: 1;
     }
 
-    .right h2{
-      margin:0 0 14px 0;
-      font-family:"JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color: rgba(234,234,246,.70);
+    .hero-left {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
     }
 
-    .node{
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 18px;
-      padding: 14px 14px;
-      background: rgba(255,255,255,.02);
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      margin-bottom: 12px;
+    .label {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: rgba(94, 234, 212, 0.1);
+        border: 1px solid rgba(94, 234, 212, 0.3);
+        border-radius: 50px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--mint);
+        width: fit-content;
     }
 
-    .badge{
-      width: 40px; height: 40px;
-      border-radius: 16px;
-      display:grid;
-      place-items:center;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(135deg, rgba(0,229,255,.14), rgba(255,43,214,.12));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
-      flex:0 0 auto;
+    .hero-title {
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 1;
+        background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 50%, var(--mint) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-size: 200% 200%;
+        animation: gradientShift 5s ease infinite;
     }
 
-    .node b{
-      display:block;
-      font-size: 14px;
-      color: rgba(234,234,246,.90);
-      margin-bottom: 4px;
-    }
-    .node span{
-      display:block;
-      font-size: 13px;
-      line-height: 1.45;
-      color: rgba(234,234,246,.68);
+    @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
     }
 
-    /* Footer credit */
-    .credit{
-      position:fixed;
-      left:0; right:0;
-      bottom: 14px;
-      text-align:center;
-      font-family: "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
-      font-size: 12px;
-      letter-spacing: .08em;
-      color: rgba(234,234,246,.58);
-      z-index:5;
-      user-select:none;
-      pointer-events:none;
+    .hero-description {
+        font-size: 1.1rem;
+        color: var(--white-soft);
+        opacity: 0.8;
+        line-height: 1.6;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--cyan), var(--violet));
+        color: var(--navy-deep);
+        box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        animation: streak 3s infinite;
+    }
+
+    @keyframes streak {
+        0% { left: -100%; }
+        50%, 100% { left: 100%; }
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(0, 245, 255, 0.4);
+    }
+
+    .btn-secondary {
+        background: var(--glass);
+        border: 2px solid var(--glass-border);
+        color: var(--white);
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--cyan);
+        box-shadow: 0 10px 30px rgba(0, 245, 255, 0.2);
+    }
+
+    /* Right column - Status Board */
+    .hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .status-board-title {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--cyan);
+        margin-bottom: 0.5rem;
+    }
+
+    .info-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .info-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 1.25rem;
+        display: flex;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(0, 245, 255, 0.3);
+        transform: translateX(4px);
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .info-icon.cyan {
+        background: rgba(0, 245, 255, 0.1);
+        color: var(--cyan);
+    }
+
+    .info-icon.violet {
+        background: rgba(167, 139, 250, 0.1);
+        color: var(--violet);
+    }
+
+    .info-icon.mint {
+        background: rgba(94, 234, 212, 0.1);
+        color: var(--mint);
+    }
+
+    .info-content h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        color: var(--white);
+    }
+
+    .info-content p {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        line-height: 1.4;
+    }
+
+    /* Graph */
+    .graph-container {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin-top: 0.5rem;
+    }
+
+    .graph-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--mint);
+        margin-bottom: 1rem;
+    }
+
+    .graph {
+        height: 100px;
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+    }
+
+    .graph-bar {
+        flex: 1;
+        background: linear-gradient(to top, var(--cyan), var(--violet));
+        border-radius: 2px;
+        animation: barGrow 2s ease-in-out infinite;
+        opacity: 0.7;
+    }
+
+    .graph-bar:nth-child(1) { animation-delay: 0s; }
+    .graph-bar:nth-child(2) { animation-delay: 0.1s; }
+    .graph-bar:nth-child(3) { animation-delay: 0.2s; }
+    .graph-bar:nth-child(4) { animation-delay: 0.3s; }
+    .graph-bar:nth-child(5) { animation-delay: 0.4s; }
+    .graph-bar:nth-child(6) { animation-delay: 0.5s; }
+    .graph-bar:nth-child(7) { animation-delay: 0.6s; }
+    .graph-bar:nth-child(8) { animation-delay: 0.7s; }
+
+    @keyframes barGrow {
+        0%, 100% { transform: scaleY(1); }
+        50% { transform: scaleY(0.5); }
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 3rem 0 2rem;
+        font-size: 0.9rem;
+        opacity: 0.6;
     }
 
     /* Responsive */
-    @media (max-width: 900px){
-      body{ overflow:auto; }
-      .body{ grid-template-columns: 1fr; }
-      .right{ border-left:0; border-top: 1px solid rgba(255,255,255,.08); }
-      .meter{ min-width: 0; }
+    @media (max-width: 968px) {
+        .hero-content {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+        }
+
+        .header-right {
+            display: none;
+        }
     }
 
-    /* Motion accessibility */
-    @media (prefers-reduced-motion: reduce){
-      *{ animation:none !important; transition:none !important; }
-      body{ overflow:auto; }
+    @media (max-width: 640px) {
+        .container {
+            padding: 0 1rem;
+        }
+
+        .hero-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .button-group {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        header {
+            padding: 0.75rem 0;
+        }
+
+        .header-title h1 {
+            font-size: 0.9rem;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+        }
     }
-  </style>
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>
+```
+
 </head>
-
 <body>
-  <div class="bg" aria-hidden="true">
-    <div class="haze"></div>
-    <div class="dots"></div>
-    <div class="scan"></div>
-    <div class="noise"></div>
-  </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo"></div>
+                    <div class="header-title">
+                        <h1>WALEED MODULE</h1>
+                        <div class="status-text" id="statusText">SYNC: READY</div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="chip">
+                        <div class="chip-dot"></div>
+                        <span id="chip1">ONLINE</span>
+                    </div>
+                    <div class="chip">
+                        <div class="chip-dot"></div>
+                        <span id="chip2">ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <div class="tapeBar">
-    <div class="tape" title="Interactive">
-      <span class="led"></span>
-      <span class="tag">Motion / Glass / Glow</span>
+```
+<main>
+    <div class="container">
+        <div class="hero-card">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <span class="label">NOW WAY</span>
+                    <h2 class="hero-title">WALEED</h2>
+                    <p class="hero-description">YOUR BOX FOR POWERPOINT ACCES</p>
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="seePowerpoints">See Powerpoints</button>
+                        <button class="btn btn-secondary" id="goodluckBtn">GODDLUCK ON CLEP</button>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <h3 class="status-board-title">Status Board</h3>
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon cyan">⚡</div>
+                            <div class="info-content">
+                                <h3>System Ready</h3>
+                                <p>All modules operational and synced</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon violet">🔒</div>
+                            <div class="info-content">
+                                <h3>Secure Access</h3>
+                                <p>Encrypted connection established</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon mint">📊</div>
+                            <div class="info-content">
+                                <h3>Data Stream</h3>
+                                <p>Real-time monitoring active</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-container">
+                        <div class="graph-label">Link Status</div>
+                        <div class="graph">
+                            <div class="graph-bar" style="height: 60%;"></div>
+                            <div class="graph-bar" style="height: 80%;"></div>
+                            <div class="graph-bar" style="height: 45%;"></div>
+                            <div class="graph-bar" style="height: 90%;"></div>
+                            <div class="graph-bar" style="height: 70%;"></div>
+                            <div class="graph-bar" style="height: 85%;"></div>
+                            <div class="graph-bar" style="height: 55%;"></div>
+                            <div class="graph-bar" style="height: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</main>
 
-    <div class="tapeRight" aria-hidden="true">
-      <div class="tapeMini"><span class="tag" id="chip1">Scroll-free</span></div>
-      <div class="tapeMini"><span class="tag" id="chip2">Ultra Modern</span></div>
+<footer>
+    <div class="container">
+        <p>Created by Waleed Faris</p>
     </div>
-  </div>
+</footer>
 
-  <main class="wrap">
-    <section class="module" role="region" aria-label="Hero">
-      <div class="head">
-        <div class="meter">
-          <span class="label">LINK STATUS</span>
-          <div class="bar" aria-hidden="true"></div>
-        </div>
-        <div class="kbd" aria-hidden="true">
-          <div class="key">CTRL</div>
-          <div class="key">ENTER</div>
-        </div>
-      </div>
+<script>
+    // Rotating status text
+    const statusTexts = ['SYNC: READY', 'STATUS: ACTIVE', 'MODE: ONLINE', 'SYSTEM: GO'];
+    let statusIndex = 0;
+    const statusElement = document.getElementById('statusText');
 
-      <div class="body">
-        <div class="left">
-          <div class="stamp">
-            <div class="spark"></div>
-            <span>NOW WAY</span>
-          </div>
+    function rotateStatus() {
+        statusIndex = (statusIndex + 1) % statusTexts.length;
+        statusElement.style.opacity = '0';
+        setTimeout(() => {
+            statusElement.textContent = statusTexts[statusIndex];
+            statusElement.style.opacity = '0.7';
+        }, 300);
+    }
 
-          <!-- Keep the same title content -->
-          <h1 class="title" data-text="WALEED"><span class="word">WALEED</span></h1>
+    setInterval(rotateStatus, 3000);
 
-          <!-- Keep the same paragraph content -->
-          <p class="desc">YOUR BOX FOR POWERPOINT ACCES</p>
+    // Rotating chip labels
+    const chip1Labels = ['ONLINE', 'CONNECTED', 'LIVE', 'READY'];
+    const chip2Labels = ['ACTIVE', 'RUNNING', 'ENABLED', 'OPERATIONAL'];
+    let chip1Index = 0;
+    let chip2Index = 0;
 
-          <div class="actions">
-            <button class="btn primary" id="downloadBtn" type="button">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M5 15v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              See Powerpoints
-            </button>
+    function rotateChips() {
+        chip1Index = (chip1Index + 1) % chip1Labels.length;
+        chip2Index = (chip2Index + 1) % chip2Labels.length;
+        
+        const chip1 = document.getElementById('chip1');
+        const chip2 = document.getElementById('chip2');
+        
+        chip1.style.opacity = '0';
+        chip2.style.opacity = '0';
+        
+        setTimeout(() => {
+            chip1.textContent = chip1Labels[chip1Index];
+            chip2.textContent = chip2Labels[chip2Index];
+            chip1.style.opacity = '1';
+            chip2.style.opacity = '1';
+        }, 300);
+    }
 
-            <button class="btn" id="aboutBtn" type="button">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 16v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M12 8h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-              GODDLUCK ON CLEP
-            </button>
-          </div>
-        </div>
+    setInterval(rotateChips, 4000);
 
-        <aside class="right" aria-label="Side panel">
-          <h2>MODULE NOTES</h2>
-
-          <div class="node">
-            <div class="badge" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div>
-              <b>Different concept</b>
-              <span>New “console module” layout with scanlines + glitch title. No card/aurora look.</span>
-            </div>
-          </div>
-
-          <div class="node">
-            <div class="badge" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M4 12h10" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M4 17h16" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div>
-              <b>Same text</b>
-              <span>Kept: “NOW WAY”, “WALEED”, “YOUR BOX FOR POWERPOINT ACCES”, buttons + credit.</span>
-            </div>
-          </div>
-
-          <div class="node">
-            <div class="badge" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M7 17l10-10" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linecap="round"/>
-                <path d="M8 7h4v4" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 13h4v4" stroke="rgba(234,234,246,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div>
-              <b>Ready to deploy</b>
-              <span>Single-file HTML. Works on GitHub Pages / Cloudflare Pages.</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <div class="credit">Created by Waleed Faris</div>
-
-  <script>
-    // Button actions (kept functional like your original)
-    const downloadBtn = document.getElementById("downloadBtn");
-    const aboutBtn = document.getElementById("aboutBtn");
-
-    downloadBtn.addEventListener("click", () => {
-      const content = [
-        "Walid Landing Demo",
-        "------------------",
-        "Replace this with your actual file/content.",
-        "",
-        "Tip: you can swap this with a real URL.",
-      ].join("\\n");
-
-      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "walid-demo.txt";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+    // Button actions
+    document.getElementById('seePowerpoints').addEventListener('click', function() {
+        window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi';
     });
 
-    aboutBtn.addEventListener("click", () => {
-      const msg =
-        "This is a single-file landing page (new design).\\n\\n" +
-        "Edit the title, description, and the download action in the script.";
-      alert(msg);
+    document.getElementById('goodluckBtn').addEventListener('click', function() {
+        alert('Good luck on your CLEP exam! You\'ve got this! 🚀');
     });
 
-    // Micro text rotation for top chips
-    const chip1 = document.getElementById("chip1");
-    const chip2 = document.getElementById("chip2");
-    const a1 = ["SYNC LOCK", "CLEAN UI", "FAST LOAD", "NO CLUTTER", "READY"];
-    const a2 = ["NEON", "SCAN", "GLITCH", "MODERN", "MODULE"];
-    let k = 0;
-    setInterval(() => {
-      k = (k + 1) % a1.length;
-      chip1.textContent = a1[k];
-      chip2.textContent = a2[(k + 2) % a2.length];
-    }, 1600);
-  </script>
+    // Add smooth transitions to chips
+    document.getElementById('chip1').style.transition = 'opacity 0.3s ease';
+    document.getElementById('chip2').style.transition = 'opacity 0.3s ease';
+    statusElement.style.transition = 'opacity 0.3s ease';
+</script>
+```
+
 </body>
 </html>
