@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hehehe</title>
+<title>WALEED MODULE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,107 +13,574 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    font-family:'Inter',sans-serif;
-    background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-    min-height:100vh;
-    color:#fff;
-    overflow-x:hidden;
+  font-family:'Inter',sans-serif;
+  background:#0a0a0f;
+  min-height:100vh;
+  color:#fff;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Animated Aurora Background */
+@keyframes aurora{
+  0%{transform:translateY(0) translateX(0) scale(1) rotate(0deg);opacity:0.5;}
+  33%{transform:translateY(-20px) translateX(30px) scale(1.1) rotate(120deg);opacity:0.7;}
+  66%{transform:translateY(10px) translateX(-20px) scale(0.9) rotate(240deg);opacity:0.6;}
+  100%{transform:translateY(0) translateX(0) scale(1) rotate(360deg);opacity:0.5;}
+}
+
+.aurora{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+
+.aurora-layer{
+  position:absolute;
+  width:200%;
+  height:200%;
+  filter:blur(100px);
+  opacity:0.6;
+}
+
+.aurora-layer:nth-child(1){
+  background:radial-gradient(circle at 30% 40%, rgba(139,92,246,0.4) 0%, transparent 50%);
+  animation:aurora 15s infinite ease-in-out;
+}
+.aurora-layer:nth-child(2){
+  background:radial-gradient(circle at 70% 60%, rgba(236,72,153,0.4) 0%, transparent 50%);
+  animation:aurora 20s infinite ease-in-out 2s;
+}
+.aurora-layer:nth-child(3){
+  background:radial-gradient(circle at 50% 50%, rgba(59,130,246,0.4) 0%, transparent 50%);
+  animation:aurora 25s infinite ease-in-out 4s;
+}
+.aurora-layer:nth-child(4){
+  background:radial-gradient(circle at 20% 80%, rgba(168,85,247,0.3) 0%, transparent 50%);
+  animation:aurora 18s infinite ease-in-out 6s;
+}
+
+/* Particle System */
+.particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+@keyframes particleFloat{
+  0%{transform:translateY(100vh) translateX(0) scale(0);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:1;}
+  100%{transform:translateY(-100vh) translateX(100px) scale(1);opacity:0;}
+}
+
+.particle{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:#fff;
+  border-radius:50%;
+  animation:particleFloat linear infinite;
+  box-shadow:0 0 10px rgba(255,255,255,0.8);
+}
+
+/* Grid Background */
+.grid-bg{
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(139,92,246,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.05) 1px, transparent 1px);
+  background-size:50px 50px;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.5;
+  animation:gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse{
+  0%,100%{opacity:0.3;}
+  50%{opacity:0.6;}
 }
 
 .container{
-    max-width:1200px;
-    margin:0 auto;
-    padding:3rem 2rem;
-    text-align:center;
+  max-width:1200px;
+  margin:0 auto;
+  padding:3rem 2rem 5rem;
+  text-align:center;
+  position:relative;
+  z-index:2;
 }
 
+/* Floating Logo Animation */
+@keyframes logoFloat{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-20px) rotate(180deg);}
+}
+
+.logo-container{
+  margin:2rem auto;
+  width:120px;
+  height:120px;
+  position:relative;
+  animation:logoFloat 6s ease-in-out infinite;
+}
+
+.logo-ring{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border:3px solid;
+  border-radius:50%;
+  border-color:transparent;
+  animation:ringRotate 3s linear infinite;
+}
+
+.logo-ring:nth-child(1){
+  border-top-color:rgba(139,92,246,0.8);
+  border-right-color:rgba(236,72,153,0.8);
+  animation-duration:3s;
+}
+.logo-ring:nth-child(2){
+  border-bottom-color:rgba(59,130,246,0.8);
+  border-left-color:rgba(168,85,247,0.8);
+  animation-duration:4s;
+  animation-direction:reverse;
+}
+.logo-ring:nth-child(3){
+  border-top-color:rgba(236,72,153,0.6);
+  border-bottom-color:rgba(139,92,246,0.6);
+  animation-duration:5s;
+}
+
+@keyframes ringRotate{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+.logo-center{
+  position:absolute;
+  width:80px;
+  height:80px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  background:linear-gradient(135deg, #8b5cf6, #ec4899);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2.5rem;
+  font-weight:900;
+  box-shadow:0 0 40px rgba(139,92,246,0.6), 0 0 80px rgba(236,72,153,0.4);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:translate(-50%, -50%) scale(1);}
+  50%{transform:translate(-50%, -50%) scale(1.1);}
+}
+
+/* Badge */
 .sparkle-badge{
-    display:inline-block;
-    padding:.7rem 1.5rem;
-    background:rgba(255,255,255,.15);
-    border-radius:50px;
-    font-weight:600;
-    margin-bottom:2rem;
+  display:inline-block;
+  padding:.8rem 2rem;
+  background:rgba(139,92,246,0.2);
+  border:2px solid rgba(139,92,246,0.5);
+  border-radius:50px;
+  font-weight:700;
+  margin-bottom:2rem;
+  position:relative;
+  overflow:hidden;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  animation:badgeGlow 3s ease-in-out infinite;
 }
 
+@keyframes badgeGlow{
+  0%,100%{box-shadow:0 0 20px rgba(139,92,246,0.4);}
+  50%{box-shadow:0 0 40px rgba(139,92,246,0.8), 0 0 60px rgba(236,72,153,0.6);}
+}
+
+.sparkle-badge::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation:shine 3s infinite;
+}
+
+@keyframes shine{
+  0%{left:-100%;}
+  50%,100%{left:200%;}
+}
+
+/* Title */
 .hero-title{
-    font-family:'Outfit',sans-serif;
-    font-size:6rem;
-    font-weight:900;
-    margin-bottom:1rem;
+  font-family:'Outfit',sans-serif;
+  font-size:8rem;
+  font-weight:900;
+  margin-bottom:1rem;
+  background:linear-gradient(135deg, #fff 0%, #8b5cf6 30%, #ec4899 60%, #3b82f6 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  background-size:300% 300%;
+  animation:gradientShift 5s ease infinite, textFloat 3s ease-in-out infinite;
+  text-shadow:0 0 80px rgba(139,92,246,0.5);
+  letter-spacing:-0.02em;
+  position:relative;
+}
+
+@keyframes gradientShift{
+  0%,100%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+}
+
+@keyframes textFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
 }
 
 .hero-description{
-    font-size:1.4rem;
-    margin-bottom:3rem;
+  font-size:1.5rem;
+  margin-bottom:3rem;
+  font-weight:600;
+  opacity:0.9;
+  animation:fadeSlideUp 1s ease-out 0.5s both;
+  letter-spacing:0.05em;
+}
+
+@keyframes fadeSlideUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:0.9;transform:translateY(0);}
 }
 
 .button-container{
-    display:flex;
-    gap:1rem;
-    justify-content:center;
-    flex-wrap:wrap;
+  display:flex;
+  gap:1.5rem;
+  justify-content:center;
+  flex-wrap:wrap;
+  animation:fadeSlideUp 1s ease-out 0.8s both;
 }
 
 .btn{
-    padding:1.2rem 2.5rem;
-    border-radius:15px;
-    font-weight:700;
-    font-size:1rem;
-    border:none;
-    cursor:pointer;
-    transition:.3s;
+  padding:1.4rem 3rem;
+  border-radius:16px;
+  font-weight:700;
+  font-size:1.1rem;
+  border:none;
+  cursor:pointer;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+  overflow:hidden;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+
+.btn::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  border-radius:50%;
+  background:rgba(255,255,255,0.3);
+  transform:translate(-50%, -50%);
+  transition:width 0.6s, height 0.6s;
+}
+
+.btn:hover::before{
+  width:400px;
+  height:400px;
 }
 
 .btn-primary{
-    background:#fff;
-    color:#667eea;
+  background:linear-gradient(135deg, #8b5cf6, #ec4899);
+  color:#fff;
+  box-shadow:0 10px 40px rgba(139,92,246,0.5);
+  animation:buttonFloat 3s ease-in-out infinite;
+}
+
+@keyframes buttonFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
 }
 
 .btn-primary:hover{
-    transform:translateY(-3px);
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 20px 60px rgba(139,92,246,0.7), 0 0 40px rgba(236,72,153,0.5);
 }
 
 .btn-secondary{
-    background:transparent;
-    border:2px solid rgba(255,255,255,.6);
-    color:#fff;
+  background:transparent;
+  border:2px solid rgba(139,92,246,0.6);
+  color:#fff;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  animation:buttonFloat 3s ease-in-out 0.5s infinite;
 }
 
 .btn-secondary:hover{
-    background:rgba(255,255,255,.1);
+  background:rgba(139,92,246,0.2);
+  border-color:#8b5cf6;
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 20px 60px rgba(139,92,246,0.5);
 }
 
+/* Feature Cards */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:2rem;
+  margin-top:6rem;
+  animation:fadeSlideUp 1s ease-out 1s both;
+}
+
+.feature-card{
+  background:rgba(139,92,246,0.1);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(139,92,246,0.3);
+  border-radius:24px;
+  padding:2.5rem;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+  overflow:hidden;
+
+  /* Parallax vars */
+  --px: 0px;
+  --py: 0px;
+  transform: translate(var(--px), var(--py));
+  will-change: transform;
+}
+
+.feature-card:hover{
+  transform: translate(var(--px), var(--py)) translateY(-15px) scale(1.02);
+  border-color:rgba(139,92,246,0.6);
+  box-shadow:0 30px 80px rgba(139,92,246,0.4);
+}
+
+.feature-icon{
+  font-size:3.5rem;
+  margin-bottom:1.5rem;
+  display:inline-block;
+  animation:iconBounce 2s ease-in-out infinite;
+}
+
+@keyframes iconBounce{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-10px) scale(1.1);}
+}
+
+.feature-title{
+  font-size:1.5rem;
+  font-weight:700;
+  margin-bottom:1rem;
+  background:linear-gradient(135deg, #fff, #8b5cf6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.feature-text{font-size:1rem;line-height:1.6;opacity:0.8;}
+
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:2rem;
+  margin-top:6rem;
+  padding:3rem;
+  background:rgba(139,92,246,0.08);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  border:1px solid rgba(139,92,246,0.2);
+  border-radius:24px;
+  animation:fadeSlideUp 1s ease-out 1.2s both;
+}
+
+.stat-item{text-align:center;}
+.stat-number{
+  font-size:3.5rem;
+  font-weight:900;
+  font-family:'Outfit',sans-serif;
+  background:linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:0.5rem;
+}
+.stat-label{
+  font-size:1rem;
+  opacity:0.7;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  font-weight:600;
+}
+
+/* Scroll Indicator */
+.scroll-indicator{
+  position:fixed;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:2rem;
+  animation:scrollBounce 2s ease-in-out infinite;
+  opacity:0.6;
+  z-index:3;
+}
+
+@keyframes scrollBounce{
+  0%,100%{transform:translateX(-50%) translateY(0);}
+  50%{transform:translateX(-50%) translateY(10px);}
+}
+
+/* Responsive */
 @media(max-width:768px){
-    .hero-title{font-size:3.5rem;}
+  .hero-title{font-size:4rem;}
+  .logo-container{width:100px;height:100px;}
+  .logo-center{width:70px;height:70px;font-size:2rem;}
+  .button-container{flex-direction:column;max-width:300px;margin:0 auto;}
+  .btn{width:100%;}
+  .features{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2, 1fr);}
+}
+@media(max-width:480px){
+  .hero-title{font-size:3rem;}
+  .hero-description{font-size:1.2rem;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+  .scroll-indicator{display:none;}
 }
 </style>
 </head>
 
 <body>
+  <div class="aurora">
+    <div class="aurora-layer"></div>
+    <div class="aurora-layer"></div>
+    <div class="aurora-layer"></div>
+    <div class="aurora-layer"></div>
+  </div>
 
-<main>
-<div class="container">
-    <div class="sparkle-badge">✨ WALEED BEST CODER ALIVE</div>
-    <h1 class="hero-title">WALEED</h1>
-    <p class="hero-description">YOUR BOX FOR POWERPOINT ACCESS</p>
+  <div class="grid-bg"></div>
 
-    <div class="button-container">
+  <div class="particles" id="particleContainer"></div>
+
+  <main>
+    <div class="container">
+      <div class="logo-container">
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-center">W</div>
+      </div>
+
+      <div class="sparkle-badge">✨ NOW WAY</div>
+      <h1 class="hero-title">WALEED</h1>
+      <p class="hero-description">YOUR BOX FOR POWERPOINT ACCESS</p>
+
+      <div class="button-container">
         <button class="btn btn-primary" id="seePowerpoints">See Powerpoints</button>
-        <button class="btn btn-secondary" id="goodluckBtn">GOOD LUCK ON CLEP</button>
+        <button class="btn btn-secondary" id="goodluckBtn">Good Luck On CLEP</button>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Lightning Fast</h3>
+          <p class="feature-text">Access your PowerPoints instantly with our optimized delivery system</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Ultra Secure</h3>
+          <p class="feature-text">Military-grade encryption keeps your data safe and protected</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">Always Ready</h3>
+          <p class="feature-text">24/7 availability ensures you're never without your resources</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Support</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Resources</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">A+</div>
+          <div class="stat-label">Quality</div>
+        </div>
+      </div>
     </div>
-</div>
-</main>
+  </main>
 
-<script>
-document.getElementById('seePowerpoints').addEventListener('click', function(){
-    window.location.href='https://youtu.be/dQw4w9WgXcQ';
-});
+  <div class="scroll-indicator">↓</div>
 
-document.getElementById('goodluckBtn').addEventListener('click', function(){
-    alert("Good luck on your CLEP exam!");
-});
-</script>
+  <script>
+    // Create Particles
+    const particleContainer = document.getElementById('particleContainer');
+    for (let i = 0; i < 50; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = (Math.random() * 100) + '%';
+      p.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      p.style.animationDelay = (Math.random() * 5) + 's';
+      const size = (Math.random() * 3 + 2);
+      p.style.width = p.style.height = size + 'px';
+      particleContainer.appendChild(p);
+    }
 
+    // Buttons
+    document.getElementById('seePowerpoints').addEventListener('click', function () {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi';
+      }, 200);
+    });
+
+    document.getElementById('goodluckBtn').addEventListener('click', function () {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        alert("Good luck on your CLEP exam! You've got this! 🚀");
+        this.style.transform = '';
+      }, 200);
+    });
+
+    // Parallax (does not override hover now)
+    const cards = document.querySelectorAll('.feature-card');
+    document.addEventListener('mousemove', (e) => {
+      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+
+      cards.forEach((card, index) => {
+        const speed = (index + 1) * 0.5;
+        card.style.setProperty('--px', (moveX * speed) + 'px');
+        card.style.setProperty('--py', (moveY * speed) + 'px');
+      });
+    });
+  </script>
 </body>
 </html>
