@@ -1,558 +1,252 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALEED MODULE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WALEED MODULE</title>
 
-```
-    body {
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        color: #ffffff;
-        overflow-x: hidden;
-        position: relative;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh;
+      color:#fff;
+      overflow-x:hidden;
+      position:relative;
     }
 
-    /* Animated background pattern */
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-        pointer-events: none;
-        z-index: 0;
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.08) 0%, transparent 50%);
+      pointer-events:none;
+      z-index:0;
     }
 
-    /* Floating particles */
-    .particle {
-        position: fixed;
-        width: 4px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 0;
+    .particle{
+      position:fixed;
+      width:4px;height:4px;
+      background:rgba(255,255,255,.5);
+      border-radius:50%;
+      pointer-events:none;
+      z-index:0;
+    }
+    .particle:nth-child(1){ top:20%; left:10%; animation:float 8s infinite ease-in-out; }
+    .particle:nth-child(2){ top:60%; left:80%; animation:float 10s infinite ease-in-out 1s; }
+    .particle:nth-child(3){ top:40%; left:50%; animation:float 12s infinite ease-in-out 2s; }
+    .particle:nth-child(4){ top:70%; left:30%; animation:float 9s infinite ease-in-out 1.5s; }
+
+    @keyframes float{
+      0%,100%{ transform:translate(0,0); opacity:.5; }
+      50%{ transform:translate(30px,-30px); opacity:1; }
     }
 
-    .particle:nth-child(1) {
-        top: 20%;
-        left: 10%;
-        animation: float 8s infinite ease-in-out;
+    .container{ position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:0 2rem; }
+
+    header{ padding:2rem 0; position:relative; z-index:10; }
+    .nav{ display:flex; align-items:center; justify-content:space-between; }
+
+    .logo-section{ display:flex; align-items:center; gap:1rem; }
+    .logo-circle{
+      width:55px;height:55px;
+      background:rgba(255,255,255,.2);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border:2px solid rgba(255,255,255,.3);
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.8rem; font-weight:900;
+      box-shadow:0 8px 32px rgba(0,0,0,.1);
+      transition:transform .3s ease;
+    }
+    .logo-circle:hover{ transform:rotate(360deg) scale(1.1); }
+
+    .logo-text{ font-family:'Outfit',sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:-.02em; }
+
+    .status-badge{
+      display:flex; align-items:center; gap:.5rem;
+      padding:.6rem 1.2rem;
+      background:rgba(255,255,255,.2);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:50px;
+      font-size:.85rem; font-weight:600;
+      box-shadow:0 4px 20px rgba(0,0,0,.1);
+    }
+    .status-dot{
+      width:8px;height:8px;
+      background:#10b981;
+      border-radius:50%;
+      box-shadow:0 0 10px #10b981;
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ transform:scale(1); opacity:1; }
+      50%{ transform:scale(1.2); opacity:.7; }
     }
 
-    .particle:nth-child(2) {
-        top: 60%;
-        left: 80%;
-        animation: float 10s infinite ease-in-out 1s;
+    main{ padding:4rem 0; }
+
+    .hero-section{ text-align:center; margin-bottom:4rem; }
+    .sparkle-badge{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.7rem 1.5rem;
+      background:rgba(255,255,255,.15);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:50px;
+      font-size:.95rem; font-weight:600;
+      margin-bottom:2rem;
+      box-shadow:0 4px 20px rgba(0,0,0,.1);
     }
 
-    .particle:nth-child(3) {
-        top: 40%;
-        left: 50%;
-        animation: float 12s infinite ease-in-out 2s;
+    .hero-title{
+      font-family:'Outfit',sans-serif;
+      font-size:8rem;
+      font-weight:900;
+      line-height:.95;
+      margin-bottom:1.5rem;
+      letter-spacing:-.04em;
+      text-shadow:0 10px 40px rgba(0,0,0,.3);
     }
 
-    .particle:nth-child(4) {
-        top: 70%;
-        left: 30%;
-        animation: float 9s infinite ease-in-out 1.5s;
+    .hero-description{
+      font-size:1.5rem;
+      font-weight:500;
+      margin-bottom:3rem;
+      opacity:.95;
+      max-width:600px;
+      margin-left:auto; margin-right:auto;
+      line-height:1.6;
     }
 
-    @keyframes float {
-        0%, 100% {
-            transform: translateY(0) translateX(0);
-            opacity: 0.5;
-        }
-        50% {
-            transform: translateY(-30px) translateX(30px);
-            opacity: 1;
-        }
+    .button-container{ display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
+
+    .btn{
+      padding:1.3rem 3rem;
+      font-size:1.1rem;
+      font-weight:700;
+      border-radius:15px;
+      border:none;
+      cursor:pointer;
+      transition:all .3s cubic-bezier(.4,0,.2,1);
+      position:relative;
+      overflow:hidden;
+      font-family:'Inter',sans-serif;
     }
 
-    .container {
-        position: relative;
-        z-index: 1;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
+    .btn-primary{
+      background:rgba(255,255,255,.95);
+      color:#667eea;
+      box-shadow:0 10px 40px rgba(0,0,0,.2);
     }
-
-    /* Header */
-    header {
-        padding: 2rem 0;
-        position: relative;
-        z-index: 10;
+    .btn-primary::before{
+      content:'';
+      position:absolute; inset:0;
+      left:-100%;
+      background:linear-gradient(90deg,transparent,rgba(103,126,234,.2),transparent);
+      transition:left .5s;
     }
+    .btn-primary:hover::before{ left:100%; }
+    .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 15px 50px rgba(0,0,0,.3); }
 
-    .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .btn-secondary{
+      background:transparent;
+      color:#fff;
+      border:2px solid rgba(255,255,255,.5);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
     }
-
-    .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .logo-circle {
-        width: 55px;
-        height: 55px;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        font-weight: 900;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .logo-circle:hover {
-        transform: rotate(360deg) scale(1.1);
-    }
-
-    .logo-text {
-        font-family: 'Outfit', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-    }
-
-    .status-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1.2rem;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        background: #10b981;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #10b981;
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0%, 100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        50% {
-            transform: scale(1.2);
-            opacity: 0.7;
-        }
-    }
-
-    /* Main Content */
-    main {
-        padding: 4rem 0;
-    }
-
-    .hero-section {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .sparkle-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.7rem 1.5rem;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 50px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .hero-title {
-        font-family: 'Outfit', sans-serif;
-        font-size: 8rem;
-        font-weight: 900;
-        line-height: 0.95;
-        margin-bottom: 1.5rem;
-        letter-spacing: -0.04em;
-        text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-description {
-        font-size: 1.5rem;
-        font-weight: 500;
-        margin-bottom: 3rem;
-        opacity: 0.95;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-    }
-
-    .button-container {
-        display: flex;
-        gap: 1.2rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .btn {
-        padding: 1.3rem 3rem;
-        font-size: 1.1rem;
-        font-weight: 700;
-        border-radius: 15px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .btn-primary {
-        background: rgba(255, 255, 255, 0.95);
-        color: #667eea;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-primary::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(103, 126, 234, 0.2), transparent);
-        transition: left 0.5s;
-    }
-
-    .btn-primary:hover::before {
-        left: 100%;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    .btn-secondary {
-        background: transparent;
-        color: #ffffff;
-        border: 2px solid rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.8);
-        transform: translateY(-3px);
-    }
-
-    /* Cards Grid */
-    .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 5rem;
-    }
-
-    .card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        padding: 2.5rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-
-    .card:hover {
-        transform: translateY(-10px);
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-icon {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        display: block;
-    }
-
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 0.8rem;
-    }
-
-    .card-text {
-        font-size: 1rem;
-        line-height: 1.6;
-        opacity: 0.9;
-    }
-
-    /* Stats Section */
-    .stats-section {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin-top: 5rem;
-        padding: 3rem;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
-    }
-
-    .stat-item {
-        text-align: center;
-    }
-
-    .stat-number {
-        font-size: 3rem;
-        font-weight: 900;
-        font-family: 'Outfit', sans-serif;
-        margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-        font-size: 1rem;
-        opacity: 0.9;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 600;
-    }
-
-    /* Footer */
-    footer {
-        text-align: center;
-        padding: 4rem 0 2rem;
-        margin-top: 5rem;
-    }
-
-    .footer-text {
-        font-size: 1rem;
-        opacity: 0.8;
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.1);
+      border-color:rgba(255,255,255,.8);
+      transform:translateY(-3px);
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-        .container {
-            padding: 0 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 4.5rem;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-        }
-
-        .button-container {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .btn {
-            width: 100%;
-        }
-
-        .status-badge {
-            display: none;
-        }
-
-        .cards-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .stats-section {
-            grid-template-columns: repeat(2, 1fr);
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-        }
+    @media (max-width:768px){
+      .container{ padding:0 1.5rem; }
+      .hero-title{ font-size:4.5rem; }
+      .hero-description{ font-size:1.2rem; }
+      .button-container{ flex-direction:column; align-items:stretch; }
+      .btn{ width:100%; }
+      .status-badge{ display:none; }
     }
-
-    @media (max-width: 480px) {
-        .hero-title {
-            font-size: 3.5rem;
-        }
-
-        .logo-text {
-            font-size: 1.2rem;
-        }
-
-        .logo-circle {
-            width: 45px;
-            height: 45px;
-            font-size: 1.5rem;
-        }
-
-        .stats-section {
-            grid-template-columns: 1fr;
-        }
+    @media (max-width:480px){
+      .hero-title{ font-size:3.5rem; }
+      .logo-text{ font-size:1.2rem; }
+      .logo-circle{ width:45px;height:45px;font-size:1.5rem; }
     }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-</style>
-```
-
+  </style>
 </head>
+
 <body>
-    <!-- Floating particles -->
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
 
-```
-<header>
+  <header>
     <div class="container">
-        <nav class="nav">
-            <div class="logo-section">
-                <div class="logo-circle">W</div>
-                <div class="logo-text">WALEED MODULE</div>
-            </div>
-            <div class="status-badge">
-                <div class="status-dot"></div>
-                <span id="statusText">Online</span>
-            </div>
-        </nav>
-    </div>
-</header>
-
-<main>
-    <div class="container">
-        <section class="hero-section">
-            <div class="sparkle-badge">
-                ✨ NOW WAY
-            </div>
-            <h1 class="hero-title">WALEED</h1>
-            <p class="hero-description">YOUR BOX FOR POWERPOINT ACCES</p>
-            <div class="button-container">
-                <button class="btn btn-primary" id="seePowerpoints">See Powerpoints</button>
-                <button class="btn btn-secondary" id="goodluckBtn">GODDLUCK ON CLEP</button>
-            </div>
-        </section>
-
-        <div class="cards-grid">
-            <div class="card">
-                <span class="card-icon">⚡</span>
-                <h3 class="card-title">System Ready</h3>
-                <p class="card-text">All modules are operational and synchronized for instant access</p>
-            </div>
-            <div class="card">
-                <span class="card-icon">🔒</span>
-                <h3 class="card-title">Secure Access</h3>
-                <p class="card-text">Encrypted connection established with advanced security protocols</p>
-            </div>
-            <div class="card">
-                <span class="card-icon">📊</span>
-                <h3 class="card-title">Data Stream</h3>
-                <p class="card-text">Real-time monitoring and analytics running continuously</p>
-            </div>
+      <nav class="nav">
+        <div class="logo-section">
+          <div class="logo-circle">W</div>
+          <div class="logo-text">WALEED MODULE</div>
         </div>
-
-        <div class="stats-section">
-            <div class="stat-item">
-                <div class="stat-number">99.9%</div>
-                <div class="stat-label">Uptime</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Available</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Resources</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">A+</div>
-                <div class="stat-label">Quality</div>
-            </div>
+        <div class="status-badge">
+          <div class="status-dot"></div>
+          <span id="statusText">Online</span>
         </div>
+      </nav>
     </div>
-</main>
+  </header>
 
-<footer>
+  <main>
     <div class="container">
-        <p class="footer-text">Created by Waleed Faris • 2026</p>
-    </div>
-</footer>
+      <section class="hero-section">
+        <div class="sparkle-badge">✨ NOW WAY</div>
+        <h1 class="hero-title">WALEED</h1>
+        <p class="hero-description">YOUR BOX FOR POWERPOINT ACCESS</p>
 
-<script>
-    // Rotating status text
+        <div class="button-container">
+          <button class="btn btn-primary" id="seePowerpoints">See Powerpoints</button>
+          <button class="btn btn-secondary" id="goodluckBtn">GOOD LUCK ON CLEP</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
     const statusTexts = ['Online', 'Active', 'Ready', 'Live'];
     let currentIndex = 0;
 
     function rotateStatus() {
-        currentIndex = (currentIndex + 1) % statusTexts.length;
-        const statusElement = document.getElementById('statusText');
-        statusElement.style.opacity = '0';
-        
-        setTimeout(() => {
-            statusElement.textContent = statusTexts[currentIndex];
-            statusElement.style.opacity = '1';
-        }, 300);
+      currentIndex = (currentIndex + 1) % statusTexts.length;
+      const el = document.getElementById('statusText');
+      el.style.opacity = '0';
+      setTimeout(() => { el.textContent = statusTexts[currentIndex]; el.style.opacity = '1'; }, 300);
     }
-
+    document.getElementById('statusText').style.transition = 'opacity 0.3s ease';
     setInterval(rotateStatus, 3000);
 
-    // Button actions
-    document.getElementById('seePowerpoints').addEventListener('click', function() {
-        window.location.href = 'https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi';
+    document.getElementById('seePowerpoints').addEventListener('click', () => {
+      window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
     });
 
-    document.getElementById('goodluckBtn').addEventListener('click', function() {
-        alert('Good luck on your CLEP exam! You\'ve got this! 🚀');
+    document.getElementById('goodluckBtn').addEventListener('click', () => {
+      alert("Good luck on your CLEP exam! You've got this!");
     });
-
-    // Add transition for status text
-    document.getElementById('statusText').style.transition = 'opacity 0.3s ease';
-</script>
-```
-
+  </script>
 </body>
 </html>
