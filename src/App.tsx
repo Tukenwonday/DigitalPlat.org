@@ -1,0 +1,42 @@
+import { useState } from "react";
+import { Header } from "./components/Header";
+import { HeroCard } from "./components/HeroCard";
+import { DownloadsSection } from "./components/DownloadsSection";
+import { Footer } from "./components/Footer";
+
+function App() {
+  const [showDownloads, setShowDownloads] = useState(false);
+
+  const handleShowDownloads = () => {
+    setShowDownloads(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleBack = () => {
+    setShowDownloads(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      {/* Background grid overlay */}
+      <div className="fixed inset-0 pointer-events-none opacity-20">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      </div>
+      
+      {/* Main content */}
+      <div className="relative z-10">
+        <Header />
+        <main className="container mx-auto px-4 py-12 md:py-20">
+          {showDownloads ? (
+            <DownloadsSection onBack={handleBack} />
+          ) : (
+            <HeroCard onShowDownloads={handleShowDownloads} />
+          )}
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
+export default App;
