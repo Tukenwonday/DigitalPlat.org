@@ -1,347 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHEMISTRY</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons (CDN) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+import { useState } from "react";
+import { Header } from "./components/Header";
+import { HeroCard } from "./components/HeroCard";
+import { DownloadsSection } from "./components/DownloadsSection";
+import { Footer } from "./components/Footer";
 
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['IBM Plex Mono', 'monospace'],
-                    },
-                    colors: {
-                        slate: {
-                            950: '#020617',
-                            900: '#0f172a',
-                            800: '#1e293b',
-                            700: '#334155',
-                        },
-                        cyan: {
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                            300: '#67e8f9',
-                        },
-                        violet: {
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                        },
-                        emerald: {
-                            400: '#34d399',
-                            500: '#10b981',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
+function App() {
+  const [showDownloads, setShowDownloads] = useState(false);
 
-    <style>
-        /* Custom Grid Background for Blueprint Effect */
-        .bg-grid {
-            background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-        
-        /* Subtle Grid for Glass Cards */
-        .bg-grid-sm {
-            background-image: linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
+  const handleShowDownloads = () => {
+    setShowDownloads(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-        /* Smooth View Transitions */
-        .view-section {
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-        
-        .hidden-view {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .visible-view {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body class="min-h-screen bg-slate-950 text-white overflow-x-hidden selection:bg-cyan-500/30">
+  const handleBack = () => {
+    setShowDownloads(false);
+  };
 
-    <!-- Fixed Background Grid Overlay -->
-    <div class="fixed inset-0 pointer-events-none opacity-20 bg-grid z-0"></div>
-
-    <!-- Main Container -->
-    <div class="relative z-10 flex flex-col min-h-screen">
-        
-        <!-- HEADER COMPONENT -->
-        <header class="sticky top-0 z-50 backdrop-blur-lg bg-black/20 border-b border-cyan-500/20">
-            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-400/30 flex items-center justify-center">
-                        <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
-                    </div>
-                    <h1 class="font-mono text-lg md:text-xl tracking-wider text-white">
-                        SHITBOX
-                    </h1>
-                </div>
-
-                <!-- Status Chips -->
-                <div class="flex items-center gap-3">
-                    <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                        </span>
-                        <span id="status-text" class="font-mono text-xs text-emerald-300">SYNC: READY</span>
-                    </div>
-                    <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30">
-                        <i data-lucide="clock" class="w-3 h-3 text-cyan-400"></i>
-                        <span class="font-mono text-xs text-cyan-300">LIVE</span>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- MAIN CONTENT AREA -->
-        <main class="container mx-auto px-4 py-12 md:py-20 flex-grow">
-            
-            <!-- HERO VIEW COMPONENT -->
-            <div id="hero-view" class="view-section visible-view max-w-5xl mx-auto">
-                <div class="relative bg-white/5 backdrop-blur-xl border border-cyan-500/10 rounded-2xl p-6 md:p-10 shadow-lg shadow-cyan-500/5 overflow-hidden">
-                    <!-- Internal Grid Overlay -->
-                    <div class="absolute inset-0 bg-grid-sm pointer-events-none"></div>
-                    
-                    <div class="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
-                        <!-- Left Column -->
-                        <div class="space-y-6">
-                            <div class="inline-block">
-                                <span class="font-mono text-xs text-emerald-400 tracking-widest uppercase">
-                                    POWERPOINT BOX
-                                </span>
-                            </div>
-                            
-                            <h2 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
-                                ShitBox
-                            </h2>
-                            
-                            <p class="text-slate-400 text-lg max-w-md">
-                                Your box for PowerPoint access. Secure, fast, and always connected.
-                            </p>
-                            
-                            <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                                <button onclick="window.location.href='https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi'" class="group relative px-6 py-3 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-lg font-medium text-white overflow-hidden transition-all hover:shadow-lg hover:shadow-cyan-500/25">
-                                    <span class="relative z-10">????</span>
-                                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                                </button>
-                                
-                                <button onclick="switchView('downloads')" class="px-6 py-3 border border-cyan-400/30 rounded-lg font-medium text-cyan-300 hover:bg-cyan-500/10 transition-colors">
-                                    Download CHEMISTRY POWERPOINTS
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Right Column - Status Board Component -->
-                        <div>
-                            <div class="space-y-6">
-                                <h3 class="font-mono text-sm text-cyan-400 tracking-widest uppercase flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                                    Status Board
-                                </h3>
-
-                                <!-- Info Cards -->
-                                <div class="grid grid-cols-1 gap-3">
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                                            <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-white">Secure</h4>
-                                            <p class="text-sm text-slate-400">Encrypted connection</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                                            <i data-lucide="clock" class="w-5 h-5 text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-white">Active</h4>
-                                            <p class="text-sm text-slate-400">Real-time sync</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                                            <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-white">Connected</h4>
-                                            <p class="text-sm text-slate-400">3 users online</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Animated Line Graph -->
-                                <div class="p-4 rounded-lg bg-slate-900/50 border border-slate-700/50">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <span class="font-mono text-xs text-slate-400">LINK STATUS</span>
-                                        <span class="font-mono text-xs text-emerald-400">98%</span>
-                                    </div>
-                                    <svg viewBox="0 0 200 60" class="w-full h-16" preserveAspectRatio="none">
-                                        <defs>
-                                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.3" />
-                                                <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.6" />
-                                                <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.3" />
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M0,40 Q25,35 50,30 T100,25 T150,20 T200,15" fill="none" stroke="url(#lineGradient)" stroke-width="2" class="animate-pulse"></path>
-                                        <path d="M0,40 Q25,35 50,30 T100,25 T150,20 T200,15 L200,60 L0,60 Z" fill="url(#lineGradient)" opacity="0.1"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DOWNLOADS SECTION COMPONENT -->
-            <div id="downloads-view" class="view-section hidden-view space-y-8">
-                <!-- Header -->
-                <div class="flex items-center gap-4">
-                    <button onclick="switchView('hero')" class="p-2 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                        <i data-lucide="arrow-left" class="w-5 h-5 text-cyan-400"></i>
-                    </button>
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">
-                            Chapter Downloads
-                        </h2>
-                        <p class="text-slate-400 mt-1">
-                            Access all 20 chapters of study materials
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Chapter Cards Grid -->
-                <div id="chapter-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Cards will be injected here by JavaScript -->
-                </div>
-            </div>
-
+  return (
+    <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      {/* Background grid overlay */}
+      <div className="fixed inset-0 pointer-events-none opacity-20">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      </div>
+      
+      {/* Main content */}
+      <div className="relative z-10">
+        <Header />
+        <main className="container mx-auto px-4 py-12 md:py-20">
+          {showDownloads ? (
+            <DownloadsSection onBack={handleBack} />
+          ) : (
+            <HeroCard onShowDownloads={handleShowDownloads} />
+          )}
         </main>
-
-        <!-- FOOTER COMPONENT -->
-        <footer class="border-t border-slate-800 mt-16">
-            <div class="container mx-auto px-4 py-8 text-center">
-                <p class="text-sm text-slate-500">
-                    Created by Waleed Faris
-                </p>
-            </div>
-        </footer>
+        <Footer />
+      </div>
     </div>
+  );
+}
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
-
-        // Status Rotation Logic
-        const statusLabels = ["SYNC: READY", "STATUS: ONLINE", "SYSTEM: ACTIVE"];
-        let statusIndex = 0;
-        const statusTextElement = document.getElementById('status-text');
-
-        setInterval(() => {
-            statusIndex = (statusIndex + 1) % statusLabels.length;
-            statusTextElement.textContent = statusLabels[statusIndex];
-        }, 3000);
-
-        // View Switching Logic
-        function switchView(viewName) {
-            const heroView = document.getElementById('hero-view');
-            const downloadsView = document.getElementById('downloads-view');
-
-            if (viewName === 'downloads') {
-                heroView.classList.remove('visible-view');
-                heroView.classList.add('hidden-view');
-                
-                setTimeout(() => {
-                    heroView.style.display = 'none';
-                    downloadsView.style.display = 'block';
-                    // Trigger reflow
-                    void downloadsView.offsetWidth;
-                    downloadsView.classList.remove('hidden-view');
-                    downloadsView.classList.add('visible-view');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 300);
-            } else {
-                downloadsView.classList.remove('visible-view');
-                downloadsView.classList.add('hidden-view');
-                
-                setTimeout(() => {
-                    downloadsView.style.display = 'none';
-                    heroView.style.display = 'block';
-                    // Trigger reflow
-                    void heroView.offsetWidth;
-                    heroView.classList.remove('hidden-view');
-                    heroView.classList.add('visible-view');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 300);
-            }
-        }
-
-        // Generate Chapter Cards
-        const chapterGrid = document.getElementById('chapter-grid');
-        
-        for (let i = 1; i <= 20; i++) {
-            const card = document.createElement('div');
-            card.className = "group bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-violet-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-violet-500/30";
-            
-            card.innerHTML = `
-                <div class="flex justify-center mb-6">
-                    <div class="w-16 h-16 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500/20 group-hover:border-violet-500/40 transition-all">
-                        <i data-lucide="folder-open" class="w-8 h-8 text-violet-400"></i>
-                    </div>
-                </div>
-                <h3 class="text-center font-bold text-xl text-white mb-6 tracking-wide">
-                    CHAPTER ${i}
-                </h3>
-                <button onclick="downloadChapter(${i})" class="w-full py-3 px-6 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-violet-500/25">
-                    <i data-lucide="download" class="w-4 h-4"></i>
-                    DOWNLOAD
-                </button>
-            `;
-            
-            chapterGrid.appendChild(card);
-        }
-
-        // Re-initialize icons after adding dynamic content
-        lucide.createIcons();
-
-        // Download Handler
-        function downloadChapter(num) {
-            alert(`Downloading Chapter ${num}...`);
-        }
-    </script>
-</body>
-</html>
+export default App;
