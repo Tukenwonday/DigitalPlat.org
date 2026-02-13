@@ -44,6 +44,10 @@
                         emerald: {
                             400: '#34d399',
                             500: '#10b981',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
                         }
                     },
                     animation: {
@@ -202,6 +206,38 @@
                                     </div>
                                 </div>
 
+                                <!-- PRECALC COUNTDOWN COMPONENT -->
+                                <div class="p-4 rounded-lg bg-slate-900/50 border border-amber-500/30 relative overflow-hidden group hover:border-amber-500/50 transition-colors">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="font-mono text-xs text-amber-400 tracking-widest uppercase font-bold">PreCalc</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="relative flex h-1.5 w-1.5">
+                                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                                                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400"></span>
+                                            </span>
+                                            <span class="font-mono text-[10px] text-amber-300 uppercase tracking-wide">timer live</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-4 gap-1 text-center">
+                                        <div class="flex flex-col items-center">
+                                            <span id="cd-days" class="text-xl font-bold text-white font-mono leading-none">00</span>
+                                            <span class="text-[10px] text-slate-500 mt-1">D</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <span id="cd-hours" class="text-xl font-bold text-white font-mono leading-none">00</span>
+                                            <span class="text-[10px] text-slate-500 mt-1">H</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <span id="cd-minutes" class="text-xl font-bold text-white font-mono leading-none">00</span>
+                                            <span class="text-[10px] text-slate-500 mt-1">M</span>
+                                        </div>
+                                        <div class="flex flex-col items-center">
+                                            <span id="cd-seconds" class="text-xl font-bold text-amber-400 font-mono leading-none">00</span>
+                                            <span class="text-[10px] text-slate-500 mt-1">S</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Animated Line Graph -->
                                 <div class="p-4 rounded-lg bg-slate-900/50 border border-slate-700/50">
                                     <div class="flex items-center justify-between mb-3">
@@ -309,6 +345,53 @@
                 }, 300);
             }
         }
+
+        // --- SMART COUNTDOWN TIMER LOGIC ---
+        // This automatically finds the NEXT April 29th
+        const now = new Date();
+        let currentYear = now.getFullYear();
+        // Month is 0-indexed (3 = April)
+        let targetDate = new Date(currentYear, 3, 29); 
+
+        // If April 29 has already passed this year, set it to next year
+        if (now > targetDate) {
+            targetDate.setFullYear(currentYear + 1);
+        }
+
+        const countDownDate = targetDate.getTime();
+        console.log("Counting down to:", targetDate); // Check console for the date
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            // Time calculations
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Get elements
+            const elDays = document.getElementById("cd-days");
+            const elHours = document.getElementById("cd-hours");
+            const elMinutes = document.getElementById("cd-minutes");
+            const elSeconds = document.getElementById("cd-seconds");
+
+            // Update elements if they exist
+            if (elDays) elDays.innerHTML = days < 10 ? "0" + days : days;
+            if (elHours) elHours.innerHTML = hours < 10 ? "0" + hours : hours;
+            if (elMinutes) elMinutes.innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            if (elSeconds) elSeconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            // If the count down is finished
+            if (distance < 0) {
+                clearInterval(x);
+                if (elDays) elDays.innerHTML = "00";
+                if (elHours) elHours.innerHTML = "00";
+                if (elMinutes) elMinutes.innerHTML = "00";
+                if (elSeconds) elSeconds.innerHTML = "00";
+            }
+        }, 1000);
 
         // --- CONFIGURATION: ADD YOUR URLS HERE ---
         const chapterUrls = {
