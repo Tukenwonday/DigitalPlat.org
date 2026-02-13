@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLEP</title>
+    <title>CHEMISTRY</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +52,30 @@
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.4s ease-out',
+                        'fade-in': 'fadeIn 0.3s ease-in',
+                        'bounce-in': 'bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        'progress': 'progress 2s ease-in-out',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        progress: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        }
                     }
                 }
             }
@@ -88,6 +112,37 @@
             display: block;
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Modal Backdrop */
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Progress Bar Animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Glowing effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+        }
+
+        .glow-red {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .glow-green {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5), 0 0 40px rgba(34, 197, 94, 0.3);
         }
     </style>
 </head>
@@ -159,205 +214,278 @@
                             </p>
                             
                             <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                                <button onclick="window.location.href='https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi'" class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-lg font-medium text-white overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:-translate-y-1">
-                                    <span class="relative z-10 flex items-center gap-2">
-                                        <i data-lucide="play" class="w-4 h-4"></i>
-                                        GET SUPRISED
-                                    </span>
-                                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                                <button 
+                                    onclick="switchView('downloads')" 
+                                    class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                                    <i data-lucide="download-cloud" class="w-5 h-5 group-hover:animate-bounce"></i>
+                                    ACCESS DOWNLOADS
                                 </button>
                                 
-                                <button onclick="switchView('downloads')" class="px-8 py-4 border border-cyan-400/30 rounded-lg font-medium text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)] transition-all">
-                                    CHEMISTRY CLEP
+                                <button 
+                                    onclick="openPredictModal()" 
+                                    class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-500/50">
+                                    <i data-lucide="sparkles" class="w-5 h-5 group-hover:animate-pulse"></i>
+                                    PREDICT MY SCORE
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Right Column - Status Board Component -->
-                        <div>
-                            <div class="space-y-6">
-                                <h3 class="font-mono text-sm text-cyan-400 tracking-widest uppercase flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                                    Status Board
-                                </h3>
-
-                                <!-- Info Cards -->
-                                <div class="grid grid-cols-1 gap-3">
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors group">
-                                        <div class="w-1 h-10 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 transition-colors"></div>
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
-                                            <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-white">Secure</h4>
-                                            <p class="text-sm text-slate-400">Encrypted connection</p>
-                                        </div>
+                        <!-- Right Column: Dual Timer Box -->
+                        <div class="space-y-6">
+                            <!-- PreCalc Timer -->
+                            <div class="bg-gradient-to-br from-cyan-900/20 to-violet-900/20 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
+                                    <h3 class="font-mono text-sm text-cyan-300 uppercase tracking-wider">PreCalc Exam</h3>
+                                </div>
+                                
+                                <div class="grid grid-cols-4 gap-3 text-center">
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-days" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Days</div>
                                     </div>
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors group">
-                                        <div class="w-1 h-10 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 transition-colors"></div>
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
-                                            <i data-lucide="clock" class="w-5 h-5 text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-white">Active</h4>
-                                            <p class="text-sm text-slate-400">Real-time sync</p>
-                                        </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-hours" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Hours</div>
                                     </div>
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors group">
-                                        <div class="w-1 h-10 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 transition-colors"></div>
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
-                                            <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-semibold text-white">Connected</h4>
-                                            <p class="text-sm text-slate-400">3 users online</p>
-                                        </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-minutes" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Mins</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-seconds" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Secs</div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- DUAL COUNTDOWN SECTION -->
-                                <div class="grid grid-cols-2 gap-4">
-                                    
-                                    <!-- PRECALC TIMER (Amber) -->
-                                    <div class="group relative p-4 rounded-xl bg-slate-900/50 border border-amber-500/30 hover:border-amber-500/60 transition-all duration-300 overflow-hidden cursor-default">
-                                        <div class="flex justify-between items-center mb-2">
-                                            <span class="font-mono text-xs text-amber-400 tracking-widest uppercase font-bold">PreCalc</span>
-                                            <div class="flex items-center gap-1.5">
-                                                <span class="relative flex h-1.5 w-1.5">
-                                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                                                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400"></span>
-                                                </span>
-                                                <span class="font-mono text-[10px] text-amber-300 uppercase tracking-wide">LIVE</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Default View: Just Days -->
-                                        <div class="text-center py-2">
-                                            <span id="pc-days" class="text-3xl font-bold text-white font-mono leading-none">00</span>
-                                            <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">Days</div>
-                                        </div>
-
-                                        <!-- Hover View: Full Details (Pops out) -->
-                                        <div class="absolute inset-x-0 bottom-0 p-4 bg-slate-900/95 backdrop-blur-md border-t border-amber-500/20 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                            <div class="grid grid-cols-3 gap-2 text-center">
-                                                <div>
-                                                    <span id="pc-hours" class="text-lg font-bold text-amber-400 font-mono">00</span>
-                                                    <div class="text-[9px] text-slate-400">H</div>
-                                                </div>
-                                                <div>
-                                                    <span id="pc-minutes" class="text-lg font-bold text-amber-400 font-mono">00</span>
-                                                    <div class="text-[9px] text-slate-400">M</div>
-                                                </div>
-                                                <div>
-                                                    <span id="pc-seconds" class="text-lg font-bold text-amber-400 font-mono">00</span>
-                                                    <div class="text-[9px] text-slate-400">S</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- CHEMISTRY TIMER (Cyan) -->
-                                    <div class="group relative p-4 rounded-xl bg-slate-900/50 border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-300 overflow-hidden cursor-default">
-                                        <div class="flex justify-between items-center mb-2">
-                                            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase font-bold">Chemistry</span>
-                                            <div class="flex items-center gap-1.5">
-                                                <span class="relative flex h-1.5 w-1.5">
-                                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                                                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
-                                                </span>
-                                                <span class="font-mono text-[10px] text-cyan-300 uppercase tracking-wide">LIVE</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Default View: Just Days -->
-                                        <div class="text-center py-2">
-                                            <span id="chem-days" class="text-3xl font-bold text-white font-mono leading-none">00</span>
-                                            <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">Days</div>
-                                        </div>
-
-                                        <!-- Hover View: Full Details (Pops out) -->
-                                        <div class="absolute inset-x-0 bottom-0 p-4 bg-slate-900/95 backdrop-blur-md border-t border-cyan-500/20 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                            <div class="grid grid-cols-3 gap-2 text-center">
-                                                <div>
-                                                    <span id="chem-hours" class="text-lg font-bold text-cyan-400 font-mono">00</span>
-                                                    <div class="text-[9px] text-slate-400">H</div>
-                                                </div>
-                                                <div>
-                                                    <span id="chem-minutes" class="text-lg font-bold text-cyan-400 font-mono">00</span>
-                                                    <div class="text-[9px] text-slate-400">M</div>
-                                                </div>
-                                                <div>
-                                                    <span id="chem-seconds" class="text-lg font-bold text-cyan-400 font-mono">00</span>
-                                                    <div class="text-[9px] text-slate-400">S</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                            <!-- Chemistry Timer -->
+                            <div class="bg-gradient-to-br from-violet-900/20 to-cyan-900/20 backdrop-blur-lg rounded-2xl p-6 border border-violet-500/20">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-violet-400 animate-pulse"></div>
+                                    <h3 class="font-mono text-sm text-violet-300 uppercase tracking-wider">Chemistry Exam</h3>
                                 </div>
-
+                                
+                                <div class="grid grid-cols-4 gap-3 text-center">
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-days" class="text-3xl font-bold text-violet-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Days</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-hours" class="text-3xl font-bold text-violet-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Hours</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-minutes" class="text-3xl font-bold text-violet-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Mins</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-seconds" class="text-3xl font-bold text-violet-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Secs</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- DOWNLOADS SECTION COMPONENT -->
-            <div id="downloads-view" class="view-section hidden-view space-y-8">
-                <!-- Header -->
-                <div class="flex items-center gap-4">
-                    <button onclick="switchView('hero')" class="p-2 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                        <i data-lucide="arrow-left" class="w-5 h-5 text-cyan-400"></i>
-                    </button>
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">
-                            Chapter Downloads
-                        </h2>
-                        <p class="text-slate-400 mt-1">
-                            Access all 20 chapters of study materials
-                        </p>
-                    </div>
+            <!-- DOWNLOADS VIEW COMPONENT -->
+            <div id="downloads-view" class="view-section hidden-view">
+                <!-- Back Button -->
+                <button 
+                    onclick="switchView('hero')" 
+                    class="group flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-mono text-sm uppercase tracking-wider">Back to Home</span>
+                </button>
+
+                <!-- Downloads Header -->
+                <div class="mb-12 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Chapter Downloads
+                    </h2>
+                    <p class="text-slate-400 text-lg">
+                        Select any chapter below to download PowerPoint files
+                    </p>
                 </div>
 
-                <!-- Chapter Cards Grid -->
-                <div id="chapter-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Cards will be injected here by JavaScript -->
+                <!-- Chapter Grid -->
+                <div id="chapter-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <!-- JavaScript will generate cards here -->
                 </div>
             </div>
 
         </main>
 
-        <!-- FOOTER COMPONENT -->
-        <footer class="border-t border-slate-800 mt-16">
-            <div class="container mx-auto px-4 py-8 text-center">
-                <p class="text-sm text-slate-500">
-                    Created by Waleed Faris
-                </p>
+        <!-- FOOTER -->
+        <footer class="relative z-10 border-t border-cyan-500/10 bg-black/20 backdrop-blur-lg">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center text-slate-500 text-sm">
+                    <p class="font-mono">© 2024 SHITBOX PROTOCOL • ALL SYSTEMS OPERATIONAL</p>
+                </div>
             </div>
         </footer>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- PREDICT SCORE MODAL - Step 1: Name Input -->
+    <div id="predict-modal-name" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-cyan-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border-2 border-cyan-400/50 mb-6 glow">
+                    <i data-lucide="user" class="w-10 h-10 text-cyan-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">What's Your Name?</h3>
+                <p class="text-slate-400">Enter your name to begin the prediction</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div>
+                    <input 
+                        type="text" 
+                        id="student-name" 
+                        placeholder="Enter your name..."
+                        class="w-full px-6 py-4 bg-slate-800/50 border-2 border-slate-700 rounded-xl text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-all text-lg"
+                        onkeypress="if(event.key==='Enter') goToClassSelection()"
+                    />
+                </div>
+                
+                <div class="flex gap-4">
+                    <button 
+                        onclick="closePredictModal()" 
+                        class="flex-1 px-6 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-all font-semibold">
+                        Cancel
+                    </button>
+                    <button 
+                        onclick="goToClassSelection()" 
+                        class="flex-1 px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-semibold shadow-lg">
+                        Next →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREDICT SCORE MODAL - Step 2: Class Selection -->
+    <div id="predict-modal-class" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-violet-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border-2 border-violet-400/50 mb-6">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-violet-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">Select Your Class</h3>
+                <p class="text-slate-400">Which class are you in?</p>
+            </div>
+            
+            <div class="space-y-4 mb-6">
+                <button 
+                    onclick="selectClass('11A')" 
+                    id="class-11a"
+                    class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-cyan-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
+                    <div class="flex items-center justify-between">
+                        <span>Class 11A</span>
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </button>
+                
+                <button 
+                    onclick="selectClass('11B')" 
+                    id="class-11b"
+                    class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
+                    <div class="flex items-center justify-between">
+                        <span>Class 11B</span>
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </button>
+            </div>
+            
+            <button 
+                onclick="startPrediction()" 
+                id="predict-btn"
+                disabled
+                class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                🎯 Predict My Score
+            </button>
+            
+            <button 
+                onclick="backToNameInput()" 
+                class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
+                ← Back
+            </button>
+        </div>
+    </div>
+
+    <!-- PREDICT SCORE MODAL - Step 3: Loading Animation -->
+    <div id="predict-modal-loading" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div class="animate-bounce-in bg-slate-900/95 backdrop-blur-xl border-2 border-amber-500/30 rounded-3xl p-12 max-w-md w-full shadow-2xl text-center">
+            <div class="mb-8">
+                <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 border-2 border-amber-400/50 mb-6 animate-pulse">
+                    <i data-lucide="zap" class="w-12 h-12 text-amber-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Analyzing Your Data...</h3>
+                <p class="text-slate-400 text-lg mb-6">Using advanced AI algorithms</p>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="relative w-full h-4 bg-slate-800 rounded-full overflow-hidden mb-4">
+                <div class="absolute inset-0 shimmer"></div>
+                <div id="progress-bar" class="absolute inset-y-0 left-0 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            
+            <div class="space-y-2 text-sm text-slate-400 font-mono">
+                <p id="loading-text-1" class="opacity-0 transition-opacity">✓ Scanning study patterns...</p>
+                <p id="loading-text-2" class="opacity-0 transition-opacity">✓ Analyzing past performance...</p>
+                <p id="loading-text-3" class="opacity-0 transition-opacity">✓ Calculating probability matrix...</p>
+                <p id="loading-text-4" class="opacity-0 transition-opacity">✓ Generating prediction...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREDICT SCORE MODAL - Step 4: Result Display -->
+    <div id="predict-modal-result" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div class="animate-bounce-in bg-slate-900/95 backdrop-blur-xl border-2 rounded-3xl p-12 max-w-lg w-full shadow-2xl text-center" id="result-container">
+            <div class="mb-8">
+                <div class="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gradient-to-br mb-6 animate-pulse" id="result-icon-container">
+                    <i data-lucide="trophy" class="w-14 h-14" id="result-icon"></i>
+                </div>
+                <h3 class="text-5xl font-bold mb-2" id="predicted-score">75</h3>
+                <p class="text-slate-400 text-lg mb-6">Your Predicted Score</p>
+            </div>
+            
+            <div class="mb-8 p-6 rounded-2xl" id="message-container">
+                <p class="text-2xl font-bold mb-2" id="result-message">You're Chilling! 😎</p>
+                <p class="text-lg" id="result-submessage">No need to study hard!</p>
+            </div>
+            
+            <div class="space-y-3">
+                <button 
+                    onclick="tryAgain()" 
+                    class="w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg">
+                    🔄 Try Again
+                </button>
+                <button 
+                    onclick="closeResultModal()" 
+                    class="w-full px-6 py-3 text-slate-400 hover:text-white transition-all">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // Status Rotation Logic
-        const statusLabels = ["SYNC: READY", "STATUS: ONLINE", "SYSTEM: ACTIVE"];
-        let statusIndex = 0;
-        const statusTextElement = document.getElementById('status-text');
+        // Global variables for prediction
+        let studentName = '';
+        let selectedClass = '';
 
-        setInterval(() => {
-            statusIndex = (statusIndex + 1) % statusLabels.length;
-            statusTextElement.textContent = statusLabels[statusIndex];
-        }, 3000);
-
-        // View Switching Logic
-        function switchView(viewName) {
+        // View Switching
+        function switchView(view) {
             const heroView = document.getElementById('hero-view');
             const downloadsView = document.getElementById('downloads-view');
-
-            if (viewName === 'downloads') {
+            
+            if (view === 'downloads') {
                 heroView.classList.remove('visible-view');
                 heroView.classList.add('hidden-view');
                 
@@ -384,6 +512,216 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }, 300);
             }
+        }
+
+        // --- PREDICT SCORE MODAL FUNCTIONS ---
+
+        function openPredictModal() {
+            const modal = document.getElementById('predict-modal-name');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('student-name').value = '';
+            document.getElementById('student-name').focus();
+        }
+
+        function closePredictModal() {
+            const modal = document.getElementById('predict-modal-name');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            studentName = '';
+        }
+
+        function goToClassSelection() {
+            const nameInput = document.getElementById('student-name').value.trim();
+            
+            if (!nameInput) {
+                alert('Please enter your name!');
+                return;
+            }
+            
+            studentName = nameInput;
+            
+            // Hide name modal
+            const nameModal = document.getElementById('predict-modal-name');
+            nameModal.classList.remove('flex');
+            nameModal.classList.add('hidden');
+            
+            // Show class selection modal
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('hidden');
+            classModal.classList.add('flex');
+            
+            // Reset class selection
+            selectedClass = '';
+            document.getElementById('class-11a').classList.remove('border-cyan-500', 'bg-cyan-500/20');
+            document.getElementById('class-11b').classList.remove('border-violet-500', 'bg-violet-500/20');
+            document.getElementById('predict-btn').disabled = true;
+            
+            lucide.createIcons();
+        }
+
+        function backToNameInput() {
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('flex');
+            classModal.classList.add('hidden');
+            
+            const nameModal = document.getElementById('predict-modal-name');
+            nameModal.classList.remove('hidden');
+            nameModal.classList.add('flex');
+            
+            document.getElementById('student-name').value = studentName;
+        }
+
+        function selectClass(className) {
+            selectedClass = className;
+            
+            // Reset both buttons
+            const btn11a = document.getElementById('class-11a');
+            const btn11b = document.getElementById('class-11b');
+            
+            btn11a.classList.remove('border-cyan-500', 'bg-cyan-500/20');
+            btn11b.classList.remove('border-violet-500', 'bg-violet-500/20');
+            
+            // Highlight selected
+            if (className === '11A') {
+                btn11a.classList.add('border-cyan-500', 'bg-cyan-500/20');
+            } else {
+                btn11b.classList.add('border-violet-500', 'bg-violet-500/20');
+            }
+            
+            // Enable predict button
+            document.getElementById('predict-btn').disabled = false;
+        }
+
+        function startPrediction() {
+            if (!selectedClass) {
+                alert('Please select a class!');
+                return;
+            }
+            
+            // Hide class modal
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('flex');
+            classModal.classList.add('hidden');
+            
+            // Show loading modal
+            const loadingModal = document.getElementById('predict-modal-loading');
+            loadingModal.classList.remove('hidden');
+            loadingModal.classList.add('flex');
+            
+            lucide.createIcons();
+            
+            // Animate progress bar and loading texts
+            let progress = 0;
+            const progressBar = document.getElementById('progress-bar');
+            const loadingTexts = [
+                document.getElementById('loading-text-1'),
+                document.getElementById('loading-text-2'),
+                document.getElementById('loading-text-3'),
+                document.getElementById('loading-text-4')
+            ];
+            
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                progressBar.style.width = progress + '%';
+                
+                if (progress === 25) loadingTexts[0].classList.add('opacity-100');
+                if (progress === 50) loadingTexts[1].classList.add('opacity-100');
+                if (progress === 75) loadingTexts[2].classList.add('opacity-100');
+                if (progress === 100) {
+                    loadingTexts[3].classList.add('opacity-100');
+                    clearInterval(progressInterval);
+                    
+                    // Show result after a brief delay
+                    setTimeout(() => {
+                        showResult();
+                    }, 500);
+                }
+            }, 40);
+        }
+
+        function showResult() {
+            // Hide loading modal
+            const loadingModal = document.getElementById('predict-modal-loading');
+            loadingModal.classList.remove('flex');
+            loadingModal.classList.add('hidden');
+            
+            // Reset loading animation
+            document.getElementById('progress-bar').style.width = '0%';
+            document.querySelectorAll('[id^="loading-text-"]').forEach(el => {
+                el.classList.remove('opacity-100');
+            });
+            
+            // Generate random score between 45-80
+            const score = Math.floor(Math.random() * (80 - 45 + 1)) + 45;
+            
+            // Show result modal
+            const resultModal = document.getElementById('predict-modal-result');
+            const scoreElement = document.getElementById('predicted-score');
+            const messageElement = document.getElementById('result-message');
+            const submessageElement = document.getElementById('result-submessage');
+            const resultContainer = document.getElementById('result-container');
+            const messageContainer = document.getElementById('message-container');
+            const iconContainer = document.getElementById('result-icon-container');
+            const icon = document.getElementById('result-icon');
+            
+            scoreElement.textContent = score;
+            
+            // Customize based on score
+            if (score <= 60) {
+                // Low score - red theme
+                resultContainer.classList.add('border-red-500/30');
+                resultContainer.classList.remove('border-emerald-500/30');
+                iconContainer.classList.add('from-red-500/20', 'to-orange-500/20', 'border-red-400/50', 'glow-red');
+                iconContainer.classList.remove('from-emerald-500/20', 'to-green-500/20', 'border-emerald-400/50', 'glow-green');
+                icon.className = 'w-14 h-14 text-red-400';
+                icon.setAttribute('data-lucide', 'alert-circle');
+                messageContainer.classList.add('bg-red-500/10', 'border-2', 'border-red-500/30');
+                messageContainer.classList.remove('bg-emerald-500/10', 'border-emerald-500/30');
+                messageElement.textContent = "Better Go Study! 📚";
+                messageElement.className = "text-2xl font-bold mb-2 text-red-400";
+                submessageElement.textContent = "You might want to hit those books, " + studentName + "!";
+                submessageElement.className = "text-lg text-red-300";
+            } else {
+                // High score - green theme
+                resultContainer.classList.add('border-emerald-500/30');
+                resultContainer.classList.remove('border-red-500/30');
+                iconContainer.classList.add('from-emerald-500/20', 'to-green-500/20', 'border-emerald-400/50', 'glow-green');
+                iconContainer.classList.remove('from-red-500/20', 'to-orange-500/20', 'border-red-400/50', 'glow-red');
+                icon.className = 'w-14 h-14 text-emerald-400';
+                icon.setAttribute('data-lucide', 'trophy');
+                messageContainer.classList.add('bg-emerald-500/10', 'border-2', 'border-emerald-500/30');
+                messageContainer.classList.remove('bg-red-500/10', 'border-red-500/30');
+                messageElement.textContent = "You're Chilling! 😎";
+                messageElement.className = "text-2xl font-bold mb-2 text-emerald-400";
+                submessageElement.textContent = "No need to stress, " + studentName + "! You got this!";
+                submessageElement.className = "text-lg text-emerald-300";
+            }
+            
+            resultModal.classList.remove('hidden');
+            resultModal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function tryAgain() {
+            const resultModal = document.getElementById('predict-modal-result');
+            resultModal.classList.remove('flex');
+            resultModal.classList.add('hidden');
+            
+            // Reset and show name modal
+            studentName = '';
+            selectedClass = '';
+            openPredictModal();
+        }
+
+        function closeResultModal() {
+            const resultModal = document.getElementById('predict-modal-result');
+            resultModal.classList.remove('flex');
+            resultModal.classList.add('hidden');
+            
+            // Reset
+            studentName = '';
+            selectedClass = '';
         }
 
         // --- SMART DUAL COUNTDOWN TIMER LOGIC ---
