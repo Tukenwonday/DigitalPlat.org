@@ -134,35 +134,41 @@
             
             <!-- HERO VIEW COMPONENT -->
             <div id="hero-view" class="view-section visible-view max-w-5xl mx-auto">
-                <div class="relative bg-white/5 backdrop-blur-xl border border-cyan-500/10 rounded-2xl p-6 md:p-10 shadow-lg shadow-cyan-500/5 overflow-hidden">
+                <!-- Background Glow for Card -->
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 blur-3xl -z-10 rounded-full transform translate-y-10 scale-90"></div>
+
+                <div class="relative bg-white/5 backdrop-blur-xl border border-cyan-500/10 rounded-2xl p-6 md:p-10 shadow-2xl shadow-cyan-900/20 overflow-hidden">
                     <!-- Internal Grid Overlay -->
                     <div class="absolute inset-0 bg-grid-sm pointer-events-none"></div>
                     
                     <div class="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
                         <!-- Left Column -->
-                        <div class="space-y-6">
+                        <div class="space-y-8">
                             <div class="inline-block">
-                                <span class="font-mono text-xs text-emerald-400 tracking-widest uppercase">
+                                <span class="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-2 py-1 rounded bg-emerald-500/5">
                                     POWERPOINT BOX
                                 </span>
                             </div>
                             
-                            <h2 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+                            <h2 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">
                                 ShitBox
                             </h2>
                             
-                            <p class="text-slate-400 text-lg max-w-md">
-                                Your box for PowerPoint access. Secure, fast, and always connected.
+                            <p class="text-slate-400 text-lg max-w-md leading-relaxed">
+                                Your secure box for PowerPoint access. Fast, encrypted, and always connected to the grid.
                             </p>
                             
-                            <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                                <button onclick="window.location.href='https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi'" class="group relative px-6 py-3 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-lg font-medium text-white overflow-hidden transition-all hover:shadow-lg hover:shadow-cyan-500/25">
-                                    <span class="relative z-10">????</span>
+                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                <button onclick="window.location.href='https://youtu.be/dQw4w9WgXcQ?si=mbZC35iQQ5yG3GJi'" class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-lg font-medium text-white overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:-translate-y-1">
+                                    <span class="relative z-10 flex items-center gap-2">
+                                        <i data-lucide="play" class="w-4 h-4"></i>
+                                        WATCH VIDEO
+                                    </span>
                                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                                 </button>
                                 
-                                <button onclick="switchView('downloads')" class="px-6 py-3 border border-cyan-400/30 rounded-lg font-medium text-cyan-300 hover:bg-cyan-500/10 transition-colors">
-                                    Download CHEMISTRY POWERPOINTS
+                                <button onclick="switchView('downloads')" class="px-8 py-4 border border-cyan-400/30 rounded-lg font-medium text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)] transition-all">
+                                    DOWNLOADS
                                 </button>
                             </div>
                         </div>
@@ -177,8 +183,9 @@
 
                                 <!-- Info Cards -->
                                 <div class="grid grid-cols-1 gap-3">
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors group">
+                                        <div class="w-1 h-10 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 transition-colors"></div>
+                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
                                             <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
                                         </div>
                                         <div>
@@ -186,8 +193,9 @@
                                             <p class="text-sm text-slate-400">Encrypted connection</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors group">
+                                        <div class="w-1 h-10 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 transition-colors"></div>
+                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
                                             <i data-lucide="clock" class="w-5 h-5 text-cyan-400"></i>
                                         </div>
                                         <div>
@@ -195,8 +203,9 @@
                                             <p class="text-sm text-slate-400">Real-time sync</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+                                    <div class="flex items-center gap-4 p-4 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors group">
+                                        <div class="w-1 h-10 rounded-full bg-cyan-500/50 group-hover:bg-cyan-400 transition-colors"></div>
+                                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
                                             <i data-lucide="users" class="w-5 h-5 text-cyan-400"></i>
                                         </div>
                                         <div>
@@ -206,56 +215,87 @@
                                     </div>
                                 </div>
 
-                                <!-- PRECALC COUNTDOWN COMPONENT -->
-                                <div class="p-4 rounded-lg bg-slate-900/50 border border-amber-500/30 relative overflow-hidden group hover:border-amber-500/50 transition-colors">
-                                    <div class="flex justify-between items-center mb-3">
-                                        <span class="font-mono text-xs text-amber-400 tracking-widest uppercase font-bold">PreCalc</span>
-                                        <div class="flex items-center gap-1.5">
-                                            <span class="relative flex h-1.5 w-1.5">
-                                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                                                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400"></span>
-                                            </span>
-                                            <span class="font-mono text-[10px] text-amber-300 uppercase tracking-wide">timer live</span>
+                                <!-- DUAL COUNTDOWN SECTION -->
+                                <div class="grid grid-cols-2 gap-4">
+                                    
+                                    <!-- PRECALC TIMER (Amber) -->
+                                    <div class="group relative p-4 rounded-xl bg-slate-900/50 border border-amber-500/30 hover:border-amber-500/60 transition-all duration-300 overflow-hidden cursor-default">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-mono text-xs text-amber-400 tracking-widest uppercase font-bold">PreCalc</span>
+                                            <div class="flex items-center gap-1.5">
+                                                <span class="relative flex h-1.5 w-1.5">
+                                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                                                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400"></span>
+                                                </span>
+                                                <span class="font-mono text-[10px] text-amber-300 uppercase tracking-wide">LIVE</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Default View: Just Days -->
+                                        <div class="text-center py-2">
+                                            <span id="pc-days" class="text-3xl font-bold text-white font-mono leading-none">00</span>
+                                            <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">Days</div>
+                                        </div>
+
+                                        <!-- Hover View: Full Details (Pops out) -->
+                                        <div class="absolute inset-x-0 bottom-0 p-4 bg-slate-900/95 backdrop-blur-md border-t border-amber-500/20 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                            <div class="grid grid-cols-3 gap-2 text-center">
+                                                <div>
+                                                    <span id="pc-hours" class="text-lg font-bold text-amber-400 font-mono">00</span>
+                                                    <div class="text-[9px] text-slate-400">H</div>
+                                                </div>
+                                                <div>
+                                                    <span id="pc-minutes" class="text-lg font-bold text-amber-400 font-mono">00</span>
+                                                    <div class="text-[9px] text-slate-400">M</div>
+                                                </div>
+                                                <div>
+                                                    <span id="pc-seconds" class="text-lg font-bold text-amber-400 font-mono">00</span>
+                                                    <div class="text-[9px] text-slate-400">S</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-4 gap-1 text-center">
-                                        <div class="flex flex-col items-center">
-                                            <span id="cd-days" class="text-xl font-bold text-white font-mono leading-none">00</span>
-                                            <span class="text-[10px] text-slate-500 mt-1">D</span>
+
+                                    <!-- CHEMISTRY TIMER (Cyan) -->
+                                    <div class="group relative p-4 rounded-xl bg-slate-900/50 border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-300 overflow-hidden cursor-default">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-mono text-xs text-cyan-400 tracking-widest uppercase font-bold">Chemistry</span>
+                                            <div class="flex items-center gap-1.5">
+                                                <span class="relative flex h-1.5 w-1.5">
+                                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400"></span>
+                                                </span>
+                                                <span class="font-mono text-[10px] text-cyan-300 uppercase tracking-wide">LIVE</span>
+                                            </div>
                                         </div>
-                                        <div class="flex flex-col items-center">
-                                            <span id="cd-hours" class="text-xl font-bold text-white font-mono leading-none">00</span>
-                                            <span class="text-[10px] text-slate-500 mt-1">H</span>
+                                        
+                                        <!-- Default View: Just Days -->
+                                        <div class="text-center py-2">
+                                            <span id="chem-days" class="text-3xl font-bold text-white font-mono leading-none">00</span>
+                                            <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">Days</div>
                                         </div>
-                                        <div class="flex flex-col items-center">
-                                            <span id="cd-minutes" class="text-xl font-bold text-white font-mono leading-none">00</span>
-                                            <span class="text-[10px] text-slate-500 mt-1">M</span>
-                                        </div>
-                                        <div class="flex flex-col items-center">
-                                            <span id="cd-seconds" class="text-xl font-bold text-amber-400 font-mono leading-none">00</span>
-                                            <span class="text-[10px] text-slate-500 mt-1">S</span>
+
+                                        <!-- Hover View: Full Details (Pops out) -->
+                                        <div class="absolute inset-x-0 bottom-0 p-4 bg-slate-900/95 backdrop-blur-md border-t border-cyan-500/20 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                            <div class="grid grid-cols-3 gap-2 text-center">
+                                                <div>
+                                                    <span id="chem-hours" class="text-lg font-bold text-cyan-400 font-mono">00</span>
+                                                    <div class="text-[9px] text-slate-400">H</div>
+                                                </div>
+                                                <div>
+                                                    <span id="chem-minutes" class="text-lg font-bold text-cyan-400 font-mono">00</span>
+                                                    <div class="text-[9px] text-slate-400">M</div>
+                                                </div>
+                                                <div>
+                                                    <span id="chem-seconds" class="text-lg font-bold text-cyan-400 font-mono">00</span>
+                                                    <div class="text-[9px] text-slate-400">S</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
-                                <!-- Animated Line Graph -->
-                                <div class="p-4 rounded-lg bg-slate-900/50 border border-slate-700/50">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <span class="font-mono text-xs text-slate-400">LINK STATUS</span>
-                                        <span class="font-mono text-xs text-emerald-400">98%</span>
-                                    </div>
-                                    <svg viewBox="0 0 200 60" class="w-full h-16" preserveAspectRatio="none">
-                                        <defs>
-                                            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.3" />
-                                                <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.6" />
-                                                <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.3" />
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M0,40 Q25,35 50,30 T100,25 T150,20 T200,15" fill="none" stroke="url(#lineGradient)" stroke-width="2" class="animate-pulse"></path>
-                                        <path d="M0,40 Q25,35 50,30 T100,25 T150,20 T200,15 L200,60 L0,60 Z" fill="url(#lineGradient)" opacity="0.1"></path>
-                                    </svg>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -346,50 +386,72 @@
             }
         }
 
-        // --- SMART COUNTDOWN TIMER LOGIC ---
-        // This automatically finds the NEXT April 29th
-        const now = new Date();
-        let currentYear = now.getFullYear();
-        // Month is 0-indexed (3 = April)
-        let targetDate = new Date(currentYear, 3, 29); 
-
-        // If April 29 has already passed this year, set it to next year
-        if (now > targetDate) {
-            targetDate.setFullYear(currentYear + 1);
+        // --- SMART DUAL COUNTDOWN TIMER LOGIC ---
+        
+        // Helper function to get next occurrence of a specific date
+        function getNextTargetDate(month, day, hour) {
+            const now = new Date();
+            let target = new Date(now.getFullYear(), month, day, hour, 0, 0);
+            // If date has passed this year, move to next year
+            if (now > target) {
+                target.setFullYear(target.getFullYear() + 1);
+            }
+            return target;
         }
 
-        const countDownDate = targetDate.getTime();
-        console.log("Counting down to:", targetDate); // Check console for the date
+        // PreCalc: March 29, 9 AM (Month 2 = March)
+        const preCalcDate = getNextTargetDate(2, 29, 9);
+        const preCalcTarget = preCalcDate.getTime();
+
+        // Chemistry: April 23, 11 AM (Month 3 = April)
+        const chemDate = getNextTargetDate(3, 23, 11);
+        const chemTarget = chemDate.getTime();
+
+        console.log("PreCalc Target:", preCalcDate);
+        console.log("Chem Target:", chemDate);
 
         const x = setInterval(function() {
             const now = new Date().getTime();
-            const distance = countDownDate - now;
 
-            // Time calculations
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // --- PreCalc Calculations ---
+            const pcDistance = preCalcTarget - now;
+            const pcDays = Math.floor(pcDistance / (1000 * 60 * 60 * 24));
+            const pcHours = Math.floor((pcDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const pcMinutes = Math.floor((pcDistance % (1000 * 60 * 60)) / (1000 * 60));
+            const pcSeconds = Math.floor((pcDistance % (1000 * 60)) / 1000);
 
-            // Get elements
-            const elDays = document.getElementById("cd-days");
-            const elHours = document.getElementById("cd-hours");
-            const elMinutes = document.getElementById("cd-minutes");
-            const elSeconds = document.getElementById("cd-seconds");
+            // --- Chemistry Calculations ---
+            const chemDistance = chemTarget - now;
+            const chemDays = Math.floor(chemDistance / (1000 * 60 * 60 * 24));
+            const chemHours = Math.floor((chemDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const chemMinutes = Math.floor((chemDistance % (1000 * 60 * 60)) / (1000 * 60));
+            const chemSeconds = Math.floor((chemDistance % (1000 * 60)) / 1000);
 
-            // Update elements if they exist
-            if (elDays) elDays.innerHTML = days < 10 ? "0" + days : days;
-            if (elHours) elHours.innerHTML = hours < 10 ? "0" + hours : hours;
-            if (elMinutes) elMinutes.innerHTML = minutes < 10 ? "0" + minutes : minutes;
-            if (elSeconds) elSeconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            // --- Update PreCalc DOM ---
+            const elPcDays = document.getElementById("pc-days");
+            const elPcHours = document.getElementById("pc-hours");
+            const elPcMinutes = document.getElementById("pc-minutes");
+            const elPcSeconds = document.getElementById("pc-seconds");
 
-            // If the count down is finished
-            if (distance < 0) {
+            if (elPcDays) elPcDays.innerHTML = pcDays < 10 ? "0" + pcDays : pcDays;
+            if (elPcHours) elPcHours.innerHTML = pcHours < 10 ? "0" + pcHours : pcHours;
+            if (elPcMinutes) elPcMinutes.innerHTML = pcMinutes < 10 ? "0" + pcMinutes : pcMinutes;
+            if (elPcSeconds) elPcSeconds.innerHTML = pcSeconds < 10 ? "0" + pcSeconds : pcSeconds;
+
+            // --- Update Chemistry DOM ---
+            const elChemDays = document.getElementById("chem-days");
+            const elChemHours = document.getElementById("chem-hours");
+            const elChemMinutes = document.getElementById("chem-minutes");
+            const elChemSeconds = document.getElementById("chem-seconds");
+
+            if (elChemDays) elChemDays.innerHTML = chemDays < 10 ? "0" + chemDays : chemDays;
+            if (elChemHours) elChemHours.innerHTML = chemHours < 10 ? "0" + chemHours : chemHours;
+            if (elChemMinutes) elChemMinutes.innerHTML = chemMinutes < 10 ? "0" + chemMinutes : chemMinutes;
+            if (elChemSeconds) elChemSeconds.innerHTML = chemSeconds < 10 ? "0" + chemSeconds : chemSeconds;
+
+            // Stop if both passed (unlikely given logic, but good practice)
+            if (pcDistance < 0 && chemDistance < 0) {
                 clearInterval(x);
-                if (elDays) elDays.innerHTML = "00";
-                if (elHours) elHours.innerHTML = "00";
-                if (elMinutes) elMinutes.innerHTML = "00";
-                if (elSeconds) elSeconds.innerHTML = "00";
             }
         }, 1000);
 
