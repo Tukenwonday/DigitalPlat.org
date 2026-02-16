@@ -6,159 +6,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLEP</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Tailwind CSS (CDN) -->
-<script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Lucide Icons (CDN) -->
-<script src="https://unpkg.com/lucide@latest"></script>
-
-<!-- Tailwind Configuration -->
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    sans: ['Inter', 'sans-serif'],
-                    mono: ['IBM Plex Mono', 'monospace'],
-                },
-                colors: {
-                    slate: {
-                        950: '#020617',
-                        900: '#0f172a',
-                        800: '#1e293b',
-                        700: '#334155',
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['IBM Plex Mono', 'monospace'],
                     },
-                    cyan: {
-                        400: '#22d3ee',
-                        500: '#06b6d4',
-                        300: '#67e8f9',
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            300: '#67e8f9',
+                        },
+                        violet: {
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                        },
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
                     },
-                    violet: {
-                        400: '#a78bfa',
-                        500: '#8b5cf6',
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.4s ease-out',
+                        'fade-in': 'fadeIn 0.3s ease-in',
+                        'bounce-in': 'bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        'progress': 'progress 2s ease-in-out',
                     },
-                    emerald: {
-                        400: '#34d399',
-                        500: '#10b981',
-                    },
-                    amber: {
-                        400: '#fbbf24',
-                        500: '#f59e0b',
-                    }
-                },
-                animation: {
-                    'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    'slide-up': 'slideUp 0.4s ease-out',
-                    'fade-in': 'fadeIn 0.3s ease-in',
-                    'bounce-in': 'bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                    'progress': 'progress 2s ease-in-out',
-                },
-                keyframes: {
-                    slideUp: {
-                        '0%': { transform: 'translateY(100px)', opacity: '0' },
-                        '100%': { transform: 'translateY(0)', opacity: '1' }
-                    },
-                    fadeIn: {
-                        '0%': { opacity: '0' },
-                        '100%': { opacity: '1' }
-                    },
-                    bounceIn: {
-                        '0%': { transform: 'scale(0.3)', opacity: '0' },
-                        '50%': { transform: 'scale(1.05)' },
-                        '70%': { transform: 'scale(0.9)' },
-                        '100%': { transform: 'scale(1)', opacity: '1' }
-                    },
-                    progress: {
-                        '0%': { width: '0%' },
-                        '100%': { width: '100%' }
+                    keyframes: {
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.3)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        },
+                        progress: {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        }
                     }
                 }
             }
         }
-    }
-</script>
+    </script>
 
-<style>
-    /* Custom Grid Background for Blueprint Effect */
-    .bg-grid {
-        background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-    }
-    
-    /* Subtle Grid for Glass Cards */
-    .bg-grid-sm {
-        background-image: linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
-        background-size: 30px 30px;
-    }
+    <style>
+        /* Custom Grid Background for Blueprint Effect */
+        .bg-grid {
+            background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
 
-    /* Smooth View Transitions */
-    .view-section {
-        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-    
-    .hidden-view {
-        display: none;
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    
-    .visible-view {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
+        /* Subtle Grid for Glass Cards */
+        .bg-grid-sm {
+            background-image: linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
 
-    /* Modal Backdrop */
-    .modal-backdrop {
-        backdrop-filter: blur(8px);
-        background: rgba(0, 0, 0, 0.7);
-    }
+        /* Smooth View Transitions */
+        .view-section {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
 
-    /* Progress Bar Animation */
-    @keyframes shimmer {
-        0% { background-position: -1000px 0; }
-        100% { background-position: 1000px 0; }
-    }
+        .hidden-view {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
-    .shimmer {
-        background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
-        background-size: 1000px 100%;
-        animation: shimmer 2s infinite;
-    }
+        .visible-view {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Glowing effect */
-    .glow {
-        box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
-    }
+        /* Modal Backdrop */
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.7);
+        }
 
-    .glow-red {
-        box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
-    }
+        /* Progress Bar Animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
 
-    .glow-green {
-        box-shadow: 0 0 20px rgba(34, 197, 94, 0.5), 0 0 40px rgba(34, 197, 94, 0.3);
-    }
-</style>
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
 
+        /* Glowing effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.5), 0 0 40px rgba(34, 211, 238, 0.3);
+        }
 
+        .glow-red {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .glow-green {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5), 0 0 40px rgba(34, 197, 94, 0.3);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-slate-950 text-white overflow-x-hidden selection:bg-cyan-500/30">
 
+<body class="min-h-screen bg-slate-950 text-white overflow-x-hidden selection:bg-cyan-500/30">
 
 <!-- Fixed Background Grid Overlay -->
 <div class="fixed inset-0 pointer-events-none opacity-20 bg-grid z-0"></div>
 
 <!-- Main Container -->
 <div class="relative z-10 flex flex-col min-h-screen">
-    
+
     <!-- HEADER COMPONENT -->
     <header class="sticky top-0 z-50 backdrop-blur-lg bg-black/20 border-b border-cyan-500/20">
         <div class="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -191,7 +188,7 @@
 
     <!-- MAIN CONTENT AREA -->
     <main class="container mx-auto px-4 py-12 md:py-20 flex-grow">
-        
+
         <!-- HERO VIEW COMPONENT -->
         <div id="hero-view" class="view-section visible-view max-w-5xl mx-auto">
             <!-- Background Glow for Card -->
@@ -200,7 +197,7 @@
             <div class="relative bg-white/5 backdrop-blur-xl border border-cyan-500/10 rounded-2xl p-6 md:p-10 shadow-2xl shadow-cyan-900/20 overflow-hidden">
                 <!-- Internal Grid Overlay -->
                 <div class="absolute inset-0 bg-grid-sm pointer-events-none"></div>
-                
+
                 <div class="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
                     <!-- Left Column -->
                     <div class="space-y-8">
@@ -209,25 +206,25 @@
                                 POWERPOINT BOX
                             </span>
                         </div>
-                        
+
                         <h2 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">
                             ShitBox
                         </h2>
-                        
+
                         <p class="text-slate-400 text-lg max-w-md leading-relaxed">
                             Your secure box for PowerPoint access. Fast, encrypted, and always connected to the grid.
                         </p>
-                        
+
                         <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                            <button 
-                                onclick="switchView('subjects')" 
+                            <button
+                                onclick="switchView('subjects')"
                                 class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
                                 <i data-lucide="download-cloud" class="w-5 h-5 group-hover:animate-bounce"></i>
                                 ACCESS DOWNLOADS
                             </button>
-                            
-                            <button 
-                                onclick="openPredictModal()" 
+
+                            <button
+                                onclick="openPredictModal()"
                                 class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-500/50">
                                 <i data-lucide="sparkles" class="w-5 h-5 group-hover:animate-pulse"></i>
                                 PREDICT MY SCORE
@@ -243,7 +240,7 @@
                                 <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
                                 <h3 class="font-mono text-sm text-cyan-300 uppercase tracking-wider">PreCalc Exam</h3>
                             </div>
-                            
+
                             <div class="grid grid-cols-4 gap-3 text-center">
                                 <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
                                     <div id="pc-days" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
@@ -270,7 +267,7 @@
                                 <div class="w-3 h-3 rounded-full bg-violet-400 animate-pulse"></div>
                                 <h3 class="font-mono text-sm text-violet-300 uppercase tracking-wider">Chemistry Exam</h3>
                             </div>
-                            
+
                             <div class="grid grid-cols-4 gap-3 text-center">
                                 <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
                                     <div id="chem-days" class="text-3xl font-bold text-violet-400 font-mono">00</div>
@@ -320,7 +317,7 @@
                         <!-- Animated Background Elements -->
                         <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500"></div>
                         <div class="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500"></div>
-                        
+
                         <div class="relative z-10 space-y-6">
                             <!-- Icon -->
                             <div class="flex justify-center">
@@ -328,7 +325,7 @@
                                     <i data-lucide="flask-conical" class="w-12 h-12 text-emerald-400"></i>
                                 </div>
                             </div>
-                            
+
                             <!-- Title -->
                             <div class="text-center">
                                 <h3 class="text-4xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-3">
@@ -338,7 +335,7 @@
                                     Access all 20 chapters
                                 </p>
                             </div>
-                            
+
                             <!-- Stats -->
                             <div class="flex justify-center gap-6 pt-4">
                                 <div class="text-center">
@@ -351,7 +348,7 @@
                                     <div class="text-xs text-slate-400 uppercase tracking-wider">Available</div>
                                 </div>
                             </div>
-                            
+
                             <!-- Button -->
                             <div class="pt-4">
                                 <div class="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-lg group-hover:shadow-emerald-500/50">
@@ -367,7 +364,7 @@
                         <!-- Animated Background Elements -->
                         <div class="absolute top-0 right-0 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl group-hover:bg-violet-500/10 transition-all duration-500"></div>
                         <div class="absolute bottom-0 left-0 w-48 h-48 bg-fuchsia-500/5 rounded-full blur-3xl group-hover:bg-fuchsia-500/10 transition-all duration-500"></div>
-                        
+
                         <div class="relative z-10 space-y-6">
                             <!-- Icon -->
                             <div class="flex justify-center">
@@ -375,7 +372,7 @@
                                     <i data-lucide="calculator" class="w-12 h-12 text-violet-400"></i>
                                 </div>
                             </div>
-                            
+
                             <!-- Title -->
                             <div class="text-center">
                                 <h3 class="text-4xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent mb-3">
@@ -385,7 +382,7 @@
                                     Coming very soon
                                 </p>
                             </div>
-                            
+
                             <!-- Stats -->
                             <div class="flex justify-center gap-6 pt-4">
                                 <div class="text-center">
@@ -398,7 +395,7 @@
                                     <div class="text-xs text-slate-400 uppercase tracking-wider">Status</div>
                                 </div>
                             </div>
-                            
+
                             <!-- Button -->
                             <div class="pt-4">
                                 <div class="w-full py-4 px-6 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-lg group-hover:shadow-violet-500/50">
@@ -432,7 +429,7 @@
                     <!-- Animated Background -->
                     <div class="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
                     <div class="absolute bottom-0 left-0 w-72 h-72 bg-fuchsia-500/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
-                    
+
                     <div class="relative z-10 text-center space-y-8">
                         <!-- Icon -->
                         <div class="flex justify-center">
@@ -440,7 +437,7 @@
                                 <i data-lucide="clock" class="w-16 h-16 text-violet-400"></i>
                             </div>
                         </div>
-                        
+
                         <!-- Message -->
                         <div>
                             <h3 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-orange-400 bg-clip-text text-transparent mb-6">
@@ -453,7 +450,7 @@
                                 WILL BE AVAILABLE VERY SOON
                             </p>
                         </div>
-                        
+
                         <!-- Progress Indicator -->
                         <div class="pt-8">
                             <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-violet-500/10 border border-violet-500/30">
@@ -472,8 +469,8 @@
         <!-- DOWNLOADS VIEW COMPONENT -->
         <div id="downloads-view" class="view-section hidden-view">
             <!-- Back Button -->
-            <button 
-                onclick="switchView('subjects')" 
+            <button
+                onclick="switchView('subjects')"
                 class="group flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
                 <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
                 <span class="font-mono text-sm uppercase tracking-wider">Back</span>
@@ -498,13 +495,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-cyan-500/10 bg-black/20 backdrop-blur-lg">
-        <div class="container mx-auto px-4 py-8">
-            <div class="text-center text-slate-500 text-sm">
-                <p class="font-mono">© 2024 SHITBOX PROTOCOL • ALL SYSTEMS OPERATIONAL</p>
-            </div>
-        </div>
-    </footer>
+
 </div>
 
 <!-- PREDICT SCORE MODAL - Step 1: Name Input -->
@@ -517,26 +508,26 @@
             <h3 class="text-3xl font-bold text-white mb-2">What's Your Name?</h3>
             <p class="text-slate-400">Enter your name to begin the prediction</p>
         </div>
-        
+
         <div class="space-y-6">
             <div>
-                <input 
-                    type="text" 
-                    id="student-name" 
+                <input
+                    type="text"
+                    id="student-name"
                     placeholder="Enter your name..."
                     class="w-full px-6 py-4 bg-slate-800/50 border-2 border-slate-700 rounded-xl text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-all text-lg"
                     onkeypress="if(event.key==='Enter') goToClassSelection()"
                 />
             </div>
-            
+
             <div class="flex gap-4">
-                <button 
-                    onclick="closePredictModal()" 
+                <button
+                    onclick="closePredictModal()"
                     class="flex-1 px-6 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-all font-semibold">
                     Cancel
                 </button>
-                <button 
-                    onclick="goToClassSelection()" 
+                <button
+                    onclick="goToClassSelection()"
                     class="flex-1 px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-semibold shadow-lg">
                     Next →
                 </button>
@@ -555,10 +546,10 @@
             <h3 class="text-3xl font-bold text-white mb-2">Select Your Class</h3>
             <p class="text-slate-400">Which class are you in?</p>
         </div>
-        
+
         <div class="space-y-4 mb-6">
-            <button 
-                onclick="selectClass('11A')" 
+            <button
+                onclick="selectClass('11A')"
                 id="class-11a"
                 class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-cyan-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
                 <div class="flex items-center justify-between">
@@ -566,9 +557,9 @@
                     <i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                 </div>
             </button>
-            
-            <button 
-                onclick="selectClass('11B')" 
+
+            <button
+                onclick="selectClass('11B')"
                 id="class-11b"
                 class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
                 <div class="flex items-center justify-between">
@@ -577,17 +568,17 @@
                 </div>
             </button>
         </div>
-        
-        <button 
-            onclick="startPrediction()" 
+
+        <button
+            onclick="startPrediction()"
             id="predict-btn"
             disabled
             class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
             🎯 Predict My Score
         </button>
-        
-        <button 
-            onclick="backToNameInput()" 
+
+        <button
+            onclick="backToNameInput()"
             class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
             ← Back
         </button>
@@ -604,10 +595,10 @@
             <h3 class="text-3xl font-bold text-white mb-2">Select Your Subject</h3>
             <p class="text-slate-400">Which subject would you like to predict?</p>
         </div>
-        
+
         <div class="space-y-4 mb-6">
-            <button 
-                onclick="selectSubject('Chemistry')" 
+            <button
+                onclick="selectSubject('Chemistry')"
                 id="subject-chemistry"
                 class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-emerald-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
                 <div class="flex items-center justify-between">
@@ -618,9 +609,9 @@
                     <i data-lucide="chevron-right" class="w-6 h-6 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                 </div>
             </button>
-            
-            <button 
-                onclick="selectSubject('Pre-Calculus')" 
+
+            <button
+                onclick="selectSubject('Pre-Calculus')"
                 id="subject-precalc"
                 class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
                 <div class="flex items-center justify-between">
@@ -632,17 +623,17 @@
                 </div>
             </button>
         </div>
-        
-        <button 
-            onclick="proceedToPrediction()" 
+
+        <button
+            onclick="proceedToPrediction()"
             id="proceed-predict-btn"
             disabled
             class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
             🎯 Predict My Score
         </button>
-        
-        <button 
-            onclick="backToClassSelection()" 
+
+        <button
+            onclick="backToClassSelection()"
             class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
             ← Back
         </button>
@@ -659,13 +650,13 @@
             <h3 class="text-3xl font-bold text-white mb-4">Analyzing Your Data...</h3>
             <p class="text-slate-400 text-lg mb-6">Using advanced AI algorithms</p>
         </div>
-        
+
         <!-- Progress Bar -->
         <div class="relative w-full h-4 bg-slate-800 rounded-full overflow-hidden mb-4">
             <div class="absolute inset-0 shimmer"></div>
             <div id="progress-bar" class="absolute inset-y-0 left-0 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-300" style="width: 0%"></div>
         </div>
-        
+
         <div class="space-y-2 text-sm text-slate-400 font-mono">
             <p id="loading-text-1" class="opacity-0 transition-opacity">✓ Scanning study patterns...</p>
             <p id="loading-text-2" class="opacity-0 transition-opacity">✓ Analyzing past performance...</p>
@@ -685,20 +676,20 @@
             <h3 class="text-5xl font-bold mb-2" id="predicted-score">75</h3>
             <p class="text-slate-400 text-lg mb-6">Your Predicted Score</p>
         </div>
-        
+
         <div class="mb-8 p-6 rounded-2xl" id="message-container">
             <p class="text-2xl font-bold mb-2" id="result-message">You're Chilling! 😎</p>
             <p class="text-lg" id="result-submessage">No need to study hard!</p>
         </div>
-        
+
         <div class="space-y-3">
-            <button 
-                onclick="tryAgain()" 
+            <button
+                onclick="tryAgain()"
                 class="w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg">
                 🔄 Try Again
             </button>
-            <button 
-                onclick="closeResultModal()" 
+            <button
+                onclick="closeResultModal()"
                 class="w-full px-6 py-3 text-slate-400 hover:text-white transition-all">
                 Close
             </button>
@@ -721,7 +712,7 @@
         const subjectsView = document.getElementById('subjects-view');
         const downloadsView = document.getElementById('downloads-view');
         const precalculusView = document.getElementById('precalculus-view');
-        
+
         // Hide all views first
         const allViews = [heroView, subjectsView, downloadsView, precalculusView];
         allViews.forEach(view => {
@@ -732,20 +723,20 @@
         // Show the requested view
         setTimeout(() => {
             allViews.forEach(view => view.style.display = 'none');
-            
+
             let targetView;
             if (view === 'hero') targetView = heroView;
             else if (view === 'subjects') targetView = subjectsView;
             else if (view === 'downloads') targetView = downloadsView;
             else if (view === 'precalculus') targetView = precalculusView;
-            
+
             if (targetView) {
                 targetView.style.display = 'block';
                 void targetView.offsetWidth; // Trigger reflow
                 targetView.classList.remove('hidden-view');
                 targetView.classList.add('visible-view');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                
+
                 // Re-initialize icons after view change
                 lucide.createIcons();
             }
@@ -771,30 +762,30 @@
 
     function goToClassSelection() {
         const nameInput = document.getElementById('student-name').value.trim();
-        
+
         if (!nameInput) {
             alert('Please enter your name!');
             return;
         }
-        
+
         studentName = nameInput;
-        
+
         // Hide name modal
         const nameModal = document.getElementById('predict-modal-name');
         nameModal.classList.remove('flex');
         nameModal.classList.add('hidden');
-        
+
         // Show class selection modal
         const classModal = document.getElementById('predict-modal-class');
         classModal.classList.remove('hidden');
         classModal.classList.add('flex');
-        
+
         // Reset class selection
         selectedClass = '';
         document.getElementById('class-11a').classList.remove('border-cyan-500', 'bg-cyan-500/20');
         document.getElementById('class-11b').classList.remove('border-violet-500', 'bg-violet-500/20');
         document.getElementById('predict-btn').disabled = true;
-        
+
         lucide.createIcons();
     }
 
@@ -802,11 +793,11 @@
         const classModal = document.getElementById('predict-modal-class');
         classModal.classList.remove('flex');
         classModal.classList.add('hidden');
-        
+
         const nameModal = document.getElementById('predict-modal-name');
         nameModal.classList.remove('hidden');
         nameModal.classList.add('flex');
-        
+
         document.getElementById('student-name').value = studentName;
     }
 
@@ -814,7 +805,7 @@
         const subjectModal = document.getElementById('predict-modal-subject');
         subjectModal.classList.remove('flex');
         subjectModal.classList.add('hidden');
-        
+
         const classModal = document.getElementById('predict-modal-class');
         classModal.classList.remove('hidden');
         classModal.classList.add('flex');
@@ -822,21 +813,21 @@
 
     function selectSubject(subject) {
         selectedSubject = subject;
-        
+
         // Reset both buttons
         const btnChemistry = document.getElementById('subject-chemistry');
         const btnPrecalc = document.getElementById('subject-precalc');
-        
+
         btnChemistry.classList.remove('border-emerald-500', 'bg-emerald-500/20');
         btnPrecalc.classList.remove('border-violet-500', 'bg-violet-500/20');
-        
+
         // Highlight selected
         if (subject === 'Chemistry') {
             btnChemistry.classList.add('border-emerald-500', 'bg-emerald-500/20');
         } else {
             btnPrecalc.classList.add('border-violet-500', 'bg-violet-500/20');
         }
-        
+
         // Enable proceed button
         document.getElementById('proceed-predict-btn').disabled = false;
     }
@@ -846,19 +837,19 @@
             alert('Please select a subject!');
             return;
         }
-        
+
         // Hide subject modal
         const subjectModal = document.getElementById('predict-modal-subject');
         subjectModal.classList.remove('flex');
         subjectModal.classList.add('hidden');
-        
+
         // Show loading modal
         const loadingModal = document.getElementById('predict-modal-loading');
         loadingModal.classList.remove('hidden');
         loadingModal.classList.add('flex');
-        
+
         lucide.createIcons();
-        
+
         // Animate progress bar and loading texts
         let progress = 0;
         const progressBar = document.getElementById('progress-bar');
@@ -868,18 +859,18 @@
             document.getElementById('loading-text-3'),
             document.getElementById('loading-text-4')
         ];
-        
+
         const progressInterval = setInterval(() => {
             progress += 2;
             progressBar.style.width = progress + '%';
-            
+
             if (progress === 25) loadingTexts[0].classList.add('opacity-100');
             if (progress === 50) loadingTexts[1].classList.add('opacity-100');
             if (progress === 75) loadingTexts[2].classList.add('opacity-100');
             if (progress === 100) {
                 loadingTexts[3].classList.add('opacity-100');
                 clearInterval(progressInterval);
-                
+
                 // Show result after a brief delay
                 setTimeout(() => {
                     showResult();
@@ -890,21 +881,21 @@
 
     function selectClass(className) {
         selectedClass = className;
-        
+
         // Reset both buttons
         const btn11a = document.getElementById('class-11a');
         const btn11b = document.getElementById('class-11b');
-        
+
         btn11a.classList.remove('border-cyan-500', 'bg-cyan-500/20');
         btn11b.classList.remove('border-violet-500', 'bg-violet-500/20');
-        
+
         // Highlight selected
         if (className === '11A') {
             btn11a.classList.add('border-cyan-500', 'bg-cyan-500/20');
         } else {
             btn11b.classList.add('border-violet-500', 'bg-violet-500/20');
         }
-        
+
         // Enable predict button
         document.getElementById('predict-btn').disabled = false;
     }
@@ -914,23 +905,23 @@
             alert('Please select a class!');
             return;
         }
-        
+
         // Hide class modal
         const classModal = document.getElementById('predict-modal-class');
         classModal.classList.remove('flex');
         classModal.classList.add('hidden');
-        
+
         // Show subject selection modal
         const subjectModal = document.getElementById('predict-modal-subject');
         subjectModal.classList.remove('hidden');
         subjectModal.classList.add('flex');
-        
+
         // Reset subject selection
         selectedSubject = '';
         document.getElementById('subject-chemistry').classList.remove('border-emerald-500', 'bg-emerald-500/20');
         document.getElementById('subject-precalc').classList.remove('border-violet-500', 'bg-violet-500/20');
         document.getElementById('proceed-predict-btn').disabled = true;
-        
+
         lucide.createIcons();
     }
 
@@ -939,16 +930,16 @@
         const loadingModal = document.getElementById('predict-modal-loading');
         loadingModal.classList.remove('flex');
         loadingModal.classList.add('hidden');
-        
+
         // Reset loading animation
         document.getElementById('progress-bar').style.width = '0%';
         document.querySelectorAll('[id^="loading-text-"]').forEach(el => {
             el.classList.remove('opacity-100');
         });
-        
+
         // Generate random score between 45-80
         const score = Math.floor(Math.random() * (80 - 45 + 1)) + 45;
-        
+
         // Show result modal
         const resultModal = document.getElementById('predict-modal-result');
         const scoreElement = document.getElementById('predicted-score');
@@ -958,9 +949,9 @@
         const messageContainer = document.getElementById('message-container');
         const iconContainer = document.getElementById('result-icon-container');
         const icon = document.getElementById('result-icon');
-        
+
         scoreElement.textContent = score;
-        
+
         // Customize based on score
         if (score <= 60) {
             // Low score - red theme
@@ -991,7 +982,7 @@
             submessageElement.textContent = "No need to stress, " + studentName + "! You got this!";
             submessageElement.className = "text-lg text-emerald-300";
         }
-        
+
         resultModal.classList.remove('hidden');
         resultModal.classList.add('flex');
         lucide.createIcons();
@@ -1001,7 +992,7 @@
         const resultModal = document.getElementById('predict-modal-result');
         resultModal.classList.remove('flex');
         resultModal.classList.add('hidden');
-        
+
         // Reset and show name modal
         studentName = '';
         selectedClass = '';
@@ -1013,7 +1004,7 @@
         const resultModal = document.getElementById('predict-modal-result');
         resultModal.classList.remove('flex');
         resultModal.classList.add('hidden');
-        
+
         // Reset
         studentName = '';
         selectedClass = '';
@@ -1021,7 +1012,7 @@
     }
 
     // --- SMART DUAL COUNTDOWN TIMER LOGIC ---
-    
+
     // Helper function to get next occurrence of a specific date
     function getNextTargetDate(month, day, hour) {
         const now = new Date();
@@ -1040,9 +1031,6 @@
     // Chemistry: April 23, 11 AM (Month 3 = April)
     const chemDate = getNextTargetDate(3, 23, 11);
     const chemTarget = chemDate.getTime();
-
-    console.log("PreCalc Target:", preCalcDate);
-    console.log("Chem Target:", chemDate);
 
     const x = setInterval(function() {
         const now = new Date().getTime();
@@ -1083,77 +1071,246 @@
         if (elChemMinutes) elChemMinutes.innerHTML = chemMinutes < 10 ? "0" + chemMinutes : chemMinutes;
         if (elChemSeconds) elChemSeconds.innerHTML = chemSeconds < 10 ? "0" + chemSeconds : chemSeconds;
 
-        // Stop if both passed (unlikely given logic, but good practice)
-        if (pcDistance < 0 && chemDistance < 0) {
-            clearInterval(x);
-        }
+        if (pcDistance < 0 && chemDistance < 0) clearInterval(x);
     }, 1000);
 
-    // --- CONFIGURATION: ADD YOUR URLS HERE ---
-    const chapterUrls = {
-        1: "https://www.dropbox.com/scl/fi/28fm34khvijk78yief26v/chapter1.pptx?rlkey=jqln148w6xq9k7f4menngrojx&st=k90zgfxf&dl=1",
-        2: "https://www.dropbox.com/scl/fi/ijwae08kq4p6xq73g4jdj/chapter2.pptx?rlkey=b7efja5ek0uehhhb99il59zvf&st=p2942v85&dl=1",
-        3: "https://www.dropbox.com/scl/fi/91a7prvw2njwwlovgtmre/chapter3.pptx?rlkey=pui0rdobuoqlh8khq6mth9xhn&st=wz1bvsb5&dl=1",
-        4: "https://example.com/chapter4.pptx",
-        5: "https://www.dropbox.com/scl/fi/xucvm17ompw4dby8c8rie/chapter5.pptx?rlkey=cnc8kgm3ulwzi0y4qynbyuyvh&st=8swbmgwk&dl=1",
-        6: "https://www.dropbox.com/scl/fi/w6vwmmkhm8fcfqb80gt2q/chapter6.pptx?rlkey=ljje6lbzttfk4fe5i2e1eai9b&st=favgelga&dl=1",
-        7: "https://www.dropbox.com/scl/fi/b20k50vrn0fkrpy396uff/chapter7.pptx?rlkey=pvuc3oe1bh6v7i4lcpic6388f&st=qrwsgmvg&dl=1",
-        8: "https://www.dropbox.com/scl/fi/2wz5n90t8d9f5km9abkju/chapter8.pptx?rlkey=q8w13277wqv2up8phrojze05o&st=sygfqu4j&dl=1",
-        9: "https://www.dropbox.com/scl/fi/tgkaflkx3syzcqsge5cd2/chapter9.pptx?rlkey=glnw1rbwab78yep1orry9ctpy&st=f3bccos5&dl=1",
-        10: "https://example.com/chapter10.pptx",
-        11: "https://example.com/chapter11.pptx",
-        12: "https://example.com/chapter12.pptx",
-        13: "https://example.com/chapter13.pptx",
-        14: "https://example.com/chapter14.pptx",
-        15: "https://example.com/chapter15.pptx",
-        16: "https://example.com/chapter16.pptx",
-        17: "https://example.com/chapter17.pptx",
-        18: "https://example.com/chapter18.pptx",
-        19: "https://example.com/chapter19.pptx",
-        20: "https://example.com/chapter20.pptx"
+    // ==========================================================
+    // ✅ MULTI-PART CHAPTER CONFIGURATION (CH4/10/12/19 => 2 parts, CH20 => 3 parts)
+    // ==========================================================
+
+    const chapterData = {
+        1: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/28fm34khvijk78yief26v/chapter1.pptx?rlkey=jqln148w6xq9k7f4menngrojx&st=k90zgfxf&dl=1" }],
+        2: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/ijwae08kq4p6xq73g4jdj/chapter2.pptx?rlkey=b7efja5ek0uehhhb99il59zvf&st=p2942v85&dl=1" }],
+        3: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/91a7prvw2njwwlovgtmre/chapter3.pptx?rlkey=pui0rdobuoqlh8khq6mth9xhn&st=wz1bvsb5&dl=1" }],
+
+        4: [
+            { label: "Part 1", url: "https://example.com/chapter4-part1.pptx" },
+            { label: "Part 2", url: "https://example.com/chapter4-part2.pptx" }
+        ],
+
+        5: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/xucvm17ompw4dby8c8rie/chapter5.pptx?rlkey=cnc8kgm3ulwzi0y4qynbyuyvh&st=8swbmgwk&dl=1" }],
+        6: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/w6vwmmkhm8fcfqb80gt2q/chapter6.pptx?rlkey=ljje6lbzttfk4fe5i2e1eai9b&st=favgelga&dl=1" }],
+        7: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/b20k50vrn0fkrpy396uff/chapter7.pptx?rlkey=pvuc3oe1bh6v7i4lcpic6388f&st=qrwsgmvg&dl=1" }],
+        8: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/2wz5n90t8d9f5km9abkju/chapter8.pptx?rlkey=q8w13277wqv2up8phrojze05o&st=sygfqu4j&dl=1" }],
+        9: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/tgkaflkx3syzcqsge5cd2/chapter9.pptx?rlkey=glnw1rbwab78yep1orry9ctpy&st=f3bccos5&dl=1" }],
+
+        10: [
+            { label: "Part 1", url: "https://example.com/chapter10-part1.pptx" },
+            { label: "Part 2", url: "https://example.com/chapter10-part2.pptx" }
+        ],
+
+        11: [{ label: "Part 1", url: "https://example.com/chapter11.pptx" }],
+
+        12: [
+            { label: "Part 1", url: "https://example.com/chapter12-part1.pptx" },
+            { label: "Part 2", url: "https://example.com/chapter12-part2.pptx" }
+        ],
+
+        13: [{ label: "Part 1", url: "https://example.com/chapter13.pptx" }],
+        14: [{ label: "Part 1", url: "https://example.com/chapter14.pptx" }],
+        15: [{ label: "Part 1", url: "https://example.com/chapter15.pptx" }],
+        16: [{ label: "Part 1", url: "https://example.com/chapter16.pptx" }],
+        17: [{ label: "Part 1", url: "https://example.com/chapter17.pptx" }],
+        18: [{ label: "Part 1", url: "https://example.com/chapter18.pptx" }],
+
+        19: [
+            { label: "Part 1", url: "https://example.com/chapter19-part1.pptx" },
+            { label: "Part 2", url: "https://example.com/chapter19-part2.pptx" }
+        ],
+
+        20: [
+            { label: "Part 1", url: "https://example.com/chapter20-part1.pptx" },
+            { label: "Part 2", url: "https://example.com/chapter20-part2.pptx" },
+            { label: "Part 3", url: "https://example.com/chapter20-part3.pptx" }
+        ]
     };
 
-    // Generate Chapter Cards
-    const chapterGrid = document.getElementById('chapter-grid');
-    
+    // Ensure chapters 1..20 exist (fallback if you forgot one)
     for (let i = 1; i <= 20; i++) {
+        if (!chapterData[i]) chapterData[i] = [];
+    }
+
+    // ==========================================================
+    // ✅ CHAPTER GRID (Single file => direct download)
+    // ✅ Multi-part => hover dropdown + tap/click toggle
+    // ==========================================================
+
+    const chapterGrid = document.getElementById('chapter-grid');
+
+    function buildPartButtons(parts) {
+        return parts.map((part, idx) => `
+            <button
+                onclick="event.stopPropagation(); window.open('${part.url}', '_blank')"
+                class="w-full py-2 px-4 bg-violet-500/10 hover:bg-violet-500/30 text-violet-200 rounded-xl text-sm font-semibold transition-all flex items-center justify-between gap-2">
+                <span>${part.label}</span>
+                <span class="text-violet-300/70 font-mono text-xs">#${idx + 1}</span>
+            </button>
+        `).join('');
+    }
+
+    function renderChapterCard(i) {
+        const parts = chapterData[i] || [];
+        const isMulti = parts.length > 1;
+        const hasSingle = parts.length === 1;
+
         const card = document.createElement('div');
-        card.className = "group bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-violet-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-violet-500/30";
-        
+        card.className = "group relative isolate z-0 hover:z-50 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-violet-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-violet-500/30";
+
+        const dropdownId = `dropdown-${i}`;
+        const btnId = `btn-${i}`;
+
+        const actionButtonHTML = hasSingle
+            ? `
+                <button onclick="downloadChapter(${i})"
+                    class="w-full py-3 px-6 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-violet-500/25">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    DOWNLOAD
+                </button>
+              `
+            : isMulti
+                ? `
+                    <button id="${btnId}" onclick="toggleDropdown(${i})"
+                        class="w-full py-3 px-6 bg-gradient-to-r from-violet-500/90 to-fuchsia-500/90 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-violet-500/25">
+                        <i data-lucide="layers" class="w-4 h-4"></i>
+                        PARTS (${parts.length})
+                    </button>
+                  `
+                : `
+                    <button onclick="downloadChapter(${i})"
+                        class="w-full py-3 px-6 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                        NOT AVAILABLE
+                    </button>
+                  `;
+
+        const dropdownHTML = isMulti ? `
+            <!-- Hover dropdown (desktop) + toggled dropdown (mobile) -->
+            <div id="${dropdownId}"
+     class="absolute left-4 right-4 top-[calc(100%-10px)] mt-4 z-[999]
+            opacity-0 invisible translate-y-2
+            group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+            transition-all duration-300"
+            >
+                <div class="bg-slate-900/95 backdrop-blur-xl border border-violet-500/30 rounded-2xl shadow-2xl p-3 space-y-2">
+                    <div class="flex items-center justify-between px-2 pb-2">
+                        <div class="text-xs font-mono text-slate-300 tracking-wider">CHAPTER ${i} • DOWNLOAD PARTS</div>
+                        <button onclick="event.stopPropagation(); closeDropdown(${i})"
+                                class="md:hidden text-slate-400 hover:text-white transition"
+                                title="Close">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    ${buildPartButtons(parts)}
+                    </div>
+                </div>
+            </div>
+        ` : "";
+
         card.innerHTML = `
             <div class="flex justify-center mb-6">
                 <div class="w-16 h-16 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500/20 group-hover:border-violet-500/40 transition-all">
-                    <i data-lucide="folder-open" class="w-8 h-8 text-violet-400"></i>
+                    <i data-lucide="${isMulti ? 'folders' : 'folder-open'}" class="w-8 h-8 text-violet-400"></i>
                 </div>
             </div>
-            <h3 class="text-center font-bold text-xl text-white mb-6 tracking-wide">
+
+            <h3 class="text-center font-bold text-xl text-white mb-2 tracking-wide">
                 CHAPTER ${i}
             </h3>
-            <button onclick="downloadChapter(${i})" class="w-full py-3 px-6 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-violet-500/25">
-                <i data-lucide="download" class="w-4 h-4"></i>
-                DOWNLOAD
-            </button>
+
+            <div class="text-center mb-6">
+                ${
+                    isMulti
+                        ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-200 text-xs font-mono">
+                                <i data-lucide="sparkles" class="w-3 h-3"></i>
+                                MULTI-PART
+                           </span>`
+                        : hasSingle
+                            ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-200 text-xs font-mono">
+                                    <i data-lucide="file" class="w-3 h-3"></i>
+                                    SINGLE FILE
+                               </span>`
+                            : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono">
+                                    <i data-lucide="slash" class="w-3 h-3"></i>
+                                    MISSING
+                               </span>`
+                }
+            </div>
+
+            <div class="relative">
+                ${actionButtonHTML}
+                ${dropdownHTML}
+            </div>
         `;
-        
+
         chapterGrid.appendChild(card);
     }
+
+    for (let i = 1; i <= 20; i++) renderChapterCard(i);
 
     // Re-initialize icons after adding dynamic content
     lucide.createIcons();
 
-    // Download Handler - Updated to use URLs
-    function downloadChapter(num) {
-        const url = chapterUrls[num];
-        
-        if (url) {
-            // Opens the link in a new tab
-            window.open(url, '_blank');
-        } else {
-            alert(`Download link for Chapter ${num} is not available yet.`);
-        }
-    }
-</script>
+    // ==========================================================
+    // ✅ DOWNLOAD HANDLERS
+    // ==========================================================
 
+    function downloadChapter(num) {
+        const parts = chapterData[num] || [];
+        if (parts.length === 1) {
+            window.open(parts[0].url, '_blank');
+            return;
+        }
+        if (parts.length > 1) {
+            // On multi-part, just open dropdown for convenience
+            toggleDropdown(num);
+            return;
+        }
+        alert(`Download link for Chapter ${num} is not available yet.`);
+    }
+
+    // ==========================================================
+    // ✅ MOBILE: CLICK/TAP TO TOGGLE DROPDOWN
+    // (desktop hover already works via group-hover classes)
+    // ==========================================================
+
+    function toggleDropdown(num) {
+        const el = document.getElementById(`dropdown-${num}`);
+        if (!el) return;
+
+        // If currently hidden due to hover classes, we force visible by swapping classes
+        const isOpen = el.classList.contains('force-open');
+        closeAllDropdowns();
+
+        if (!isOpen) {
+            el.classList.add('force-open');
+            el.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+            el.classList.add('opacity-100', 'visible', 'translate-y-0');
+        }
+        lucide.createIcons();
+    }
+
+    function closeDropdown(num) {
+        const el = document.getElementById(`dropdown-${num}`);
+        if (!el) return;
+        el.classList.remove('force-open');
+        // restore the baseline hidden state (hover will still show on desktop)
+        el.classList.add('opacity-0', 'invisible', 'translate-y-2');
+        el.classList.remove('opacity-100', 'visible', 'translate-y-0');
+    }
+
+    function closeAllDropdowns() {
+        for (let i = 1; i <= 20; i++) closeDropdown(i);
+    }
+
+    // Close dropdowns when clicking outside (mobile-friendly)
+    document.addEventListener('click', (e) => {
+        // If user clicked a PARTS button or inside dropdown, do nothing
+        const clickedInsideDropdown = e.target.closest('[id^="dropdown-"]');
+        const clickedPartsBtn = e.target.closest('[id^="btn-"]');
+        if (clickedInsideDropdown || clickedPartsBtn) return;
+        closeAllDropdowns();
+    });
+</script>
 
 </body>
 </html>
