@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -87,14 +90,14 @@
         /* Custom Grid Background for Blueprint Effect */
         .bg-grid {
             background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
+                linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
         /* Subtle Grid for Glass Cards */
         .bg-grid-sm {
             background-image: linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+                linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
         }
 
@@ -123,8 +126,13 @@
 
         /* Progress Bar Animation */
         @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
         }
 
         .shimmer {
@@ -150,995 +158,1136 @@
 
 <body class="min-h-screen bg-slate-950 text-white overflow-x-hidden selection:bg-cyan-500/30">
 
-<!-- Fixed Background Grid Overlay -->
-<div class="fixed inset-0 pointer-events-none opacity-20 bg-grid z-0"></div>
+    <!-- Fixed Background Grid Overlay -->
+    <div class="fixed inset-0 pointer-events-none opacity-20 bg-grid z-0"></div>
 
-<!-- Main Container -->
-<div class="relative z-10 flex flex-col min-h-screen">
+    <!-- Main Container -->
+    <div class="relative z-10 flex flex-col min-h-screen">
 
-    <!-- HEADER COMPONENT -->
-    <header class="sticky top-0 z-50 backdrop-blur-lg bg-black/20 border-b border-cyan-500/20">
-        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-400/30 flex items-center justify-center">
-                    <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
-                </div>
-                <h1 class="font-mono text-lg md:text-xl tracking-wider text-white">
-                    SHITBOX
-                </h1>
-            </div>
-
-            <!-- Status Chips -->
-            <div class="flex items-center gap-3">
-                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                    </span>
-                    <span id="status-text" class="font-mono text-xs text-emerald-300">SYNC: READY</span>
-                </div>
-                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30">
-                    <i data-lucide="clock" class="w-3 h-3 text-cyan-400"></i>
-                    <span class="font-mono text-xs text-cyan-300">LIVE</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="container mx-auto px-4 py-12 md:py-20 flex-grow">
-
-        <!-- HERO VIEW COMPONENT -->
-        <div id="hero-view" class="view-section visible-view max-w-5xl mx-auto">
-            <!-- Background Glow for Card -->
-            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 blur-3xl -z-10 rounded-full transform translate-y-10 scale-90"></div>
-
-            <div class="relative bg-white/5 backdrop-blur-xl border border-cyan-500/10 rounded-2xl p-6 md:p-10 shadow-2xl shadow-cyan-900/20 overflow-hidden">
-                <!-- Internal Grid Overlay -->
-                <div class="absolute inset-0 bg-grid-sm pointer-events-none"></div>
-
-                <div class="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
-                    <!-- Left Column -->
-                    <div class="space-y-8">
-                        <div class="inline-block">
-                            <span class="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-2 py-1 rounded bg-emerald-500/5">
-                                POWERPOINT BOX
-                            </span>
-                        </div>
-
-                        <h2 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">
-                            PowerBox
-                        </h2>
-
-                        <p class="text-slate-400 text-lg max-w-md leading-relaxed">
-                            Your secure box for PowerPoint access.
-                        </p>
-
-                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                            <button
-                                onclick="switchView('subjects')"
-                                class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
-                                <i data-lucide="download-cloud" class="w-5 h-5 group-hover:animate-bounce"></i>
-                                ACCESS DOWNLOADS
-                            </button>
-
-                            <button
-                                onclick="openPredictModal()"
-                                class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-500/50">
-                                <i data-lucide="sparkles" class="w-5 h-5 group-hover:animate-pulse"></i>
-                                PREDICT MY SCORE
-                            </button>
-                        </div>
+        <!-- HEADER COMPONENT -->
+        <header class="sticky top-0 z-50 backdrop-blur-lg bg-black/20 border-b border-cyan-500/20">
+            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-400/30 flex items-center justify-center">
+                        <i data-lucide="shield" class="w-5 h-5 text-cyan-400"></i>
                     </div>
+                    <h1 class="font-mono text-lg md:text-xl tracking-wider text-white">
+                        SHITBOX
+                    </h1>
+                </div>
 
-                    <!-- Right Column: Dual Timer Box -->
-                    <div class="space-y-6">
-                        <!-- PreCalc Timer -->
-                        <div class="bg-gradient-to-br from-cyan-900/20 to-violet-900/20 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20">
-                            <div class="flex items-center gap-2 mb-4">
-                                <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
-                                <h3 class="font-mono text-sm text-cyan-300 uppercase tracking-wider">PreCalc CLEP</h3>
-                            </div>
-
-                            <div class="grid grid-cols-4 gap-3 text-center">
-                                <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
-                                    <div id="pc-days" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Days</div>
-                                </div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
-                                    <div id="pc-hours" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Hours</div>
-                                </div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
-                                    <div id="pc-minutes" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Mins</div>
-                                </div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
-                                    <div id="pc-seconds" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Secs</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Chemistry Timer -->
-                        <div class="bg-gradient-to-br from-violet-900/20 to-cyan-900/20 backdrop-blur-lg rounded-2xl p-6 border border-violet-500/20">
-                            <div class="flex items-center gap-2 mb-4">
-                                <div class="w-3 h-3 rounded-full bg-violet-400 animate-pulse"></div>
-                                <h3 class="font-mono text-sm text-violet-300 uppercase tracking-wider">Chemistry CLEP</h3>
-                            </div>
-
-                            <div class="grid grid-cols-4 gap-3 text-center">
-                                <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
-                                    <div id="chem-days" class="text-3xl font-bold text-violet-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Days</div>
-                                </div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
-                                    <div id="chem-hours" class="text-3xl font-bold text-violet-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Hours</div>
-                                </div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
-                                    <div id="chem-minutes" class="text-3xl font-bold text-violet-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Mins</div>
-                                </div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
-                                    <div id="chem-seconds" class="text-3xl font-bold text-violet-400 font-mono">00</div>
-                                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Secs</div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Status Chips -->
+                <div class="flex items-center gap-3">
+                    <div
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                        </span>
+                        <span id="status-text" class="font-mono text-xs text-emerald-300">SYNC: READY</span>
+                    </div>
+                    <div
+                        class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+                        <i data-lucide="clock" class="w-3 h-3 text-cyan-400"></i>
+                        <span class="font-mono text-xs text-cyan-300">LIVE</span>
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- SUBJECTS SELECTION VIEW -->
-        <div id="subjects-view" class="view-section hidden-view">
-            <div class="max-w-6xl mx-auto space-y-8">
-                <!-- Header -->
-                <div class="flex items-center gap-4">
-                    <button onclick="switchView('hero')" class="p-2 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                        <i data-lucide="arrow-left" class="w-5 h-5 text-cyan-400"></i>
-                    </button>
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">
-                            Select Your Subject
-                        </h2>
-                        <p class="text-slate-400 mt-1">
-                            Choose a course to access study materials
-                        </p>
-                    </div>
+        <!-- MAIN CONTENT AREA -->
+        <main class="container mx-auto px-4 py-12 md:py-20 flex-grow">
+
+            <!-- HERO VIEW COMPONENT -->
+            <div id="hero-view" class="view-section visible-view max-w-6xl mx-auto">
+                <!-- Background Glow for Card -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-cyan-500/15 to-violet-500/15 blur-3xl -z-10 rounded-full transform translate-y-10 scale-90">
                 </div>
 
-                <!-- Subject Cards -->
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- CHEMISTRY CARD -->
-                    <div onclick="switchView('downloads')" class="group cursor-pointer relative bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 backdrop-blur-xl border-2 border-emerald-500/30 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-                        <!-- Animated Background Elements -->
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500"></div>
-                        <div class="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500"></div>
+                <div
+                    class="relative bg-white/5 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8 md:p-14 shadow-2xl shadow-cyan-900/20 overflow-hidden">
+                    <!-- Internal Grid Overlay -->
+                    <div class="absolute inset-0 bg-grid-sm pointer-events-none"></div>
 
-                        <div class="relative z-10 space-y-6">
-                            <!-- Icon -->
-                            <div class="flex justify-center">
-                                <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border-2 border-emerald-400/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                                    <i data-lucide="flask-conical" class="w-12 h-12 text-emerald-400"></i>
-                                </div>
-                            </div>
-
-                            <!-- Title -->
-                            <div class="text-center">
-                                <h3 class="text-4xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-3">
-                                    CHEMISTRY
-                                </h3>
-                                <p class="text-slate-300 text-lg">
-                                    Access all 20 chapters
-                                </p>
-                            </div>
-
-                            <!-- Stats -->
-                            <div class="flex justify-center gap-6 pt-4">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-emerald-400">20</div>
-                                    <div class="text-xs text-slate-400 uppercase tracking-wider">Chapters</div>
-                                </div>
-                                <div class="w-px bg-slate-700"></div>
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-cyan-400">100%</div>
-                                    <div class="text-xs text-slate-400 uppercase tracking-wider">Available</div>
-                                </div>
-                            </div>
-
-                            <!-- Button -->
-                            <div class="pt-4">
-                                <div class="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-lg group-hover:shadow-emerald-500/50">
-                                    <span>ACCESS DOWNLOADS</span>
-                                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PRE-CALCULUS CARD -->
-                    <div onclick="switchView('precalculus')" class="group cursor-pointer relative bg-gradient-to-br from-violet-500/10 via-fuchsia-500/10 to-orange-500/10 backdrop-blur-xl border-2 border-violet-500/30 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-violet-500/20 hover:-translate-y-2 transition-all duration-500 overflow-hidden">
-                        <!-- Animated Background Elements -->
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl group-hover:bg-violet-500/10 transition-all duration-500"></div>
-                        <div class="absolute bottom-0 left-0 w-48 h-48 bg-fuchsia-500/5 rounded-full blur-3xl group-hover:bg-fuchsia-500/10 transition-all duration-500"></div>
-
-                        <div class="relative z-10 space-y-6">
-                            <!-- Icon -->
-                            <div class="flex justify-center">
-                                <div class="w-24 h-24 rounded-3xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border-2 border-violet-400/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                                    <i data-lucide="calculator" class="w-12 h-12 text-violet-400"></i>
-                                </div>
-                            </div>
-
-                            <!-- Title -->
-                            <div class="text-center">
-                                <h3 class="text-4xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent mb-3">
-                                    PRE-CALCULUS
-                                </h3>
-                                <p class="text-slate-300 text-lg">
-                                    Coming very soon
-                                </p>
-                            </div>
-
-                            <!-- Stats -->
-                            <div class="flex justify-center gap-6 pt-4">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-violet-400">....</div>
-                                    <div class="text-xs text-slate-400 uppercase tracking-wider">Chapters</div>
-                                </div>
-                                <div class="w-px bg-slate-700"></div>
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-fuchsia-400">Soon</div>
-                                    <div class="text-xs text-slate-400 uppercase tracking-wider">Status</div>
-                                </div>
-                            </div>
-
-                            <!-- Button -->
-                            <div class="pt-4">
-                                <div class="w-full py-4 px-6 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-lg group-hover:shadow-violet-500/50">
-                                    <span>VIEW STATUS</span>
-                                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PRE-CALCULUS COMING SOON VIEW -->
-        <div id="precalculus-view" class="view-section hidden-view">
-            <div class="max-w-4xl mx-auto">
-                <!-- Header -->
-                <div class="flex items-center gap-4 mb-8">
-                    <button onclick="switchView('subjects')" class="p-2 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
-                        <i data-lucide="arrow-left" class="w-5 h-5 text-cyan-400"></i>
-                    </button>
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">
-                            Pre-Calculus
-                        </h2>
-                    </div>
-                </div>
-
-                <!-- Coming Soon Card -->
-                <div class="relative bg-gradient-to-br from-violet-500/10 via-fuchsia-500/10 to-orange-500/10 backdrop-blur-xl border-2 border-violet-500/30 rounded-3xl p-12 md:p-16 shadow-2xl overflow-hidden">
-                    <!-- Animated Background -->
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-                    <div class="absolute bottom-0 left-0 w-72 h-72 bg-fuchsia-500/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
-
-                    <div class="relative z-10 text-center space-y-8">
-                        <!-- Icon -->
-                        <div class="flex justify-center">
-                            <div class="w-32 h-32 rounded-3xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border-2 border-violet-400/40 flex items-center justify-center">
-                                <i data-lucide="clock" class="w-16 h-16 text-violet-400"></i>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div>
-                            <h3 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-orange-400 bg-clip-text text-transparent mb-6">
-                                COMING SOON
-                            </h3>
-                            <p class="text-xl md:text-2xl text-slate-300 mb-4">
-                                PRE-CALCULUS DOWNLOADS
-                            </p>
-                            <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-                                WILL BE AVAILABLE VERY SOON
-                            </p>
-                        </div>
-
-                        <!-- Progress Indicator -->
-                        <div class="pt-8">
-                            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-violet-500/10 border border-violet-500/30">
-                                <span class="relative flex h-3 w-3">
-                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-violet-400"></span>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <div class="inline-block">
+                                <span
+                                    class="font-mono text-xs text-emerald-400 tracking-widest uppercase border border-emerald-500/30 px-2 py-1 rounded bg-emerald-500/5">
+                                    POWERPOINT BOX
                                 </span>
-                                <span class="font-mono text-sm text-violet-300">IN PROGRESS</span>
+                            </div>
+
+                            <h2
+                                class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">
+                                PowerBox
+                            </h2>
+
+                            <p class="text-slate-400 text-lg max-w-md leading-relaxed">
+                                Your secure box for PowerPoint access.
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                <button onclick="switchView('subjects')"
+                                    class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                                    <i data-lucide="download-cloud" class="w-5 h-5 group-hover:animate-bounce"></i>
+                                    ACCESS DOWNLOADS
+                                </button>
+
+                                <button onclick="openPredictModal()"
+                                    class="group flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-500/50">
+                                    <i data-lucide="sparkles" class="w-5 h-5 group-hover:animate-pulse"></i>
+                                    PREDICT MY SCORE
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Dual Timer Box -->
+                        <div class="space-y-6">
+                            <!-- PreCalc Timer -->
+                            <div
+                                class="bg-gradient-to-br from-cyan-900/20 to-violet-900/20 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
+                                    <h3 class="font-mono text-sm text-cyan-300 uppercase tracking-wider">PreCalc CLEP
+                                    </h3>
+                                </div>
+
+                                <div class="grid grid-cols-4 gap-3 text-center">
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-days" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Days</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-hours" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Hours</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-minutes" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Mins</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-cyan-500/10">
+                                        <div id="pc-seconds" class="text-3xl font-bold text-cyan-400 font-mono">00</div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Secs</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chemistry Timer -->
+                            <div
+                                class="bg-gradient-to-br from-violet-900/20 to-cyan-900/20 backdrop-blur-lg rounded-2xl p-6 border border-violet-500/20">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-violet-400 animate-pulse"></div>
+                                    <h3 class="font-mono text-sm text-violet-300 uppercase tracking-wider">Chemistry
+                                        CLEP</h3>
+                                </div>
+
+                                <div class="grid grid-cols-4 gap-3 text-center">
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-days" class="text-3xl font-bold text-violet-400 font-mono">00
+                                        </div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Days</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-hours" class="text-3xl font-bold text-violet-400 font-mono">00
+                                        </div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Hours</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-minutes" class="text-3xl font-bold text-violet-400 font-mono">00
+                                        </div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Mins</div>
+                                    </div>
+                                    <div class="bg-black/30 rounded-xl p-3 border border-violet-500/10">
+                                        <div id="chem-seconds" class="text-3xl font-bold text-violet-400 font-mono">00
+                                        </div>
+                                        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wide">Secs</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- DOWNLOADS VIEW COMPONENT -->
-        <div id="downloads-view" class="view-section hidden-view">
-            <!-- Back Button -->
-            <button
-                onclick="switchView('subjects')"
-                class="group flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
-                <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
-                <span class="font-mono text-sm uppercase tracking-wider">Back</span>
-            </button>
-
-            <!-- Downloads Header -->
-            <div class="mb-12 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                    Chemistry Downloads
-                </h2>
-                <p class="text-slate-400 text-lg">
-                    Select any chapter below to download PowerPoint files
-                </p>
-            </div>
-
-            <!-- Chapter Grid -->
-            <div id="chapter-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                <!-- JavaScript will generate cards here -->
-            </div>
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-
-</div>
-
-<!-- PREDICT SCORE MODAL - Step 1: Name Input -->
-<div id="predict-modal-name" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
-    <div class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-cyan-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border-2 border-cyan-400/50 mb-6 glow">
-                <i data-lucide="user" class="w-10 h-10 text-cyan-400"></i>
-            </div>
-            <h3 class="text-3xl font-bold text-white mb-2">What's Your Name?</h3>
-            <p class="text-slate-400">Enter your name to begin the prediction</p>
-        </div>
-
-        <div class="space-y-6">
-            <div>
-                <input
-                    type="text"
-                    id="student-name"
-                    placeholder="Enter your name..."
-                    class="w-full px-6 py-4 bg-slate-800/50 border-2 border-slate-700 rounded-xl text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-all text-lg"
-                    onkeypress="if(event.key==='Enter') goToClassSelection()"
-                />
-            </div>
-
-            <div class="flex gap-4">
-                <button
-                    onclick="closePredictModal()"
-                    class="flex-1 px-6 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-all font-semibold">
-                    Cancel
-                </button>
-                <button
-                    onclick="goToClassSelection()"
-                    class="flex-1 px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-semibold shadow-lg">
-                    Next →
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PREDICT SCORE MODAL - Step 2: Class Selection -->
-<div id="predict-modal-class" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
-    <div class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-violet-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border-2 border-violet-400/50 mb-6">
-                <i data-lucide="graduation-cap" class="w-10 h-10 text-violet-400"></i>
-            </div>
-            <h3 class="text-3xl font-bold text-white mb-2">Select Your Class</h3>
-            <p class="text-slate-400">Which class are you in?</p>
-        </div>
-
-        <div class="space-y-4 mb-6">
-            <button
-                onclick="selectClass('11A')"
-                id="class-11a"
-                class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-cyan-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
-                <div class="flex items-center justify-between">
-                    <span>Class 11A</span>
-                    <i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                </div>
-            </button>
-
-            <button
-                onclick="selectClass('11B')"
-                id="class-11b"
-                class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
-                <div class="flex items-center justify-between">
-                    <span>Class 11B</span>
-                    <i data-lucide="chevron-right" class="w-6 h-6 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                </div>
-            </button>
-        </div>
-
-        <button
-            onclick="startPrediction()"
-            id="predict-btn"
-            disabled
-            class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
-            🎯 Predict My Score
-        </button>
-
-        <button
-            onclick="backToNameInput()"
-            class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
-            ← Back
-        </button>
-    </div>
-</div>
-
-<!-- PREDICT SCORE MODAL - Step 3: Subject Selection -->
-<div id="predict-modal-subject" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
-    <div class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-emerald-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border-2 border-emerald-400/50 mb-6">
-                <i data-lucide="book-open" class="w-10 h-10 text-emerald-400"></i>
-            </div>
-            <h3 class="text-3xl font-bold text-white mb-2">Select Your Subject</h3>
-            <p class="text-slate-400">Which subject would you like to predict?</p>
-        </div>
-
-        <div class="space-y-4 mb-6">
-            <button
-                onclick="selectSubject('Chemistry')"
-                id="subject-chemistry"
-                class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-emerald-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="flask-conical" class="w-6 h-6 text-emerald-400"></i>
-                        <span>Chemistry</span>
+            <!-- SUBJECTS SELECTION VIEW -->
+            <div id="subjects-view" class="view-section hidden-view">
+                <div class="max-w-6xl mx-auto space-y-8">
+                    <!-- Header -->
+                    <div class="flex items-center gap-4">
+                        <button onclick="switchView('hero')"
+                            class="p-2 rounded-lg bg-slate-900/50 border border-slate-700/50 hover:border-cyan-500/30 transition-colors">
+                            <i data-lucide="arrow-left" class="w-5 h-5 text-cyan-400"></i>
+                        </button>
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">
+                                Select Your Subject
+                            </h2>
+                            <p class="text-slate-400 mt-1">
+                                Choose a course to access study materials
+                            </p>
+                        </div>
                     </div>
-                    <i data-lucide="chevron-right" class="w-6 h-6 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                </div>
-            </button>
 
-            <button
-                onclick="selectSubject('Pre-Calculus')"
-                id="subject-precalc"
-                class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="calculator" class="w-6 h-6 text-violet-400"></i>
-                        <span>Pre-Calculus</span>
+                    <!-- Subject Cards -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- CHEMISTRY CARD -->
+                        <div onclick="switchView('chemistry-hub')"
+                            class="group cursor-pointer relative bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 backdrop-blur-xl border-2 border-emerald-500/30 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+                            <!-- Animated Background Elements -->
+                            <div
+                                class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500">
+                            </div>
+
+                            <div class="relative z-10 space-y-6">
+                                <!-- Icon -->
+                                <div class="flex justify-center">
+                                    <div
+                                        class="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border-2 border-emerald-400/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                                        <i data-lucide="flask-conical" class="w-12 h-12 text-emerald-400"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="text-center">
+                                    <h3
+                                        class="text-4xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-3">
+                                        CHEMISTRY
+                                    </h3>
+                                    <p class="text-slate-300 text-lg">
+                                        Access all 20 chapters
+                                    </p>
+                                </div>
+
+                                <!-- Stats -->
+                                <div class="flex justify-center pt-4">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-emerald-400">20</div>
+                                        <div class="text-xs text-slate-400 uppercase tracking-wider">Chapters</div>
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="pt-4">
+                                    <div
+                                        class="w-full py-4 px-6 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-lg group-hover:shadow-emerald-500/50">
+                                        <span>ACCESS DOWNLOADS</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PRE-CALCULUS CARD -->
+                        <div onclick="switchView('precalc-downloads')"
+                            class="group cursor-pointer relative bg-gradient-to-br from-violet-500/10 via-fuchsia-500/10 to-orange-500/10 backdrop-blur-xl border-2 border-violet-500/30 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-violet-500/20 hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+                            <!-- Animated Background Elements -->
+                            <div
+                                class="absolute top-0 right-0 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl group-hover:bg-violet-500/10 transition-all duration-500">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-48 h-48 bg-fuchsia-500/5 rounded-full blur-3xl group-hover:bg-fuchsia-500/10 transition-all duration-500">
+                            </div>
+
+                            <div class="relative z-10 space-y-6">
+                                <!-- Icon -->
+                                <div class="flex justify-center">
+                                    <div
+                                        class="w-24 h-24 rounded-3xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border-2 border-violet-400/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                                        <i data-lucide="calculator" class="w-12 h-12 text-violet-400"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="text-center">
+                                    <h3
+                                        class="text-4xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent mb-3">
+                                        PRE-CALCULUS
+                                    </h3>
+                                    <p class="text-slate-300 text-lg">
+                                        Access all 5 chapters
+                                    </p>
+                                </div>
+
+                                <!-- Stats -->
+                                <div class="flex justify-center pt-4">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-violet-400">5</div>
+                                        <div class="text-xs text-slate-400 uppercase tracking-wider">Chapters</div>
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="pt-4">
+                                    <div
+                                        class="w-full py-4 px-6 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 group-hover:shadow-lg group-hover:shadow-violet-500/50">
+                                        <span>ACCESS DOWNLOADS</span>
+                                        <i data-lucide="arrow-right"
+                                            class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <i data-lucide="chevron-right" class="w-6 h-6 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                    <!-- ADDITIONAL RESOURCES CARD (smaller, glass) -->
+                    <div onclick="switchView('additional-resources')"
+                        class="group cursor-pointer relative backdrop-blur-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/30 rounded-2xl px-8 py-5 shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-400 overflow-hidden flex items-center justify-between gap-6">
+                        <!-- Subtle glow blob -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        </div>
+
+                        <div class="relative z-10 flex items-center gap-5">
+                            <!-- Icon -->
+                            <div
+                                class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/20 flex items-center justify-center group-hover:bg-amber-500/20 group-hover:border-amber-400/40 transition-all duration-300 shrink-0">
+                                <i data-lucide="library" class="w-6 h-6 text-amber-400"></i>
+                            </div>
+                            <!-- Text -->
+                            <div>
+                                <p class="font-bold text-white text-base tracking-wide">Additional Resources</p>
+                                <p class="text-slate-400 text-sm mt-0.5">Supplementary materials &amp; extras — 4 files
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right side: just arrow -->
+                        <div class="relative z-10 flex items-center gap-3 shrink-0">
+                            <div class="hidden sm:flex items-center">
+                                <div class="text-center">
+                                    <div class="text-lg font-bold text-amber-400">4</div>
+                                    <div class="text-[10px] text-slate-500 uppercase tracking-wider">Files</div>
+                                </div>
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-400/20 flex items-center justify-center group-hover:bg-amber-500/20 group-hover:border-amber-400/40 transition-all duration-300">
+                                <i data-lucide="chevron-right"
+                                    class="w-4 h-4 text-amber-400 group-hover:translate-x-0.5 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </button>
-        </div>
-
-        <button
-            onclick="proceedToPrediction()"
-            id="proceed-predict-btn"
-            disabled
-            class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
-            🎯 Predict My Score
-        </button>
-
-        <button
-            onclick="backToClassSelection()"
-            class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
-            ← Back
-        </button>
-    </div>
-</div>
-
-<!-- PREDICT SCORE MODAL - Step 4: Loading Animation -->
-<div id="predict-modal-loading" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
-    <div class="animate-bounce-in bg-slate-900/95 backdrop-blur-xl border-2 border-amber-500/30 rounded-3xl p-12 max-w-md w-full shadow-2xl text-center">
-        <div class="mb-8">
-            <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 border-2 border-amber-400/50 mb-6 animate-pulse">
-                <i data-lucide="zap" class="w-12 h-12 text-amber-400"></i>
             </div>
-            <h3 class="text-3xl font-bold text-white mb-4">Analyzing Your Data...</h3>
-            <p class="text-slate-400 text-lg mb-6">Using advanced AI algorithms</p>
-        </div>
 
-        <!-- Progress Bar -->
-        <div class="relative w-full h-4 bg-slate-800 rounded-full overflow-hidden mb-4">
-            <div class="absolute inset-0 shimmer"></div>
-            <div id="progress-bar" class="absolute inset-y-0 left-0 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-300" style="width: 0%"></div>
-        </div>
+            <!-- ADDITIONAL RESOURCES DOWNLOADS VIEW -->
+            <div id="additional-resources-view" class="view-section hidden-view">
+                <!-- Back Button -->
+                <button onclick="switchView('subjects')"
+                    class="group flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors mb-8">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-mono text-sm uppercase tracking-wider">Back</span>
+                </button>
 
-        <div class="space-y-2 text-sm text-slate-400 font-mono">
-            <p id="loading-text-1" class="opacity-0 transition-opacity">✓ Scanning study patterns...</p>
-            <p id="loading-text-2" class="opacity-0 transition-opacity">✓ Analyzing past performance...</p>
-            <p id="loading-text-3" class="opacity-0 transition-opacity">✓ Calculating probability matrix...</p>
-            <p id="loading-text-4" class="opacity-0 transition-opacity">✓ Generating prediction...</p>
-        </div>
-    </div>
-</div>
+                <!-- Downloads Header -->
+                <div class="mb-12 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Additional Resources
+                    </h2>
+                    <p class="text-slate-400 text-lg">
+                        Supplementary materials &amp; extra files
+                    </p>
+                </div>
 
-<!-- PREDICT SCORE MODAL - Step 5: Result Display -->
-<div id="predict-modal-result" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
-    <div class="animate-bounce-in bg-slate-900/95 backdrop-blur-xl border-2 rounded-3xl p-12 max-w-lg w-full shadow-2xl text-center" id="result-container">
-        <div class="mb-8">
-            <div class="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gradient-to-br mb-6 animate-pulse" id="result-icon-container">
-                <i data-lucide="trophy" class="w-14 h-14" id="result-icon"></i>
+                <!-- Chapter Grid -->
+                <div id="additional-chapter-grid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <!-- JavaScript will generate cards here -->
+                </div>
             </div>
-            <h3 class="text-5xl font-bold mb-2" id="predicted-score">75</h3>
-            <p class="text-slate-400 text-lg mb-6">Your Predicted Score</p>
-        </div>
 
-        <div class="mb-8 p-6 rounded-2xl" id="message-container">
-            <p class="text-2xl font-bold mb-2" id="result-message">You're Chilling! 😎</p>
-            <p class="text-lg" id="result-submessage">No need to study hard!</p>
-        </div>
+            <!-- PRE-CALCULUS DOWNLOADS VIEW -->
+            <div id="precalc-downloads-view" class="view-section hidden-view">
+                <!-- Back Button -->
+                <button onclick="switchView('subjects')"
+                    class="group flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors mb-8">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-mono text-sm uppercase tracking-wider">Back</span>
+                </button>
 
-        <div class="space-y-3">
-            <button
-                onclick="tryAgain()"
-                class="w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg">
-                🔄 Try Again
+                <!-- Downloads Header -->
+                <div class="mb-12 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Pre-Calculus Downloads
+                    </h2>
+                    <p class="text-slate-400 text-lg">
+                        Select any chapter below to download PowerPoint files
+                    </p>
+                </div>
+
+                <!-- Chapter Grid -->
+                <div id="precalc-chapter-grid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <!-- JavaScript will generate cards here -->
+                </div>
+            </div>
+
+            <!-- CHEMISTRY HUB VIEW -->
+            <div id="chemistry-hub-view" class="view-section hidden-view">
+                <!-- Back Button -->
+                <button onclick="switchView('subjects')"
+                    class="group flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors mb-10">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-mono text-sm uppercase tracking-wider">Back</span>
+                </button>
+
+                <!-- Hub Header -->
+                <div class="mb-12 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Chemistry</h2>
+                    <p class="text-slate-400 text-lg">Choose a category to access materials</p>
+                </div>
+
+                <!-- Two Big Buttons -->
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+                    <!-- POWERPOINTS -->
+                    <div onclick="switchView('downloads')"
+                        class="group cursor-pointer relative bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-transparent backdrop-blur-xl border-2 border-emerald-500/30 rounded-3xl p-10 shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-400 overflow-hidden flex flex-col items-center gap-6 text-center">
+                        <div
+                            class="absolute top-0 right-0 w-56 h-56 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500">
+                        </div>
+                        <div
+                            class="relative z-10 w-20 h-20 rounded-2xl bg-emerald-500/15 border-2 border-emerald-400/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
+                            <i data-lucide="presentation" class="w-10 h-10 text-emerald-400"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h3
+                                class="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                                Powerpoints</h3>
+                            <p class="text-slate-400">All 20 chapter slides</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-full py-3 px-6 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-bold rounded-2xl flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-emerald-500/40 transition-all duration-300">
+                            <span>ACCESS</span>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- OTHERS -->
+                    <div onclick="switchView('chemistry-others')"
+                        class="group cursor-pointer relative bg-gradient-to-br from-cyan-500/10 via-violet-500/5 to-transparent backdrop-blur-xl border-2 border-cyan-500/30 rounded-3xl p-10 shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-400 overflow-hidden flex flex-col items-center gap-6 text-center">
+                        <div
+                            class="absolute top-0 right-0 w-56 h-56 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-all duration-500">
+                        </div>
+                        <div
+                            class="relative z-10 w-20 h-20 rounded-2xl bg-cyan-500/15 border-2 border-cyan-400/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-400">
+                            <i data-lucide="files" class="w-10 h-10 text-cyan-400"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h3
+                                class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent mb-2">
+                                Others</h3>
+                            <p class="text-slate-400">Extra resources &amp; files</p>
+                        </div>
+                        <div
+                            class="relative z-10 w-full py-3 px-6 bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-bold rounded-2xl flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-cyan-500/40 transition-all duration-300">
+                            <span>ACCESS</span>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CHEMISTRY OTHERS VIEW -->
+            <div id="chemistry-others-view" class="view-section hidden-view">
+                <!-- Back Button -->
+                <button onclick="switchView('chemistry-hub')"
+                    class="group flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-mono text-sm uppercase tracking-wider">Back</span>
+                </button>
+                <div class="mb-12 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Chemistry — Others</h2>
+                    <p class="text-slate-400 text-lg">Extra resources &amp; additional files</p>
+                </div>
+                <div id="chem-others-grid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                </div>
+            </div>
+
+            <!-- DOWNLOADS VIEW COMPONENT -->
+            <div id="downloads-view" class="view-section hidden-view">
+                <!-- Back Button -->
+                <button onclick="switchView('chemistry-hub')"
+                    class="group flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-mono text-sm uppercase tracking-wider">Back</span>
+                </button>
+
+                <!-- Downloads Header -->
+                <div class="mb-12 text-center">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Chemistry Downloads
+                    </h2>
+                    <p class="text-slate-400 text-lg">
+                        Select any chapter below to download PowerPoint files
+                    </p>
+                </div>
+
+                <!-- Chapter Grid -->
+                <div id="chapter-grid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <!-- JavaScript will generate cards here -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+
+    </div>
+
+    <!-- PREDICT SCORE MODAL - Step 1: Name Input -->
+    <div id="predict-modal-name" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div
+            class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-cyan-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
+            <div class="text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border-2 border-cyan-400/50 mb-6 glow">
+                    <i data-lucide="user" class="w-10 h-10 text-cyan-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">What's Your Name?</h3>
+                <p class="text-slate-400">Enter your name to begin the prediction</p>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <input type="text" id="student-name" placeholder="Enter your name..."
+                        class="w-full px-6 py-4 bg-slate-800/50 border-2 border-slate-700 rounded-xl text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-all text-lg"
+                        onkeypress="if(event.key==='Enter') goToClassSelection()" />
+                </div>
+
+                <div class="flex gap-4">
+                    <button onclick="closePredictModal()"
+                        class="flex-1 px-6 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-all font-semibold">
+                        Cancel
+                    </button>
+                    <button onclick="goToClassSelection()"
+                        class="flex-1 px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-semibold shadow-lg">
+                        Next →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREDICT SCORE MODAL - Step 2: Class Selection -->
+    <div id="predict-modal-class" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div
+            class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-violet-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
+            <div class="text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border-2 border-violet-400/50 mb-6">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-violet-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">Select Your Class</h3>
+                <p class="text-slate-400">Which class are you in?</p>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <button onclick="selectClass('11A')" id="class-11a"
+                    class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-cyan-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
+                    <div class="flex items-center justify-between">
+                        <span>Class 11A</span>
+                        <i data-lucide="chevron-right"
+                            class="w-6 h-6 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </button>
+
+                <button onclick="selectClass('11B')" id="class-11b"
+                    class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
+                    <div class="flex items-center justify-between">
+                        <span>Class 11B</span>
+                        <i data-lucide="chevron-right"
+                            class="w-6 h-6 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </button>
+            </div>
+
+            <button onclick="startPrediction()" id="predict-btn" disabled
+                class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                🎯 Predict My Score
             </button>
-            <button
-                onclick="closeResultModal()"
-                class="w-full px-6 py-3 text-slate-400 hover:text-white transition-all">
-                Close
+
+            <button onclick="backToNameInput()"
+                class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
+                ← Back
             </button>
         </div>
     </div>
-</div>
 
-<!-- Initialize Lucide Icons -->
-<script>
-    lucide.createIcons();
+    <!-- PREDICT SCORE MODAL - Step 3: Subject Selection -->
+    <div id="predict-modal-subject" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div
+            class="animate-slide-up bg-slate-900/95 backdrop-blur-xl border-2 border-emerald-500/30 rounded-3xl p-8 max-w-md w-full shadow-2xl glow">
+            <div class="text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border-2 border-emerald-400/50 mb-6">
+                    <i data-lucide="book-open" class="w-10 h-10 text-emerald-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">Select Your Subject</h3>
+                <p class="text-slate-400">Which subject would you like to predict?</p>
+            </div>
 
-    // Global variables for prediction
-    let studentName = '';
-    let selectedClass = '';
-    let selectedSubject = '';
+            <div class="space-y-4 mb-6">
+                <button onclick="selectSubject('Chemistry')" id="subject-chemistry"
+                    class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-emerald-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="flask-conical" class="w-6 h-6 text-emerald-400"></i>
+                            <span>Chemistry</span>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-6 h-6 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </button>
 
-    // View Switching
-    function switchView(view) {
-        const heroView = document.getElementById('hero-view');
-        const subjectsView = document.getElementById('subjects-view');
-        const downloadsView = document.getElementById('downloads-view');
-        const precalculusView = document.getElementById('precalculus-view');
+                <button onclick="selectSubject('Pre-Calculus')" id="subject-precalc"
+                    class="w-full px-6 py-5 bg-slate-800/50 border-2 border-slate-700 hover:border-violet-500 hover:bg-slate-800 rounded-xl text-white transition-all text-xl font-bold group">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="calculator" class="w-6 h-6 text-violet-400"></i>
+                            <span>Pre-Calculus</span>
+                        </div>
+                        <i data-lucide="chevron-right"
+                            class="w-6 h-6 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </button>
+            </div>
 
-        // Hide all views first
-        const allViews = [heroView, subjectsView, downloadsView, precalculusView];
-        allViews.forEach(view => {
-            view.classList.remove('visible-view');
-            view.classList.add('hidden-view');
-        });
+            <button onclick="proceedToPrediction()" id="proceed-predict-btn" disabled
+                class="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                🎯 Predict My Score
+            </button>
 
-        // Show the requested view
-        setTimeout(() => {
-            allViews.forEach(view => view.style.display = 'none');
+            <button onclick="backToClassSelection()"
+                class="w-full mt-4 px-6 py-3 text-slate-400 hover:text-white transition-all">
+                ← Back
+            </button>
+        </div>
+    </div>
 
-            let targetView;
-            if (view === 'hero') targetView = heroView;
-            else if (view === 'subjects') targetView = subjectsView;
-            else if (view === 'downloads') targetView = downloadsView;
-            else if (view === 'precalculus') targetView = precalculusView;
+    <!-- PREDICT SCORE MODAL - Step 4: Loading Animation -->
+    <div id="predict-modal-loading" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div
+            class="animate-bounce-in bg-slate-900/95 backdrop-blur-xl border-2 border-amber-500/30 rounded-3xl p-12 max-w-md w-full shadow-2xl text-center">
+            <div class="mb-8">
+                <div
+                    class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 border-2 border-amber-400/50 mb-6 animate-pulse">
+                    <i data-lucide="zap" class="w-12 h-12 text-amber-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Analyzing Your Data...</h3>
+                <p class="text-slate-400 text-lg mb-6">Using advanced AI algorithms</p>
+            </div>
 
-            if (targetView) {
-                targetView.style.display = 'block';
-                void targetView.offsetWidth; // Trigger reflow
-                targetView.classList.remove('hidden-view');
-                targetView.classList.add('visible-view');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            <!-- Progress Bar -->
+            <div class="relative w-full h-4 bg-slate-800 rounded-full overflow-hidden mb-4">
+                <div class="absolute inset-0 shimmer"></div>
+                <div id="progress-bar"
+                    class="absolute inset-y-0 left-0 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-300"
+                    style="width: 0%"></div>
+            </div>
 
-                // Re-initialize icons after view change
-                lucide.createIcons();
+            <div class="space-y-2 text-sm text-slate-400 font-mono">
+                <p id="loading-text-1" class="opacity-0 transition-opacity">✓ Scanning study patterns...</p>
+                <p id="loading-text-2" class="opacity-0 transition-opacity">✓ Analyzing past performance...</p>
+                <p id="loading-text-3" class="opacity-0 transition-opacity">✓ Calculating probability matrix...</p>
+                <p id="loading-text-4" class="opacity-0 transition-opacity">✓ Generating prediction...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PREDICT SCORE MODAL - Step 5: Result Display -->
+    <div id="predict-modal-result" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 modal-backdrop">
+        <div class="animate-bounce-in bg-slate-900/95 backdrop-blur-xl border-2 rounded-3xl p-12 max-w-lg w-full shadow-2xl text-center"
+            id="result-container">
+            <div class="mb-8">
+                <div class="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gradient-to-br mb-6 animate-pulse"
+                    id="result-icon-container">
+                    <i data-lucide="trophy" class="w-14 h-14" id="result-icon"></i>
+                </div>
+                <h3 class="text-5xl font-bold mb-2" id="predicted-score">75</h3>
+                <p class="text-slate-400 text-lg mb-6">Your Predicted Score</p>
+            </div>
+
+            <div class="mb-8 p-6 rounded-2xl" id="message-container">
+                <p class="text-2xl font-bold mb-2" id="result-message">You're Chilling! 😎</p>
+                <p class="text-lg" id="result-submessage">No need to study hard!</p>
+            </div>
+
+            <div class="space-y-3">
+                <button onclick="tryAgain()"
+                    class="w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white rounded-xl transition-all font-bold text-lg shadow-lg">
+                    🔄 Try Again
+                </button>
+                <button onclick="closeResultModal()"
+                    class="w-full px-6 py-3 text-slate-400 hover:text-white transition-all">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+
+        // Global variables for prediction
+        let studentName = '';
+        let selectedClass = '';
+        let selectedSubject = '';
+
+        // View Switching
+        function switchView(view) {
+            const heroView = document.getElementById('hero-view');
+            const subjectsView = document.getElementById('subjects-view');
+            const chemistryHubView = document.getElementById('chemistry-hub-view');
+            const chemistryOthersView = document.getElementById('chemistry-others-view');
+            const downloadsView = document.getElementById('downloads-view');
+            const precalcDownloadsView = document.getElementById('precalc-downloads-view');
+            const additionalResourcesView = document.getElementById('additional-resources-view');
+
+            // Hide all views first
+            const allViews = [heroView, subjectsView, chemistryHubView, chemistryOthersView, downloadsView, precalcDownloadsView, additionalResourcesView];
+            allViews.forEach(view => {
+                view.classList.remove('visible-view');
+                view.classList.add('hidden-view');
+            });
+
+            // Show the requested view
+            setTimeout(() => {
+                allViews.forEach(view => view.style.display = 'none');
+
+                let targetView;
+                if (view === 'hero') targetView = heroView;
+                else if (view === 'subjects') targetView = subjectsView;
+                else if (view === 'chemistry-hub') targetView = chemistryHubView;
+                else if (view === 'chemistry-others') targetView = chemistryOthersView;
+                else if (view === 'downloads') targetView = downloadsView;
+                else if (view === 'precalc-downloads') targetView = precalcDownloadsView;
+                else if (view === 'additional-resources') targetView = additionalResourcesView;
+
+                if (targetView) {
+                    targetView.style.display = 'block';
+                    void targetView.offsetWidth; // Trigger reflow
+                    targetView.classList.remove('hidden-view');
+                    targetView.classList.add('visible-view');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Re-initialize icons after view change
+                    lucide.createIcons();
+                }
+            }, 300);
+        }
+
+        // --- PREDICT SCORE MODAL FUNCTIONS ---
+
+        function openPredictModal() {
+            const modal = document.getElementById('predict-modal-name');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('student-name').value = '';
+            document.getElementById('student-name').focus();
+        }
+
+        function closePredictModal() {
+            const modal = document.getElementById('predict-modal-name');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            studentName = '';
+        }
+
+        function goToClassSelection() {
+            const nameInput = document.getElementById('student-name').value.trim();
+
+            if (!nameInput) {
+                alert('Please enter your name!');
+                return;
             }
-        }, 300);
-    }
 
-    // --- PREDICT SCORE MODAL FUNCTIONS ---
+            studentName = nameInput;
 
-    function openPredictModal() {
-        const modal = document.getElementById('predict-modal-name');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.getElementById('student-name').value = '';
-        document.getElementById('student-name').focus();
-    }
+            // Hide name modal
+            const nameModal = document.getElementById('predict-modal-name');
+            nameModal.classList.remove('flex');
+            nameModal.classList.add('hidden');
 
-    function closePredictModal() {
-        const modal = document.getElementById('predict-modal-name');
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
-        studentName = '';
-    }
+            // Show class selection modal
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('hidden');
+            classModal.classList.add('flex');
 
-    function goToClassSelection() {
-        const nameInput = document.getElementById('student-name').value.trim();
+            // Reset class selection
+            selectedClass = '';
+            document.getElementById('class-11a').classList.remove('border-cyan-500', 'bg-cyan-500/20');
+            document.getElementById('class-11b').classList.remove('border-violet-500', 'bg-violet-500/20');
+            document.getElementById('predict-btn').disabled = true;
 
-        if (!nameInput) {
-            alert('Please enter your name!');
-            return;
+            lucide.createIcons();
         }
 
-        studentName = nameInput;
+        function backToNameInput() {
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('flex');
+            classModal.classList.add('hidden');
 
-        // Hide name modal
-        const nameModal = document.getElementById('predict-modal-name');
-        nameModal.classList.remove('flex');
-        nameModal.classList.add('hidden');
+            const nameModal = document.getElementById('predict-modal-name');
+            nameModal.classList.remove('hidden');
+            nameModal.classList.add('flex');
 
-        // Show class selection modal
-        const classModal = document.getElementById('predict-modal-class');
-        classModal.classList.remove('hidden');
-        classModal.classList.add('flex');
-
-        // Reset class selection
-        selectedClass = '';
-        document.getElementById('class-11a').classList.remove('border-cyan-500', 'bg-cyan-500/20');
-        document.getElementById('class-11b').classList.remove('border-violet-500', 'bg-violet-500/20');
-        document.getElementById('predict-btn').disabled = true;
-
-        lucide.createIcons();
-    }
-
-    function backToNameInput() {
-        const classModal = document.getElementById('predict-modal-class');
-        classModal.classList.remove('flex');
-        classModal.classList.add('hidden');
-
-        const nameModal = document.getElementById('predict-modal-name');
-        nameModal.classList.remove('hidden');
-        nameModal.classList.add('flex');
-
-        document.getElementById('student-name').value = studentName;
-    }
-
-    function backToClassSelection() {
-        const subjectModal = document.getElementById('predict-modal-subject');
-        subjectModal.classList.remove('flex');
-        subjectModal.classList.add('hidden');
-
-        const classModal = document.getElementById('predict-modal-class');
-        classModal.classList.remove('hidden');
-        classModal.classList.add('flex');
-    }
-
-    function selectSubject(subject) {
-        selectedSubject = subject;
-
-        // Reset both buttons
-        const btnChemistry = document.getElementById('subject-chemistry');
-        const btnPrecalc = document.getElementById('subject-precalc');
-
-        btnChemistry.classList.remove('border-emerald-500', 'bg-emerald-500/20');
-        btnPrecalc.classList.remove('border-violet-500', 'bg-violet-500/20');
-
-        // Highlight selected
-        if (subject === 'Chemistry') {
-            btnChemistry.classList.add('border-emerald-500', 'bg-emerald-500/20');
-        } else {
-            btnPrecalc.classList.add('border-violet-500', 'bg-violet-500/20');
+            document.getElementById('student-name').value = studentName;
         }
 
-        // Enable proceed button
-        document.getElementById('proceed-predict-btn').disabled = false;
-    }
+        function backToClassSelection() {
+            const subjectModal = document.getElementById('predict-modal-subject');
+            subjectModal.classList.remove('flex');
+            subjectModal.classList.add('hidden');
 
-    function proceedToPrediction() {
-        if (!selectedSubject) {
-            alert('Please select a subject!');
-            return;
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('hidden');
+            classModal.classList.add('flex');
         }
 
-        // Hide subject modal
-        const subjectModal = document.getElementById('predict-modal-subject');
-        subjectModal.classList.remove('flex');
-        subjectModal.classList.add('hidden');
+        function selectSubject(subject) {
+            selectedSubject = subject;
 
-        // Show loading modal
-        const loadingModal = document.getElementById('predict-modal-loading');
-        loadingModal.classList.remove('hidden');
-        loadingModal.classList.add('flex');
+            // Reset both buttons
+            const btnChemistry = document.getElementById('subject-chemistry');
+            const btnPrecalc = document.getElementById('subject-precalc');
 
-        lucide.createIcons();
+            btnChemistry.classList.remove('border-emerald-500', 'bg-emerald-500/20');
+            btnPrecalc.classList.remove('border-violet-500', 'bg-violet-500/20');
 
-        // Animate progress bar and loading texts
-        let progress = 0;
-        const progressBar = document.getElementById('progress-bar');
-        const loadingTexts = [
-            document.getElementById('loading-text-1'),
-            document.getElementById('loading-text-2'),
-            document.getElementById('loading-text-3'),
-            document.getElementById('loading-text-4')
-        ];
-
-        const progressInterval = setInterval(() => {
-            progress += 2;
-            progressBar.style.width = progress + '%';
-
-            if (progress === 25) loadingTexts[0].classList.add('opacity-100');
-            if (progress === 50) loadingTexts[1].classList.add('opacity-100');
-            if (progress === 75) loadingTexts[2].classList.add('opacity-100');
-            if (progress === 100) {
-                loadingTexts[3].classList.add('opacity-100');
-                clearInterval(progressInterval);
-
-                // Show result after a brief delay
-                setTimeout(() => {
-                    showResult();
-                }, 500);
+            // Highlight selected
+            if (subject === 'Chemistry') {
+                btnChemistry.classList.add('border-emerald-500', 'bg-emerald-500/20');
+            } else {
+                btnPrecalc.classList.add('border-violet-500', 'bg-violet-500/20');
             }
-        }, 40);
-    }
 
-    function selectClass(className) {
-        selectedClass = className;
-
-        // Reset both buttons
-        const btn11a = document.getElementById('class-11a');
-        const btn11b = document.getElementById('class-11b');
-
-        btn11a.classList.remove('border-cyan-500', 'bg-cyan-500/20');
-        btn11b.classList.remove('border-violet-500', 'bg-violet-500/20');
-
-        // Highlight selected
-        if (className === '11A') {
-            btn11a.classList.add('border-cyan-500', 'bg-cyan-500/20');
-        } else {
-            btn11b.classList.add('border-violet-500', 'bg-violet-500/20');
+            // Enable proceed button
+            document.getElementById('proceed-predict-btn').disabled = false;
         }
 
-        // Enable predict button
-        document.getElementById('predict-btn').disabled = false;
-    }
+        function proceedToPrediction() {
+            if (!selectedSubject) {
+                alert('Please select a subject!');
+                return;
+            }
 
-    function startPrediction() {
-        if (!selectedClass) {
-            alert('Please select a class!');
-            return;
+            // Hide subject modal
+            const subjectModal = document.getElementById('predict-modal-subject');
+            subjectModal.classList.remove('flex');
+            subjectModal.classList.add('hidden');
+
+            // Show loading modal
+            const loadingModal = document.getElementById('predict-modal-loading');
+            loadingModal.classList.remove('hidden');
+            loadingModal.classList.add('flex');
+
+            lucide.createIcons();
+
+            // Animate progress bar and loading texts
+            let progress = 0;
+            const progressBar = document.getElementById('progress-bar');
+            const loadingTexts = [
+                document.getElementById('loading-text-1'),
+                document.getElementById('loading-text-2'),
+                document.getElementById('loading-text-3'),
+                document.getElementById('loading-text-4')
+            ];
+
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                progressBar.style.width = progress + '%';
+
+                if (progress === 25) loadingTexts[0].classList.add('opacity-100');
+                if (progress === 50) loadingTexts[1].classList.add('opacity-100');
+                if (progress === 75) loadingTexts[2].classList.add('opacity-100');
+                if (progress === 100) {
+                    loadingTexts[3].classList.add('opacity-100');
+                    clearInterval(progressInterval);
+
+                    // Show result after a brief delay
+                    setTimeout(() => {
+                        showResult();
+                    }, 500);
+                }
+            }, 40);
         }
 
-        // Hide class modal
-        const classModal = document.getElementById('predict-modal-class');
-        classModal.classList.remove('flex');
-        classModal.classList.add('hidden');
+        function selectClass(className) {
+            selectedClass = className;
 
-        // Show subject selection modal
-        const subjectModal = document.getElementById('predict-modal-subject');
-        subjectModal.classList.remove('hidden');
-        subjectModal.classList.add('flex');
+            // Reset both buttons
+            const btn11a = document.getElementById('class-11a');
+            const btn11b = document.getElementById('class-11b');
 
-        // Reset subject selection
-        selectedSubject = '';
-        document.getElementById('subject-chemistry').classList.remove('border-emerald-500', 'bg-emerald-500/20');
-        document.getElementById('subject-precalc').classList.remove('border-violet-500', 'bg-violet-500/20');
-        document.getElementById('proceed-predict-btn').disabled = true;
+            btn11a.classList.remove('border-cyan-500', 'bg-cyan-500/20');
+            btn11b.classList.remove('border-violet-500', 'bg-violet-500/20');
 
-        lucide.createIcons();
-    }
+            // Highlight selected
+            if (className === '11A') {
+                btn11a.classList.add('border-cyan-500', 'bg-cyan-500/20');
+            } else {
+                btn11b.classList.add('border-violet-500', 'bg-violet-500/20');
+            }
 
-    function showResult() {
-        // Hide loading modal
-        const loadingModal = document.getElementById('predict-modal-loading');
-        loadingModal.classList.remove('flex');
-        loadingModal.classList.add('hidden');
-
-        // Reset loading animation
-        document.getElementById('progress-bar').style.width = '0%';
-        document.querySelectorAll('[id^="loading-text-"]').forEach(el => {
-            el.classList.remove('opacity-100');
-        });
-
-        // Generate random score between 45-80
-        const score = Math.floor(Math.random() * (80 - 45 + 1)) + 45;
-
-        // Show result modal
-        const resultModal = document.getElementById('predict-modal-result');
-        const scoreElement = document.getElementById('predicted-score');
-        const messageElement = document.getElementById('result-message');
-        const submessageElement = document.getElementById('result-submessage');
-        const resultContainer = document.getElementById('result-container');
-        const messageContainer = document.getElementById('message-container');
-        const iconContainer = document.getElementById('result-icon-container');
-        const icon = document.getElementById('result-icon');
-
-        scoreElement.textContent = score;
-
-        // Customize based on score
-        if (score <= 60) {
-            // Low score - red theme
-            resultContainer.classList.add('border-red-500/30');
-            resultContainer.classList.remove('border-emerald-500/30');
-            iconContainer.classList.add('from-red-500/20', 'to-orange-500/20', 'border-red-400/50', 'glow-red');
-            iconContainer.classList.remove('from-emerald-500/20', 'to-green-500/20', 'border-emerald-400/50', 'glow-green');
-            icon.className = 'w-14 h-14 text-red-400';
-            icon.setAttribute('data-lucide', 'alert-circle');
-            messageContainer.classList.add('bg-red-500/10', 'border-2', 'border-red-500/30');
-            messageContainer.classList.remove('bg-emerald-500/10', 'border-emerald-500/30');
-            messageElement.textContent = "Better Go Study! 📚";
-            messageElement.className = "text-2xl font-bold mb-2 text-red-400";
-            submessageElement.textContent = "You might want to hit those books, " + studentName + "!";
-            submessageElement.className = "text-lg text-red-300";
-        } else {
-            // High score - green theme
-            resultContainer.classList.add('border-emerald-500/30');
-            resultContainer.classList.remove('border-red-500/30');
-            iconContainer.classList.add('from-emerald-500/20', 'to-green-500/20', 'border-emerald-400/50', 'glow-green');
-            iconContainer.classList.remove('from-red-500/20', 'to-orange-500/20', 'border-red-400/50', 'glow-red');
-            icon.className = 'w-14 h-14 text-emerald-400';
-            icon.setAttribute('data-lucide', 'trophy');
-            messageContainer.classList.add('bg-emerald-500/10', 'border-2', 'border-emerald-500/30');
-            messageContainer.classList.remove('bg-red-500/10', 'border-red-500/30');
-            messageElement.textContent = "You're Chilling! 😎";
-            messageElement.className = "text-2xl font-bold mb-2 text-emerald-400";
-            submessageElement.textContent = "No need to stress, " + studentName + "! You got this!";
-            submessageElement.className = "text-lg text-emerald-300";
+            // Enable predict button
+            document.getElementById('predict-btn').disabled = false;
         }
 
-        resultModal.classList.remove('hidden');
-        resultModal.classList.add('flex');
-        lucide.createIcons();
-    }
+        function startPrediction() {
+            if (!selectedClass) {
+                alert('Please select a class!');
+                return;
+            }
 
-    function tryAgain() {
-        const resultModal = document.getElementById('predict-modal-result');
-        resultModal.classList.remove('flex');
-        resultModal.classList.add('hidden');
+            // Hide class modal
+            const classModal = document.getElementById('predict-modal-class');
+            classModal.classList.remove('flex');
+            classModal.classList.add('hidden');
 
-        // Reset and show name modal
-        studentName = '';
-        selectedClass = '';
-        selectedSubject = '';
-        openPredictModal();
-    }
+            // Show subject selection modal
+            const subjectModal = document.getElementById('predict-modal-subject');
+            subjectModal.classList.remove('hidden');
+            subjectModal.classList.add('flex');
 
-    function closeResultModal() {
-        const resultModal = document.getElementById('predict-modal-result');
-        resultModal.classList.remove('flex');
-        resultModal.classList.add('hidden');
+            // Reset subject selection
+            selectedSubject = '';
+            document.getElementById('subject-chemistry').classList.remove('border-emerald-500', 'bg-emerald-500/20');
+            document.getElementById('subject-precalc').classList.remove('border-violet-500', 'bg-violet-500/20');
+            document.getElementById('proceed-predict-btn').disabled = true;
 
-        // Reset
-        studentName = '';
-        selectedClass = '';
-        selectedSubject = '';
-    }
-
-    // --- SMART DUAL COUNTDOWN TIMER LOGIC ---
-
-    // Helper function to get next occurrence of a specific date
-    function getNextTargetDate(month, day, hour) {
-        const now = new Date();
-        let target = new Date(now.getFullYear(), month, day, hour, 0, 0);
-        // If date has passed this year, move to next year
-        if (now > target) {
-            target.setFullYear(target.getFullYear() + 1);
+            lucide.createIcons();
         }
-        return target;
-    }
 
-    // PreCalc: March 29, 9 AM (Month 2 = March)
-    const preCalcDate = getNextTargetDate(2, 29, 9);
-    const preCalcTarget = preCalcDate.getTime();
+        function showResult() {
+            // Hide loading modal
+            const loadingModal = document.getElementById('predict-modal-loading');
+            loadingModal.classList.remove('flex');
+            loadingModal.classList.add('hidden');
 
-    // Chemistry: April 23, 11 AM (Month 3 = April)
-    const chemDate = getNextTargetDate(3, 23, 11);
-    const chemTarget = chemDate.getTime();
+            // Reset loading animation
+            document.getElementById('progress-bar').style.width = '0%';
+            document.querySelectorAll('[id^="loading-text-"]').forEach(el => {
+                el.classList.remove('opacity-100');
+            });
 
-    const x = setInterval(function() {
-        const now = new Date().getTime();
+            // Generate random score between 45-80
+            const score = Math.floor(Math.random() * (80 - 45 + 1)) + 45;
 
-        // --- PreCalc Calculations ---
-        const pcDistance = preCalcTarget - now;
-        const pcDays = Math.floor(pcDistance / (1000 * 60 * 60 * 24));
-        const pcHours = Math.floor((pcDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const pcMinutes = Math.floor((pcDistance % (1000 * 60 * 60)) / (1000 * 60));
-        const pcSeconds = Math.floor((pcDistance % (1000 * 60)) / 1000);
+            // Show result modal
+            const resultModal = document.getElementById('predict-modal-result');
+            const scoreElement = document.getElementById('predicted-score');
+            const messageElement = document.getElementById('result-message');
+            const submessageElement = document.getElementById('result-submessage');
+            const resultContainer = document.getElementById('result-container');
+            const messageContainer = document.getElementById('message-container');
+            const iconContainer = document.getElementById('result-icon-container');
+            const icon = document.getElementById('result-icon');
 
-        // --- Chemistry Calculations ---
-        const chemDistance = chemTarget - now;
-        const chemDays = Math.floor(chemDistance / (1000 * 60 * 60 * 24));
-        const chemHours = Math.floor((chemDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const chemMinutes = Math.floor((chemDistance % (1000 * 60 * 60)) / (1000 * 60));
-        const chemSeconds = Math.floor((chemDistance % (1000 * 60)) / 1000);
+            scoreElement.textContent = score;
 
-        // --- Update PreCalc DOM ---
-        const elPcDays = document.getElementById("pc-days");
-        const elPcHours = document.getElementById("pc-hours");
-        const elPcMinutes = document.getElementById("pc-minutes");
-        const elPcSeconds = document.getElementById("pc-seconds");
+            // Customize based on score
+            if (score <= 60) {
+                // Low score - red theme
+                resultContainer.classList.add('border-red-500/30');
+                resultContainer.classList.remove('border-emerald-500/30');
+                iconContainer.classList.add('from-red-500/20', 'to-orange-500/20', 'border-red-400/50', 'glow-red');
+                iconContainer.classList.remove('from-emerald-500/20', 'to-green-500/20', 'border-emerald-400/50', 'glow-green');
+                icon.className = 'w-14 h-14 text-red-400';
+                icon.setAttribute('data-lucide', 'alert-circle');
+                messageContainer.classList.add('bg-red-500/10', 'border-2', 'border-red-500/30');
+                messageContainer.classList.remove('bg-emerald-500/10', 'border-emerald-500/30');
+                messageElement.textContent = "Better Go Study! 📚";
+                messageElement.className = "text-2xl font-bold mb-2 text-red-400";
+                submessageElement.textContent = "You might want to hit those books, " + studentName + "!";
+                submessageElement.className = "text-lg text-red-300";
+            } else {
+                // High score - green theme
+                resultContainer.classList.add('border-emerald-500/30');
+                resultContainer.classList.remove('border-red-500/30');
+                iconContainer.classList.add('from-emerald-500/20', 'to-green-500/20', 'border-emerald-400/50', 'glow-green');
+                iconContainer.classList.remove('from-red-500/20', 'to-orange-500/20', 'border-red-400/50', 'glow-red');
+                icon.className = 'w-14 h-14 text-emerald-400';
+                icon.setAttribute('data-lucide', 'trophy');
+                messageContainer.classList.add('bg-emerald-500/10', 'border-2', 'border-emerald-500/30');
+                messageContainer.classList.remove('bg-red-500/10', 'border-red-500/30');
+                messageElement.textContent = "You're Chilling! 😎";
+                messageElement.className = "text-2xl font-bold mb-2 text-emerald-400";
+                submessageElement.textContent = "No need to stress, " + studentName + "! You got this!";
+                submessageElement.className = "text-lg text-emerald-300";
+            }
 
-        if (elPcDays) elPcDays.innerHTML = pcDays < 10 ? "0" + pcDays : pcDays;
-        if (elPcHours) elPcHours.innerHTML = pcHours < 10 ? "0" + pcHours : pcHours;
-        if (elPcMinutes) elPcMinutes.innerHTML = pcMinutes < 10 ? "0" + pcMinutes : pcMinutes;
-        if (elPcSeconds) elPcSeconds.innerHTML = pcSeconds < 10 ? "0" + pcSeconds : pcSeconds;
+            resultModal.classList.remove('hidden');
+            resultModal.classList.add('flex');
+            lucide.createIcons();
+        }
 
-        // --- Update Chemistry DOM ---
-        const elChemDays = document.getElementById("chem-days");
-        const elChemHours = document.getElementById("chem-hours");
-        const elChemMinutes = document.getElementById("chem-minutes");
-        const elChemSeconds = document.getElementById("chem-seconds");
+        function tryAgain() {
+            const resultModal = document.getElementById('predict-modal-result');
+            resultModal.classList.remove('flex');
+            resultModal.classList.add('hidden');
 
-        if (elChemDays) elChemDays.innerHTML = chemDays < 10 ? "0" + chemDays : chemDays;
-        if (elChemHours) elChemHours.innerHTML = chemHours < 10 ? "0" + chemHours : chemHours;
-        if (elChemMinutes) elChemMinutes.innerHTML = chemMinutes < 10 ? "0" + chemMinutes : chemMinutes;
-        if (elChemSeconds) elChemSeconds.innerHTML = chemSeconds < 10 ? "0" + chemSeconds : chemSeconds;
+            // Reset and show name modal
+            studentName = '';
+            selectedClass = '';
+            selectedSubject = '';
+            openPredictModal();
+        }
 
-        if (pcDistance < 0 && chemDistance < 0) clearInterval(x);
-    }, 1000);
+        function closeResultModal() {
+            const resultModal = document.getElementById('predict-modal-result');
+            resultModal.classList.remove('flex');
+            resultModal.classList.add('hidden');
 
-    // ==========================================================
-    // ✅ MULTI-PART CHAPTER CONFIGURATION (CH4/10/12/19 => 2 parts, CH20 => 3 parts)
-    // ==========================================================
+            // Reset
+            studentName = '';
+            selectedClass = '';
+            selectedSubject = '';
+        }
 
-    const chapterData = {
-        1: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/jxwlym2c52yt09p3a80zg/Version_V1.3.exe?rlkey=ufi4ynuwii2dir6em5w9zoidj&st=v3wgd350&dl=1" }],
-        2: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/ijwae08kq4p6xq73g4jdj/chapter2.pptx?rlkey=b7efja5ek0uehhhb99il59zvf&st=p2942v85&dl=1" }],
-        3: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/91a7prvw2njwwlovgtmre/chapter3.pptx?rlkey=pui0rdobuoqlh8khq6mth9xhn&st=wz1bvsb5&dl=1" }],
+        // --- SMART DUAL COUNTDOWN TIMER LOGIC ---
 
-        4: [
-            { label: "Part 1", url: "https://www.dropbox.com/scl/fi/1ra6bsbivu6q8n6fjsg31/chapter4_part1.pptx?rlkey=fm96sh0n48393egqg0ja8dvpn&st=am2e72v9&dl=1" },
-            { label: "Part 2", url: "https://www.dropbox.com/scl/fi/k5tmmukw6uvt30m2craw3/chapter4_part2.pptx?rlkey=9cf7zx1gbti788jm1ys8pbw51&st=k4gceb8l&dl=1" }
-        ],
+        // Helper function to get next occurrence of a specific date
+        function getNextTargetDate(month, day, hour) {
+            const now = new Date();
+            let target = new Date(now.getFullYear(), month, day, hour, 0, 0);
+            // If date has passed this year, move to next year
+            if (now > target) {
+                target.setFullYear(target.getFullYear() + 1);
+            }
+            return target;
+        }
 
-        5: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/xucvm17ompw4dby8c8rie/chapter5.pptx?rlkey=cnc8kgm3ulwzi0y4qynbyuyvh&st=8swbmgwk&dl=1" }],
-        6: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/w6vwmmkhm8fcfqb80gt2q/chapter6.pptx?rlkey=ljje6lbzttfk4fe5i2e1eai9b&st=favgelga&dl=1" }],
-        7: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/b20k50vrn0fkrpy396uff/chapter7.pptx?rlkey=pvuc3oe1bh6v7i4lcpic6388f&st=qrwsgmvg&dl=1" }],
-        8: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/2wz5n90t8d9f5km9abkju/chapter8.pptx?rlkey=q8w13277wqv2up8phrojze05o&st=sygfqu4j&dl=1" }],
-        9: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/tgkaflkx3syzcqsge5cd2/chapter9.pptx?rlkey=glnw1rbwab78yep1orry9ctpy&st=f3bccos5&dl=1" }],
+        // PreCalc: March 29, 9 AM (Month 2 = March)
+        const preCalcDate = getNextTargetDate(2, 29, 9);
+        const preCalcTarget = preCalcDate.getTime();
 
-        10: [
-            { label: "Part 1", url: "https://www.dropbox.com/scl/fi/q0vuo6sdgtgalmq72fltk/chapter10_part1.pptx?rlkey=3v5yvdmzdkhsy692jjehj869t&st=up623qej&dl=1" },
-            { label: "Part 2", url: "https://www.dropbox.com/scl/fi/qrxz3sxq1ujafnb2u4qwd/chapter10_part2.pptx?rlkey=g2fkrqaetn3sc1hdl347tsct9&st=mpndbu00&dl=1" }
-        ],
+        // Chemistry: April 23, 11 AM (Month 3 = April)
+        const chemDate = getNextTargetDate(3, 23, 11);
+        const chemTarget = chemDate.getTime();
 
-        11: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/chu66y05dy7xzclv5kw27/chapter11.pptx?rlkey=bui7il9zygy9l5qrm2a2rp5ln&st=ph3w4h7m&dl=1" }],
+        const x = setInterval(function () {
+            const now = new Date().getTime();
 
-        12: [
-            { label: "Part 1", url: "https://www.dropbox.com/scl/fi/h6trbbjwu9c01k3q38fh6/chapter12_part1.pptx?rlkey=0bqw0tps11nz5oi1q29qvhfjy&st=6grt8hly&dl=1" },
-            { label: "Part 2", url: "https://www.dropbox.com/scl/fi/oidmw7h8m2hpy72tugq8b/chapter12_part2.pptx?rlkey=187d1qih9xq4mma7gnazib77c&st=81kg4zd7&dl=1" }
-        ],
+            // --- PreCalc Calculations ---
+            const pcDistance = preCalcTarget - now;
+            const pcDays = Math.floor(pcDistance / (1000 * 60 * 60 * 24));
+            const pcHours = Math.floor((pcDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const pcMinutes = Math.floor((pcDistance % (1000 * 60 * 60)) / (1000 * 60));
+            const pcSeconds = Math.floor((pcDistance % (1000 * 60)) / 1000);
 
-        13: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/wm8psy3gwb1am6aewust2/chapter13.pptx?rlkey=jdxim8inrgfch88y472d7cu8c&st=h2ns4qxn&dl=1" }],
-        14: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/h3e7xbpu8twv7bmg3pxc7/chapter14.pptx?rlkey=mvfoq8s98klh3knbdqut12nvf&st=1x32nmkp&dl=1" }],
-        15: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/u5fnoeubj5amxvk8o073c/chapter15.pptx?rlkey=33lypffkoscisjzjghjibx2i3&st=g04yakft&dl=1" }],
-        16: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/s07npngmbjryxs9b01nv3/chapter16.pptx?rlkey=9st3vlchph0wr4wi1nqx2owcy&st=bl6v17qg&dl=1" }],
-        17: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/qu0o7xxsx9npytmwim2aq/chapter17.pptx?rlkey=njz631qipe0y0w1qgjxy2lg84&st=skn32rl8&dl=1" }],
-        18: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/huv3bt77j49kiflh0szzk/chapter18.pptx?rlkey=wyx49kmkhhtpvdulrjis8bc2v&st=ms6btdt9&dl=1" }],
+            // --- Chemistry Calculations ---
+            const chemDistance = chemTarget - now;
+            const chemDays = Math.floor(chemDistance / (1000 * 60 * 60 * 24));
+            const chemHours = Math.floor((chemDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const chemMinutes = Math.floor((chemDistance % (1000 * 60 * 60)) / (1000 * 60));
+            const chemSeconds = Math.floor((chemDistance % (1000 * 60)) / 1000);
 
-        19: [
-            { label: "Part 1", url: "https://www.dropbox.com/scl/fi/1dud76dsxas6c5tjmpb45/chapter19_part-1.pptx?rlkey=ufw68mgvr1izmf9luwsxx5a26&st=khr70k98&dl=1" },
-            { label: "Part 2", url: "https://www.dropbox.com/scl/fi/ikdzwbrud6mhi0ymvqhbg/chapter19_part-2.pptx?rlkey=y07sbyd1gcirw8w5kvyzodaoj&st=gk7eqwcj&dl=1" }
-        ],
+            // --- Update PreCalc DOM ---
+            const elPcDays = document.getElementById("pc-days");
+            const elPcHours = document.getElementById("pc-hours");
+            const elPcMinutes = document.getElementById("pc-minutes");
+            const elPcSeconds = document.getElementById("pc-seconds");
 
-        20: [
-            { label: "Part 1", url: "https://www.dropbox.com/scl/fi/vtx5frn3rauf5lj9tpcb7/chapter20_part1.pptx?rlkey=1l3d8zzyjp1pbp6dwxheaw1ge&st=4oopix8x&dl=1" },
-            { label: "Part 2", url: "https://www.dropbox.com/scl/fi/yp6pwa4da28cpj2ydp6pw/chapter20_part2.pptx?rlkey=bb3fhpag3u0273uo6ssfm64ln&st=4drqv0kg&dl=1" },
-            { label: "Part 3", url: "https://www.dropbox.com/scl/fi/f6y8gu1y1mvaii7tkkrzt/chapter20_part3.pptx?rlkey=6are2f4ukabo0rtk2m1t7r3pd&st=en0xcj8d&dl=1" }
-        ]
-    };
+            if (elPcDays) elPcDays.innerHTML = pcDays < 10 ? "0" + pcDays : pcDays;
+            if (elPcHours) elPcHours.innerHTML = pcHours < 10 ? "0" + pcHours : pcHours;
+            if (elPcMinutes) elPcMinutes.innerHTML = pcMinutes < 10 ? "0" + pcMinutes : pcMinutes;
+            if (elPcSeconds) elPcSeconds.innerHTML = pcSeconds < 10 ? "0" + pcSeconds : pcSeconds;
 
-    // Ensure chapters 1..20 exist (fallback if you forgot one)
-    for (let i = 1; i <= 20; i++) {
-        if (!chapterData[i]) chapterData[i] = [];
-    }
+            // --- Update Chemistry DOM ---
+            const elChemDays = document.getElementById("chem-days");
+            const elChemHours = document.getElementById("chem-hours");
+            const elChemMinutes = document.getElementById("chem-minutes");
+            const elChemSeconds = document.getElementById("chem-seconds");
 
-    // ==========================================================
-    // ✅ CHAPTER GRID (Single file => direct download)
-    // ✅ Multi-part => hover dropdown + tap/click toggle
-    // ==========================================================
+            if (elChemDays) elChemDays.innerHTML = chemDays < 10 ? "0" + chemDays : chemDays;
+            if (elChemHours) elChemHours.innerHTML = chemHours < 10 ? "0" + chemHours : chemHours;
+            if (elChemMinutes) elChemMinutes.innerHTML = chemMinutes < 10 ? "0" + chemMinutes : chemMinutes;
+            if (elChemSeconds) elChemSeconds.innerHTML = chemSeconds < 10 ? "0" + chemSeconds : chemSeconds;
 
-    const chapterGrid = document.getElementById('chapter-grid');
+            if (pcDistance < 0 && chemDistance < 0) clearInterval(x);
+        }, 1000);
 
-    function buildPartButtons(parts) {
-        return parts.map((part, idx) => `
+        // ==========================================================
+        // ✅ MULTI-PART CHAPTER CONFIGURATION (CH4/10/12/19 => 2 parts, CH20 => 3 parts)
+        // ==========================================================
+
+        const chapterData = {
+            1: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/jxwlym2c52yt09p3a80zg/Version_V1.3.exe?rlkey=ufi4ynuwii2dir6em5w9zoidj&st=v3wgd350&dl=1" }],
+            2: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/ijwae08kq4p6xq73g4jdj/chapter2.pptx?rlkey=b7efja5ek0uehhhb99il59zvf&st=p2942v85&dl=1" }],
+            3: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/91a7prvw2njwwlovgtmre/chapter3.pptx?rlkey=pui0rdobuoqlh8khq6mth9xhn&st=wz1bvsb5&dl=1" }],
+
+            4: [
+                { label: "Part 1", url: "https://www.dropbox.com/scl/fi/1ra6bsbivu6q8n6fjsg31/chapter4_part1.pptx?rlkey=fm96sh0n48393egqg0ja8dvpn&st=am2e72v9&dl=1" },
+                { label: "Part 2", url: "https://www.dropbox.com/scl/fi/k5tmmukw6uvt30m2craw3/chapter4_part2.pptx?rlkey=9cf7zx1gbti788jm1ys8pbw51&st=k4gceb8l&dl=1" }
+            ],
+
+            5: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/xucvm17ompw4dby8c8rie/chapter5.pptx?rlkey=cnc8kgm3ulwzi0y4qynbyuyvh&st=8swbmgwk&dl=1" }],
+            6: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/w6vwmmkhm8fcfqb80gt2q/chapter6.pptx?rlkey=ljje6lbzttfk4fe5i2e1eai9b&st=favgelga&dl=1" }],
+            7: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/b20k50vrn0fkrpy396uff/chapter7.pptx?rlkey=pvuc3oe1bh6v7i4lcpic6388f&st=qrwsgmvg&dl=1" }],
+            8: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/2wz5n90t8d9f5km9abkju/chapter8.pptx?rlkey=q8w13277wqv2up8phrojze05o&st=sygfqu4j&dl=1" }],
+            9: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/tgkaflkx3syzcqsge5cd2/chapter9.pptx?rlkey=glnw1rbwab78yep1orry9ctpy&st=f3bccos5&dl=1" }],
+
+            10: [
+                { label: "Part 1", url: "https://www.dropbox.com/scl/fi/q0vuo6sdgtgalmq72fltk/chapter10_part1.pptx?rlkey=3v5yvdmzdkhsy692jjehj869t&st=up623qej&dl=1" },
+                { label: "Part 2", url: "https://www.dropbox.com/scl/fi/qrxz3sxq1ujafnb2u4qwd/chapter10_part2.pptx?rlkey=g2fkrqaetn3sc1hdl347tsct9&st=mpndbu00&dl=1" }
+            ],
+
+            11: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/chu66y05dy7xzclv5kw27/chapter11.pptx?rlkey=bui7il9zygy9l5qrm2a2rp5ln&st=ph3w4h7m&dl=1" }],
+
+            12: [
+                { label: "Part 1", url: "https://www.dropbox.com/scl/fi/h6trbbjwu9c01k3q38fh6/chapter12_part1.pptx?rlkey=0bqw0tps11nz5oi1q29qvhfjy&st=6grt8hly&dl=1" },
+                { label: "Part 2", url: "https://www.dropbox.com/scl/fi/oidmw7h8m2hpy72tugq8b/chapter12_part2.pptx?rlkey=187d1qih9xq4mma7gnazib77c&st=81kg4zd7&dl=1" }
+            ],
+
+            13: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/wm8psy3gwb1am6aewust2/chapter13.pptx?rlkey=jdxim8inrgfch88y472d7cu8c&st=h2ns4qxn&dl=1" }],
+            14: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/h3e7xbpu8twv7bmg3pxc7/chapter14.pptx?rlkey=mvfoq8s98klh3knbdqut12nvf&st=1x32nmkp&dl=1" }],
+            15: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/u5fnoeubj5amxvk8o073c/chapter15.pptx?rlkey=33lypffkoscisjzjghjibx2i3&st=g04yakft&dl=1" }],
+            16: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/s07npngmbjryxs9b01nv3/chapter16.pptx?rlkey=9st3vlchph0wr4wi1nqx2owcy&st=bl6v17qg&dl=1" }],
+            17: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/qu0o7xxsx9npytmwim2aq/chapter17.pptx?rlkey=njz631qipe0y0w1qgjxy2lg84&st=skn32rl8&dl=1" }],
+            18: [{ label: "Part 1", url: "https://www.dropbox.com/scl/fi/huv3bt77j49kiflh0szzk/chapter18.pptx?rlkey=wyx49kmkhhtpvdulrjis8bc2v&st=ms6btdt9&dl=1" }],
+
+            19: [
+                { label: "Part 1", url: "https://www.dropbox.com/scl/fi/1dud76dsxas6c5tjmpb45/chapter19_part-1.pptx?rlkey=ufw68mgvr1izmf9luwsxx5a26&st=khr70k98&dl=1" },
+                { label: "Part 2", url: "https://www.dropbox.com/scl/fi/ikdzwbrud6mhi0ymvqhbg/chapter19_part-2.pptx?rlkey=y07sbyd1gcirw8w5kvyzodaoj&st=gk7eqwcj&dl=1" }
+            ],
+
+            20: [
+                { label: "Part 1", url: "https://www.dropbox.com/scl/fi/vtx5frn3rauf5lj9tpcb7/chapter20_part1.pptx?rlkey=1l3d8zzyjp1pbp6dwxheaw1ge&st=4oopix8x&dl=1" },
+                { label: "Part 2", url: "https://www.dropbox.com/scl/fi/yp6pwa4da28cpj2ydp6pw/chapter20_part2.pptx?rlkey=bb3fhpag3u0273uo6ssfm64ln&st=4drqv0kg&dl=1" },
+                { label: "Part 3", url: "https://www.dropbox.com/scl/fi/f6y8gu1y1mvaii7tkkrzt/chapter20_part3.pptx?rlkey=6are2f4ukabo0rtk2m1t7r3pd&st=en0xcj8d&dl=1" }
+            ]
+        };
+
+        // Ensure chapters 1..20 exist (fallback if you forgot one)
+        for (let i = 1; i <= 20; i++) {
+            if (!chapterData[i]) chapterData[i] = [];
+        }
+
+        // ==========================================================
+        // ✅ CHAPTER GRID (Single file => direct download)
+        // ✅ Multi-part => hover dropdown + tap/click toggle
+        // ==========================================================
+
+        const chapterGrid = document.getElementById('chapter-grid');
+
+        function buildPartButtons(parts) {
+            return parts.map((part, idx) => `
             <button
                 onclick="event.stopPropagation(); window.open('${part.url}', '_blank')"
                 class="w-full py-2 px-4 bg-violet-500/10 hover:bg-violet-500/30 text-violet-200 rounded-xl text-sm font-semibold transition-all flex items-center justify-between gap-2">
@@ -1146,36 +1295,36 @@
                 <span class="text-violet-300/70 font-mono text-xs">#${idx + 1}</span>
             </button>
         `).join('');
-    }
+        }
 
-    function renderChapterCard(i) {
-        const parts = chapterData[i] || [];
-        const isMulti = parts.length > 1;
-        const hasSingle = parts.length === 1;
+        function renderChapterCard(i) {
+            const parts = chapterData[i] || [];
+            const isMulti = parts.length > 1;
+            const hasSingle = parts.length === 1;
 
-        const card = document.createElement('div');
-        card.className = "group relative isolate z-0 hover:z-50 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-violet-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-violet-500/30";
+            const card = document.createElement('div');
+            card.className = "group relative isolate z-0 hover:z-50 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-violet-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-violet-500/30";
 
-        const dropdownId = `dropdown-${i}`;
-        const btnId = `btn-${i}`;
+            const dropdownId = `dropdown-${i}`;
+            const btnId = `btn-${i}`;
 
-        const actionButtonHTML = hasSingle
-            ? `
+            const actionButtonHTML = hasSingle
+                ? `
                 <button onclick="downloadChapter(${i})"
                     class="w-full py-3 px-6 bg-violet-500 hover:bg-violet-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-violet-500/25">
                     <i data-lucide="download" class="w-4 h-4"></i>
                     DOWNLOAD
                 </button>
               `
-            : isMulti
-                ? `
+                : isMulti
+                    ? `
                     <button id="${btnId}" onclick="toggleDropdown(${i})"
                         class="w-full py-3 px-6 bg-gradient-to-r from-violet-500/90 to-fuchsia-500/90 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-violet-500/25">
                         <i data-lucide="layers" class="w-4 h-4"></i>
                         PARTS (${parts.length})
                     </button>
                   `
-                : `
+                    : `
                     <button onclick="downloadChapter(${i})"
                         class="w-full py-3 px-6 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2">
                         <i data-lucide="lock" class="w-4 h-4"></i>
@@ -1183,7 +1332,7 @@
                     </button>
                   `;
 
-        const dropdownHTML = isMulti ? `
+            const dropdownHTML = isMulti ? `
             <!-- Hover dropdown (desktop) + toggled dropdown (mobile) -->
             <div id="${dropdownId}"
      class="absolute left-4 right-4 top-[calc(100%-10px)] mt-4 z-[999]
@@ -1206,7 +1355,7 @@
             </div>
         ` : "";
 
-        card.innerHTML = `
+            card.innerHTML = `
             <div class="flex justify-center mb-6">
                 <div class="w-16 h-16 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500/20 group-hover:border-violet-500/40 transition-all">
                     <i data-lucide="${isMulti ? 'folders' : 'folder-open'}" class="w-8 h-8 text-violet-400"></i>
@@ -1218,18 +1367,17 @@
             </h3>
 
             <div class="text-center mb-6">
-                ${
-                    isMulti
-                        ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-200 text-xs font-mono">
+                ${isMulti
+                    ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-200 text-xs font-mono">
                                 <i data-lucide="sparkles" class="w-3 h-3"></i>
                                 MULTI-PART
                            </span>`
-                        : hasSingle
-                            ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-200 text-xs font-mono">
+                    : hasSingle
+                        ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-200 text-xs font-mono">
                                     <i data-lucide="file" class="w-3 h-3"></i>
                                     SINGLE FILE
                                </span>`
-                            : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono">
+                        : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono">
                                     <i data-lucide="slash" class="w-3 h-3"></i>
                                     MISSING
                                </span>`
@@ -1242,75 +1390,547 @@
             </div>
         `;
 
-        chapterGrid.appendChild(card);
-    }
-
-    for (let i = 1; i <= 20; i++) renderChapterCard(i);
-
-    // Re-initialize icons after adding dynamic content
-    lucide.createIcons();
-
-    // ==========================================================
-    // ✅ DOWNLOAD HANDLERS
-    // ==========================================================
-
-    function downloadChapter(num) {
-        const parts = chapterData[num] || [];
-        if (parts.length === 1) {
-            window.open(parts[0].url, '_blank');
-            return;
+            chapterGrid.appendChild(card);
         }
-        if (parts.length > 1) {
-            // On multi-part, just open dropdown for convenience
-            toggleDropdown(num);
-            return;
+
+        for (let i = 1; i <= 20; i++) renderChapterCard(i);
+
+        // ==========================================================
+        // ✅ PRE-CALCULUS CHAPTER DATA (5 chapters)
+        // ==========================================================
+
+        const precalcChapterData = {
+            1: [{ label: "Part 1", url: "" }],
+            2: [{ label: "Part 1", url: "" }],
+            3: [{ label: "Part 1", url: "" }],
+            4: [{ label: "Part 1", url: "" }],
+            5: [{ label: "Part 1", url: "" }]
+        };
+
+        const precalcChapterGrid = document.getElementById('precalc-chapter-grid');
+
+        function buildPrecalcPartButtons(parts) {
+            return parts.map((part, idx) => `
+            <button
+                onclick="event.stopPropagation(); window.open('${part.url}', '_blank')"
+                class="w-full py-2 px-4 bg-fuchsia-500/10 hover:bg-fuchsia-500/30 text-fuchsia-200 rounded-xl text-sm font-semibold transition-all flex items-center justify-between gap-2">
+                <span>${part.label}</span>
+                <span class="text-fuchsia-300/70 font-mono text-xs">#${idx + 1}</span>
+            </button>
+        `).join('');
         }
-        alert(`Download link for Chapter ${num} is not available yet.`);
-    }
 
-    // ==========================================================
-    // ✅ MOBILE: CLICK/TAP TO TOGGLE DROPDOWN
-    // (desktop hover already works via group-hover classes)
-    // ==========================================================
+        function renderPrecalcChapterCard(i) {
+            const parts = precalcChapterData[i] || [];
+            const isMulti = parts.length > 1;
+            const hasSingle = parts.length === 1;
 
-    function toggleDropdown(num) {
-        const el = document.getElementById(`dropdown-${num}`);
-        if (!el) return;
+            const card = document.createElement('div');
+            card.className = "group relative isolate z-0 hover:z-50 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-fuchsia-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-fuchsia-500/30";
 
-        // If currently hidden due to hover classes, we force visible by swapping classes
-        const isOpen = el.classList.contains('force-open');
-        closeAllDropdowns();
+            const dropdownId = `pc-dropdown-${i}`;
+            const btnId = `pc-btn-${i}`;
 
-        if (!isOpen) {
-            el.classList.add('force-open');
-            el.classList.remove('opacity-0', 'invisible', 'translate-y-2');
-            el.classList.add('opacity-100', 'visible', 'translate-y-0');
+            const actionButtonHTML = hasSingle
+                ? `
+                <button onclick="downloadPrecalcChapter(${i})"
+                    class="w-full py-3 px-6 bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-fuchsia-500/25">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    DOWNLOAD
+                </button>
+              `
+                : isMulti
+                    ? `
+                    <button id="${btnId}" onclick="togglePrecalcDropdown(${i})"
+                        class="w-full py-3 px-6 bg-gradient-to-r from-violet-500/90 to-fuchsia-500/90 hover:from-violet-400 hover:to-fuchsia-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-fuchsia-500/25">
+                        <i data-lucide="layers" class="w-4 h-4"></i>
+                        PARTS (${parts.length})
+                    </button>
+                  `
+                    : `
+                    <button
+                        class="w-full py-3 px-6 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                        NOT AVAILABLE
+                    </button>
+                  `;
+
+            const dropdownHTML = isMulti ? `
+            <div id="${dropdownId}"
+     class="absolute left-4 right-4 top-[calc(100%-10px)] mt-4 z-[999]
+            opacity-0 invisible translate-y-2
+            group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+            transition-all duration-300"
+            >
+                <div class="bg-slate-900/95 backdrop-blur-xl border border-fuchsia-500/30 rounded-2xl shadow-2xl p-3 space-y-2">
+                    <div class="flex items-center justify-between px-2 pb-2">
+                        <div class="text-xs font-mono text-slate-300 tracking-wider">CHAPTER ${i} • DOWNLOAD PARTS</div>
+                        <button onclick="event.stopPropagation(); closePrecalcDropdown(${i})"
+                                class="md:hidden text-slate-400 hover:text-white transition"
+                                title="Close">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    ${buildPrecalcPartButtons(parts)}
+                    </div>
+                </div>
+            </div>
+        ` : "";
+
+            card.innerHTML = `
+            <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center group-hover:bg-fuchsia-500/20 group-hover:border-fuchsia-500/40 transition-all">
+                    <i data-lucide="${isMulti ? 'folders' : 'folder-open'}" class="w-8 h-8 text-fuchsia-400"></i>
+                </div>
+            </div>
+
+            <h3 class="text-center font-bold text-xl text-white mb-2 tracking-wide">
+                CHAPTER ${i}
+            </h3>
+
+            <div class="text-center mb-6">
+                ${isMulti
+                    ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-200 text-xs font-mono">
+                                <i data-lucide="sparkles" class="w-3 h-3"></i>
+                                MULTI-PART
+                           </span>`
+                    : hasSingle
+                        ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-200 text-xs font-mono">
+                                    <i data-lucide="file" class="w-3 h-3"></i>
+                                    SINGLE FILE
+                               </span>`
+                        : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono">
+                                    <i data-lucide="slash" class="w-3 h-3"></i>
+                                    MISSING
+                               </span>`
+                }
+            </div>
+
+            <div class="relative">
+                ${actionButtonHTML}
+                ${dropdownHTML}
+            </div>
+        `;
+
+            precalcChapterGrid.appendChild(card);
         }
+
+        for (let i = 1; i <= 5; i++) renderPrecalcChapterCard(i);
+
+        function downloadPrecalcChapter(num) {
+            const parts = precalcChapterData[num] || [];
+            if (parts.length === 1) {
+                if (parts[0].url) { window.open(parts[0].url, '_blank'); return; }
+            }
+            if (parts.length > 1) { togglePrecalcDropdown(num); return; }
+            alert(`Download link for Pre-Calculus Chapter ${num} is not available yet.`);
+        }
+
+        function togglePrecalcDropdown(num) {
+            const el = document.getElementById(`pc-dropdown-${num}`);
+            if (!el) return;
+            const isOpen = el.classList.contains('force-open');
+            closeAllPrecalcDropdowns();
+            if (!isOpen) {
+                el.classList.add('force-open');
+                el.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                el.classList.add('opacity-100', 'visible', 'translate-y-0');
+            }
+            lucide.createIcons();
+        }
+
+        function closePrecalcDropdown(num) {
+            const el = document.getElementById(`pc-dropdown-${num}`);
+            if (!el) return;
+            el.classList.remove('force-open');
+            el.classList.add('opacity-0', 'invisible', 'translate-y-2');
+            el.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        }
+
+        function closeAllPrecalcDropdowns() {
+            for (let i = 1; i <= 5; i++) closePrecalcDropdown(i);
+        }
+
+        // ==========================================================
+        // ✅ ADDITIONAL RESOURCES CHAPTER DATA (4 files)
+        // ==========================================================
+
+        const additionalChapterData = {
+            1: [{ label: "Chapter 1", url: "" }],
+            2: [{ label: "Chapter 2", url: "" }],
+            3: [{ label: "Chapter 3", url: "" }],
+            4: [{ label: "Chapter 4", url: "" }]
+        };
+
+        const additionalChapterGrid = document.getElementById('additional-chapter-grid');
+
+        function buildAdditionalPartButtons(parts) {
+            return parts.map((part, idx) => `
+                <button
+                    onclick="event.stopPropagation(); window.open('${part.url}', '_blank')"
+                    class="w-full py-2 px-4 bg-amber-500/10 hover:bg-amber-500/30 text-amber-200 rounded-xl text-sm font-semibold transition-all flex items-center justify-between gap-2">
+                    <span>${part.label}</span>
+                    <span class="text-amber-300/70 font-mono text-xs">#${idx + 1}</span>
+                </button>
+            `).join('');
+        }
+
+        function renderAdditionalChapterCard(i) {
+            const parts = additionalChapterData[i] || [];
+            const isMulti = parts.length > 1;
+            const hasSingle = parts.length === 1;
+
+            const card = document.createElement('div');
+            card.className = "group relative isolate z-0 hover:z-50 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-amber-500/30";
+
+            const dropdownId = `ar-dropdown-${i}`;
+            const btnId = `ar-btn-${i}`;
+
+            const actionButtonHTML = hasSingle
+                ? `
+                    <button onclick="downloadAdditionalChapter(${i})"
+                        class="w-full py-3 px-6 bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-amber-500/25">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        DOWNLOAD
+                    </button>
+                  `
+                : isMulti
+                    ? `
+                        <button id="${btnId}" onclick="toggleAdditionalDropdown(${i})"
+                            class="w-full py-3 px-6 bg-gradient-to-r from-amber-500/90 to-orange-500/90 hover:from-amber-400 hover:to-orange-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-amber-500/25">
+                            <i data-lucide="layers" class="w-4 h-4"></i>
+                            PARTS (${parts.length})
+                        </button>
+                      `
+                    : `
+                        <button
+                            class="w-full py-3 px-6 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                            <i data-lucide="lock" class="w-4 h-4"></i>
+                            NOT AVAILABLE
+                        </button>
+                      `;
+
+            const dropdownHTML = isMulti ? `
+                <div id="${dropdownId}"
+                     class="absolute left-4 right-4 top-[calc(100%-10px)] mt-4 z-[999]
+                            opacity-0 invisible translate-y-2
+                            group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                            transition-all duration-300">
+                    <div class="bg-slate-900/95 backdrop-blur-xl border border-amber-500/30 rounded-2xl shadow-2xl p-3 space-y-2">
+                        <div class="flex items-center justify-between px-2 pb-2">
+                            <div class="text-xs font-mono text-slate-300 tracking-wider">FILE ${i} • DOWNLOAD PARTS</div>
+                            <button onclick="event.stopPropagation(); closeAdditionalDropdown(${i})"
+                                    class="md:hidden text-slate-400 hover:text-white transition"
+                                    title="Close">
+                                <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        ${buildAdditionalPartButtons(parts)}
+                    </div>
+                </div>
+            ` : "";
+
+            card.innerHTML = `
+                <div class="flex justify-center mb-6">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-500/20 group-hover:border-amber-500/40 transition-all">
+                        <i data-lucide="${isMulti ? 'folders' : 'folder-open'}" class="w-8 h-8 text-amber-400"></i>
+                    </div>
+                </div>
+
+                <h3 class="text-center font-bold text-xl text-white mb-2 tracking-wide">
+                    FILE ${i}
+                </h3>
+
+                <div class="text-center mb-6">
+                    ${isMulti
+                    ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs font-mono">
+                                    <i data-lucide="sparkles" class="w-3 h-3"></i>
+                                    MULTI-PART
+                               </span>`
+                    : hasSingle
+                        ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-200 text-xs font-mono">
+                                        <i data-lucide="file" class="w-3 h-3"></i>
+                                        SINGLE FILE
+                                   </span>`
+                        : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono">
+                                        <i data-lucide="slash" class="w-3 h-3"></i>
+                                        MISSING
+                                   </span>`
+                }
+                </div>
+
+                <div class="relative">
+                    ${actionButtonHTML}
+                    ${dropdownHTML}
+                </div>
+            `;
+
+            additionalChapterGrid.appendChild(card);
+        }
+
+        for (let i = 1; i <= 4; i++) renderAdditionalChapterCard(i);
+
+        function downloadAdditionalChapter(num) {
+            const parts = additionalChapterData[num] || [];
+            if (parts.length === 1) {
+                if (parts[0].url) { window.open(parts[0].url, '_blank'); return; }
+            }
+            if (parts.length > 1) { toggleAdditionalDropdown(num); return; }
+            alert(`Download link for Additional Resource ${num} is not available yet.`);
+        }
+
+        function toggleAdditionalDropdown(num) {
+            const el = document.getElementById(`ar-dropdown-${num}`);
+            if (!el) return;
+            const isOpen = el.classList.contains('force-open');
+            closeAllAdditionalDropdowns();
+            if (!isOpen) {
+                el.classList.add('force-open');
+                el.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                el.classList.add('opacity-100', 'visible', 'translate-y-0');
+            }
+            lucide.createIcons();
+        }
+
+        function closeAdditionalDropdown(num) {
+            const el = document.getElementById(`ar-dropdown-${num}`);
+            if (!el) return;
+            el.classList.remove('force-open');
+            el.classList.add('opacity-0', 'invisible', 'translate-y-2');
+            el.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        }
+
+        function closeAllAdditionalDropdowns() {
+            for (let i = 1; i <= 4; i++) closeAdditionalDropdown(i);
+        }
+
+        // ==========================================================
+        // ✅ CHEMISTRY OTHERS DATA (10 files)
+        // ==========================================================
+
+        const chemOthersData = {
+            1: [{ label: "Part 1", url: "" }],
+            2: [{ label: "Part 1", url: "" }],
+            3: [{ label: "Part 1", url: "" }],
+            4: [{ label: "Part 1", url: "" }],
+            5: [{ label: "Part 1", url: "" }],
+            6: [{ label: "Part 1", url: "" }],
+            7: [{ label: "Part 1", url: "" }],
+            8: [{ label: "Part 1", url: "" }],
+            9: [{ label: "Part 1", url: "" }],
+            10: [{ label: "Part 1", url: "" }]
+        };
+
+        const chemOthersGrid = document.getElementById('chem-others-grid');
+
+        function buildChemOthersPartButtons(parts) {
+            return parts.map((part, idx) => `
+                <button
+                    onclick="event.stopPropagation(); window.open('${part.url}', '_blank')"
+                    class="w-full py-2 px-4 bg-cyan-500/10 hover:bg-cyan-500/30 text-cyan-200 rounded-xl text-sm font-semibold transition-all flex items-center justify-between gap-2">
+                    <span>${part.label}</span>
+                    <span class="text-cyan-300/70 font-mono text-xs">#${idx + 1}</span>
+                </button>
+            `).join('');
+        }
+
+        function renderChemOthersCard(i) {
+            const parts = chemOthersData[i] || [];
+            const isMulti = parts.length > 1;
+            const hasSingle = parts.length === 1;
+
+            const card = document.createElement('div');
+            card.className = "group relative isolate z-0 hover:z-50 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-300 hover:border-cyan-500/30";
+
+            const dropdownId = `co-dropdown-${i}`;
+            const btnId = `co-btn-${i}`;
+
+            const actionButtonHTML = hasSingle
+                ? `
+                    <button onclick="downloadChemOthers(${i})"
+                        class="w-full py-3 px-6 bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-cyan-500/25">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        DOWNLOAD
+                    </button>
+                  `
+                : isMulti
+                    ? `
+                        <button id="${btnId}" onclick="toggleChemOthersDropdown(${i})"
+                            class="w-full py-3 px-6 bg-gradient-to-r from-cyan-500/90 to-emerald-500/90 hover:from-cyan-400 hover:to-emerald-400 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-cyan-500/25">
+                            <i data-lucide="layers" class="w-4 h-4"></i>
+                            PARTS (${parts.length})
+                        </button>
+                      `
+                    : `
+                        <button
+                            class="w-full py-3 px-6 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                            <i data-lucide="lock" class="w-4 h-4"></i>
+                            NOT AVAILABLE
+                        </button>
+                      `;
+
+            const dropdownHTML = isMulti ? `
+                <div id="${dropdownId}"
+                     class="absolute left-4 right-4 top-[calc(100%-10px)] mt-4 z-[999]
+                            opacity-0 invisible translate-y-2
+                            group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                            transition-all duration-300">
+                    <div class="bg-slate-900/95 backdrop-blur-xl border border-cyan-500/30 rounded-2xl shadow-2xl p-3 space-y-2">
+                        <div class="flex items-center justify-between px-2 pb-2">
+                            <div class="text-xs font-mono text-slate-300 tracking-wider">FILE ${i} • DOWNLOAD PARTS</div>
+                            <button onclick="event.stopPropagation(); closeChemOthersDropdown(${i})"
+                                    class="md:hidden text-slate-400 hover:text-white transition"
+                                    title="Close">
+                                <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        ${buildChemOthersPartButtons(parts)}
+                    </div>
+                </div>
+            ` : "";
+
+            card.innerHTML = `
+                <div class="flex justify-center mb-6">
+                    <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all">
+                        <i data-lucide="${isMulti ? 'folders' : 'folder-open'}" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                </div>
+
+                <h3 class="text-center font-bold text-xl text-white mb-2 tracking-wide">
+                    FILE ${i}
+                </h3>
+
+                <div class="text-center mb-6">
+                    ${isMulti
+                    ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-200 text-xs font-mono">
+                                    <i data-lucide="sparkles" class="w-3 h-3"></i>
+                                    MULTI-PART
+                               </span>`
+                    : hasSingle
+                        ? `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs font-mono">
+                                        <i data-lucide="file" class="w-3 h-3"></i>
+                                        SINGLE FILE
+                                   </span>`
+                        : `<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs font-mono">
+                                        <i data-lucide="slash" class="w-3 h-3"></i>
+                                        MISSING
+                                   </span>`
+                }
+                </div>
+
+                <div class="relative">
+                    ${actionButtonHTML}
+                    ${dropdownHTML}
+                </div>
+            `;
+
+            chemOthersGrid.appendChild(card);
+        }
+
+        for (let i = 1; i <= 10; i++) renderChemOthersCard(i);
+
+        function downloadChemOthers(num) {
+            const parts = chemOthersData[num] || [];
+            if (parts.length === 1) {
+                if (parts[0].url) { window.open(parts[0].url, '_blank'); return; }
+            }
+            if (parts.length > 1) { toggleChemOthersDropdown(num); return; }
+            alert(`Download link for Chemistry Others File ${num} is not available yet.`);
+        }
+
+        function toggleChemOthersDropdown(num) {
+            const el = document.getElementById(`co-dropdown-${num}`);
+            if (!el) return;
+            const isOpen = el.classList.contains('force-open');
+            closeAllChemOthersDropdowns();
+            if (!isOpen) {
+                el.classList.add('force-open');
+                el.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                el.classList.add('opacity-100', 'visible', 'translate-y-0');
+            }
+            lucide.createIcons();
+        }
+
+        function closeChemOthersDropdown(num) {
+            const el = document.getElementById(`co-dropdown-${num}`);
+            if (!el) return;
+            el.classList.remove('force-open');
+            el.classList.add('opacity-0', 'invisible', 'translate-y-2');
+            el.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        }
+
+        function closeAllChemOthersDropdowns() {
+            for (let i = 1; i <= 10; i++) closeChemOthersDropdown(i);
+        }
+
+        // Re-initialize icons after adding dynamic content
         lucide.createIcons();
-    }
 
-    function closeDropdown(num) {
-        const el = document.getElementById(`dropdown-${num}`);
-        if (!el) return;
-        el.classList.remove('force-open');
-        // restore the baseline hidden state (hover will still show on desktop)
-        el.classList.add('opacity-0', 'invisible', 'translate-y-2');
-        el.classList.remove('opacity-100', 'visible', 'translate-y-0');
-    }
+        // ==========================================================
+        // ✅ DOWNLOAD HANDLERS
+        // ==========================================================
 
-    function closeAllDropdowns() {
-        for (let i = 1; i <= 20; i++) closeDropdown(i);
-    }
+        function downloadChapter(num) {
+            const parts = chapterData[num] || [];
+            if (parts.length === 1) {
+                window.open(parts[0].url, '_blank');
+                return;
+            }
+            if (parts.length > 1) {
+                // On multi-part, just open dropdown for convenience
+                toggleDropdown(num);
+                return;
+            }
+            alert(`Download link for Chapter ${num} is not available yet.`);
+        }
 
-    // Close dropdowns when clicking outside (mobile-friendly)
-    document.addEventListener('click', (e) => {
-        // If user clicked a PARTS button or inside dropdown, do nothing
-        const clickedInsideDropdown = e.target.closest('[id^="dropdown-"]');
-        const clickedPartsBtn = e.target.closest('[id^="btn-"]');
-        if (clickedInsideDropdown || clickedPartsBtn) return;
-        closeAllDropdowns();
-    });
-</script>
+        // ==========================================================
+        // ✅ MOBILE: CLICK/TAP TO TOGGLE DROPDOWN
+        // (desktop hover already works via group-hover classes)
+        // ==========================================================
+
+        function toggleDropdown(num) {
+            const el = document.getElementById(`dropdown-${num}`);
+            if (!el) return;
+
+            // If currently hidden due to hover classes, we force visible by swapping classes
+            const isOpen = el.classList.contains('force-open');
+            closeAllDropdowns();
+
+            if (!isOpen) {
+                el.classList.add('force-open');
+                el.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                el.classList.add('opacity-100', 'visible', 'translate-y-0');
+            }
+            lucide.createIcons();
+        }
+
+        function closeDropdown(num) {
+            const el = document.getElementById(`dropdown-${num}`);
+            if (!el) return;
+            el.classList.remove('force-open');
+            // restore the baseline hidden state (hover will still show on desktop)
+            el.classList.add('opacity-0', 'invisible', 'translate-y-2');
+            el.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        }
+
+        function closeAllDropdowns() {
+            for (let i = 1; i <= 20; i++) closeDropdown(i);
+        }
+
+        // Close dropdowns when clicking outside (mobile-friendly)
+        document.addEventListener('click', (e) => {
+            // If user clicked a PARTS button or inside dropdown, do nothing
+            const clickedInsideDropdown = e.target.closest('[id^="dropdown-"]') || e.target.closest('[id^="pc-dropdown-"]') || e.target.closest('[id^="ar-dropdown-"]') || e.target.closest('[id^="co-dropdown-"]');
+            const clickedPartsBtn = e.target.closest('[id^="btn-"]') || e.target.closest('[id^="pc-btn-"]') || e.target.closest('[id^="ar-btn-"]') || e.target.closest('[id^="co-btn-"]');
+            if (clickedInsideDropdown || clickedPartsBtn) return;
+            closeAllDropdowns();
+            closeAllPrecalcDropdowns();
+            closeAllAdditionalDropdowns();
+            closeAllChemOthersDropdowns();
+        });
+    </script>
 
 </body>
+
 </html>
