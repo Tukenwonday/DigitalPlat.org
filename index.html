@@ -1415,104 +1415,398 @@
         </div>
     </section>
 
-    <!-- LEADERBOARD -->
+    <!-- FPS BOOST SECTION -->
     <section class="leaderboard-section rel" id="leaderboard">
-        <div class="section-label">Global Rankings</div>
+        <div class="section-label">Performance Impact</div>
         <h2 class="section-title fade-up">
-            Top players this<br />
-            <span style="color: var(--gold)">week.</span>
+            Statify doesn't slow<br />
+            <span style="color: var(--gold)">you down.</span>
         </h2>
+        <p class="section-desc fade-up d1" style="max-width:520px; margin: 0 auto 64px;">
+            Zero performance tax. Statify runs entirely async — your frames stay <strong>untouched</strong>, or better.
+        </p>
 
-        <div class="leaderboard-wrap fade-up d1">
-            <div class="lb-header">
-                <span class="lb-title">// GLOBAL LEADERBOARD</span>
-                <span class="lb-note">UPDATED EVERY 15 MIN · 2.4M TRACKED PLAYERS</span>
-            </div>
+        <style>
+            .fps-arena {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                gap: 0;
+                align-items: center;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
 
-            <div class="lb-row" style="background: var(--surface2); padding-top: 10px; padding-bottom: 10px;">
-                <div class="lb-col-header">#</div>
-                <div class="lb-col-header left">PLAYER</div>
-                <div class="lb-col-header">K/D</div>
-                <div class="lb-col-header">KILLS</div>
-                <div class="lb-col-header">WINS</div>
-                <div class="lb-col-header">ELO</div>
-            </div>
+            /* ── BEFORE card ── */
+            .fps-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                padding: 44px 40px 40px;
+                position: relative;
+                overflow: hidden;
+                transition: transform 0.3s;
+            }
+            .fps-card:hover { transform: translateY(-4px); }
 
-            <div class="lb-row first">
-                <div class="lb-rank r1">1</div>
-                <div class="lb-player">
-                    <span class="lb-avatar">👑</span>
-                    <div>
-                        <div class="lb-pname">xXVoid_KillerXx</div>
-                        <div class="lb-guild">ELITE GUILD</div>
+            .fps-card.before {
+                border-color: rgba(255,45,45,0.25);
+            }
+            .fps-card.before::before {
+                content: "";
+                position: absolute; inset: 0;
+                background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,45,45,0.07), transparent 70%);
+                pointer-events: none;
+            }
+            .fps-card.before::after {
+                content: "";
+                position: absolute; top: 0; left: 0; right: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, var(--red), transparent);
+            }
+
+            .fps-card.after {
+                border-color: rgba(255,215,0,0.3);
+            }
+            .fps-card.after::before {
+                content: "";
+                position: absolute; inset: 0;
+                background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,215,0,0.08), transparent 70%);
+                pointer-events: none;
+            }
+            .fps-card.after::after {
+                content: "";
+                position: absolute; top: 0; left: 0; right: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            }
+
+            .fps-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-family: "Space Mono", monospace;
+                font-size: 9px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                padding: 5px 12px;
+                border-radius: 3px;
+                margin-bottom: 32px;
+            }
+            .fps-tag.before-tag {
+                color: var(--red);
+                background: var(--red-dim);
+                border: 1px solid var(--border-hot);
+            }
+            .fps-tag.after-tag {
+                color: var(--gold);
+                background: var(--gold-dim);
+                border: 1px solid rgba(255,215,0,0.3);
+            }
+            .fps-tag-dot {
+                width: 5px; height: 5px;
+                border-radius: 50%;
+            }
+            .fps-tag.before-tag .fps-tag-dot { background: var(--red); }
+            .fps-tag.after-tag .fps-tag-dot { background: var(--gold); animation: pulse-dot 1.5s infinite; }
+
+            .fps-number {
+                font-family: "Orbitron", monospace;
+                font-weight: 900;
+                line-height: 1;
+                margin-bottom: 6px;
+                position: relative;
+                z-index: 1;
+            }
+            .fps-card.before .fps-number {
+                font-size: clamp(72px, 9vw, 108px);
+                color: var(--red);
+                text-shadow: 0 0 40px rgba(255,45,45,0.35);
+            }
+            .fps-card.after .fps-number {
+                font-size: clamp(72px, 9vw, 108px);
+                color: var(--gold);
+                text-shadow: 0 0 50px rgba(255,215,0,0.5);
+            }
+
+            .fps-unit {
+                font-family: "Space Mono", monospace;
+                font-size: 13px;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                color: var(--text-muted);
+                margin-bottom: 28px;
+            }
+
+            /* bar graph */
+            .fps-bars {
+                display: flex;
+                align-items: flex-end;
+                gap: 5px;
+                height: 52px;
+                margin-bottom: 24px;
+            }
+            .fps-bar {
+                flex: 1;
+                border-radius: 2px 2px 0 0;
+                position: relative;
+                transition: height 0.4s ease;
+            }
+            .fps-card.before .fps-bar { background: rgba(255,45,45,0.35); }
+            .fps-card.after  .fps-bar { background: rgba(255,215,0,0.45); }
+            .fps-card.after  .fps-bar:last-child,
+            .fps-card.after  .fps-bar:nth-last-child(2) {
+                background: rgba(255,215,0,0.75);
+                box-shadow: 0 0 8px rgba(255,215,0,0.4);
+            }
+
+            .fps-meta {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .fps-meta-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: "Space Mono", monospace;
+                font-size: 10px;
+                letter-spacing: 1px;
+                color: var(--text-muted);
+                padding: 8px 12px;
+                background: var(--steel-dim);
+                border-radius: 6px;
+                border: 1px solid var(--border);
+            }
+            .fps-meta-val {
+                font-weight: 700;
+            }
+            .fps-card.before .fps-meta-val { color: var(--red); }
+            .fps-card.after  .fps-meta-val { color: var(--gold); }
+
+            /* ── ARROW middle ── */
+            .fps-arrow-col {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                padding: 0 20px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .fps-arrow-wrap {
+                position: relative;
+                width: 80px;
+                height: 80px;
+            }
+
+            /* spinning ring */
+            .fps-arrow-wrap::before {
+                content: "";
+                position: absolute;
+                inset: -6px;
+                border-radius: 50%;
+                border: 1px solid transparent;
+                border-top-color: var(--red);
+                border-right-color: var(--gold);
+                animation: fps-spin 3s linear infinite;
+            }
+            .fps-arrow-wrap::after {
+                content: "";
+                position: absolute;
+                inset: -14px;
+                border-radius: 50%;
+                border: 1px dashed rgba(255,215,0,0.15);
+                animation: fps-spin 8s linear infinite reverse;
+            }
+            @keyframes fps-spin {
+                to { transform: rotate(360deg); }
+            }
+
+            .fps-arrow-svg {
+                width: 80px;
+                height: 80px;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* pulsing glow behind arrow */
+            .fps-arrow-glow {
+                position: absolute;
+                inset: 0;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(255,215,0,0.18) 0%, transparent 70%);
+                animation: fps-glow-pulse 2s ease-in-out infinite;
+            }
+            @keyframes fps-glow-pulse {
+                0%, 100% { transform: scale(1); opacity: 0.8; }
+                50% { transform: scale(1.25); opacity: 1; }
+            }
+
+            .fps-boost-badge {
+                font-family: "Orbitron", monospace;
+                font-weight: 900;
+                font-size: 11px;
+                letter-spacing: 2px;
+                color: var(--gold);
+                background: var(--gold-dim);
+                border: 1px solid rgba(255,215,0,0.3);
+                border-radius: 4px;
+                padding: 6px 14px;
+                white-space: nowrap;
+                text-align: center;
+                animation: fps-glow-pulse 2s ease-in-out infinite;
+            }
+
+            .fps-multiplier {
+                font-family: "Space Mono", monospace;
+                font-size: 9px;
+                letter-spacing: 2px;
+                color: var(--text-muted);
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            @media (max-width: 768px) {
+                .fps-arena {
+                    grid-template-columns: 1fr;
+                    gap: 24px;
+                }
+                .fps-arrow-col {
+                    flex-direction: row;
+                    justify-content: center;
+                    padding: 0;
+                    transform: rotate(90deg);
+                }
+            }
+        </style>
+
+        <div class="fps-arena fade-up d1">
+
+            <!-- BEFORE -->
+            <div class="fps-card before">
+                <div class="fps-tag before-tag">
+                    <span class="fps-tag-dot"></span> Without Statify
+                </div>
+                <div class="fps-number" id="fps-before-num">26</div>
+                <div class="fps-unit">Frames / second</div>
+
+                <!-- mini bar chart: choppy low bars -->
+                <div class="fps-bars" id="fps-before-bars"></div>
+
+                <div class="fps-meta">
+                    <div class="fps-meta-row">
+                        <span>Avg FPS</span>
+                        <span class="fps-meta-val">26</span>
+                    </div>
+                    <div class="fps-meta-row">
+                        <span>1% Low</span>
+                        <span class="fps-meta-val">11</span>
+                    </div>
+                    <div class="fps-meta-row">
+                        <span>Frame time</span>
+                        <span class="fps-meta-val">38.4 ms</span>
                     </div>
                 </div>
-                <div class="lb-val kd">12.4</div>
-                <div class="lb-val kills">89,231</div>
-                <div class="lb-val wins">14,502</div>
-                <div class="lb-val elo">3,847</div>
             </div>
 
-            <div class="lb-row">
-                <div class="lb-rank r2">2</div>
-                <div class="lb-player">
-                    <span class="lb-avatar">⚔️</span>
-                    <div>
-                        <div class="lb-pname">CrimsonBlade99</div>
-                        <div class="lb-guild">PHANTOM SQUAD</div>
-                    </div>
+            <!-- ARROW -->
+            <div class="fps-arrow-col">
+                <div class="fps-arrow-wrap">
+                    <div class="fps-arrow-glow"></div>
+                    <svg class="fps-arrow-svg" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- arrow shaft -->
+                        <line x1="10" y1="40" x2="58" y2="40" stroke="url(#arrowGrad)" stroke-width="3" stroke-linecap="round"/>
+                        <!-- arrowhead -->
+                        <polyline points="46,26 62,40 46,54" stroke="url(#arrowGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <!-- spark lines -->
+                        <line x1="14" y1="28" x2="22" y2="28" stroke="rgba(255,45,45,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="10" y1="33" x2="16" y2="33" stroke="rgba(255,45,45,0.3)" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="14" y1="52" x2="22" y2="52" stroke="rgba(255,215,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="10" y1="47" x2="16" y2="47" stroke="rgba(255,215,0,0.3)" stroke-width="1" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="arrowGrad" x1="10" y1="40" x2="68" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#ff2d2d"/>
+                                <stop offset="100%" stop-color="#ffd700"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
                 </div>
-                <div class="lb-val kd">10.7</div>
-                <div class="lb-val kills">71,844</div>
-                <div class="lb-val wins">11,203</div>
-                <div class="lb-val elo">3,612</div>
+                <div class="fps-boost-badge">+758%</div>
+                <div class="fps-multiplier">8.6× faster</div>
             </div>
 
-            <div class="lb-row">
-                <div class="lb-rank r3">3</div>
-                <div class="lb-player">
-                    <span class="lb-avatar">🔥</span>
-                    <div>
-                        <div class="lb-pname">NotchLegacy</div>
-                        <div class="lb-guild">SOLO WARRIOR</div>
-                    </div>
+            <!-- AFTER -->
+            <div class="fps-card after">
+                <div class="fps-tag after-tag">
+                    <span class="fps-tag-dot"></span> With Statify
                 </div>
-                <div class="lb-val kd">9.2</div>
-                <div class="lb-val kills">63,119</div>
-                <div class="lb-val wins">9,877</div>
-                <div class="lb-val elo">3,401</div>
-            </div>
+                <div class="fps-number" id="fps-after-num">223</div>
+                <div class="fps-unit">Frames / second</div>
 
-            <div class="lb-row">
-                <div class="lb-rank other">4</div>
-                <div class="lb-player">
-                    <span class="lb-avatar">🎯</span>
-                    <div>
-                        <div class="lb-pname">_Ender_Hunter_</div>
-                        <div class="lb-guild">DARK ORDER</div>
-                    </div>
-                </div>
-                <div class="lb-val kd">8.8</div>
-                <div class="lb-val kills">57,422</div>
-                <div class="lb-val wins">8,441</div>
-                <div class="lb-val elo">3,290</div>
-            </div>
+                <!-- mini bar chart: tall consistent bars -->
+                <div class="fps-bars" id="fps-after-bars"></div>
 
-            <div class="lb-row">
-                <div class="lb-rank other">5</div>
-                <div class="lb-player">
-                    <span class="lb-avatar">💀</span>
-                    <div>
-                        <div class="lb-pname">GhostArrow</div>
-                        <div class="lb-guild">SNIPER GUILD</div>
+                <div class="fps-meta">
+                    <div class="fps-meta-row">
+                        <span>Avg FPS</span>
+                        <span class="fps-meta-val">223</span>
+                    </div>
+                    <div class="fps-meta-row">
+                        <span>1% Low</span>
+                        <span class="fps-meta-val">198</span>
+                    </div>
+                    <div class="fps-meta-row">
+                        <span>Frame time</span>
+                        <span class="fps-meta-val">4.5 ms</span>
                     </div>
                 </div>
-                <div class="lb-val kd">8.1</div>
-                <div class="lb-val kills">49,803</div>
-                <div class="lb-val wins">7,210</div>
-                <div class="lb-val elo">3,155</div>
             </div>
         </div>
+
+        <script>
+            // Build before bars (choppy, low, uneven)
+            (function() {
+                const beforeHeights = [28,18,35,12,40,22,15,38,10,25,30,14,42,20,16,32,8,27,36,19];
+                const afterHeights  = [82,90,85,95,88,92,86,94,89,96,91,87,93,90,95,88,92,97,85,94];
+                const bb = document.getElementById("fps-before-bars");
+                const ab = document.getElementById("fps-after-bars");
+                if (bb) beforeHeights.forEach(h => {
+                    const d = document.createElement("div");
+                    d.className = "fps-bar";
+                    d.style.height = h + "%";
+                    bb.appendChild(d);
+                });
+                if (ab) afterHeights.forEach(h => {
+                    const d = document.createElement("div");
+                    d.className = "fps-bar";
+                    d.style.height = h + "%";
+                    ab.appendChild(d);
+                });
+            })();
+
+            // Count-up animation on scroll
+            function countUp(el, target, duration) {
+                let start = 0, step = target / (duration / 16);
+                const tick = () => {
+                    start = Math.min(start + step, target);
+                    el.textContent = Math.floor(start);
+                    if (start < target) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+            }
+
+            const fpsObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        countUp(document.getElementById("fps-before-num"), 26, 800);
+                        countUp(document.getElementById("fps-after-num"), 223, 1400);
+                        fpsObs.disconnect();
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            const fpsArena = document.querySelector(".fps-arena");
+            if (fpsArena) fpsObs.observe(fpsArena);
+        </script>
     </section>
 
     <!-- BTC MODAL -->
